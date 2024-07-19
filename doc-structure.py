@@ -72,9 +72,8 @@ class XMLDoc:
     @property
     def filename(self):
         """document filename getter"""
-        return self._title
+        return self._filename
     
-    # filename setter not working
     @filename.setter
     def filename(self, new_filename:str):
         """document filename setter"""
@@ -122,9 +121,9 @@ class XMLDoc:
 
 
 workspace = Workspace('try', os.getcwd())
-print(workspace._base_directory)
+# print(workspace._base_directory)
 
 
 xml = XMLDoc('myxml.xml', 'f')
-
-# filename setter not working
+xml.filename = '67'
+print(xml.filename)
