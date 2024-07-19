@@ -1,6 +1,6 @@
 import os
 import re
-
+from typing import Union, List
 
 from assist import InvalidFilename, FILENAME_REQUIREMENTS
 
@@ -102,12 +102,12 @@ class XMLDoc:
             - default r'(?=^[a-zA-Z]\w+)(\w+)(\.xml)?$'
         - extension (str, optional): Indended file extension
             - default '.xml'
-        - check (bool): when True returns True if the filename is valid else InvalidFilename Exception
+        - check (bool): if True returns True if the filename is valid else InvalidFilename Exception
             - default False
         
         Output:
-        - when check=False:  valid filename (str) or InvalidFilename Exception
-        - when check=True:   True if valid filename or InvalidFilename Exception
+        - if check=False:  valid filename (str) or InvalidFilename Exception
+        - if check=True:   True if valid filename or InvalidFilename Exception
         """
         check_filename = re.match(pattern, filename_to_check)
         if check_filename:
@@ -126,7 +126,7 @@ class XMLDoc:
         """create and save an xml file with metadata backbone
         
         Parameters:
-        - non_empty (bool): when True does not include empty title, key, time_signature in the file
+        - non_empty (bool): if True does not include empty title, key, time_signature in the file
             - default False
         """
         try:
@@ -154,25 +154,38 @@ class XMLDoc:
         self.time_signature = time_signature if time_signature else self.time_signature
     
 
+    def write_xml(self, starting_with= '', non_empty=False):
+        """create an xml string
+        
+        Parameters:
+        - starting_with (str): the beginning of the string
+            - default ''
+        - non-empty (bool): if True, does not include attributes (tags) with empty values 
+            - default False
+        """
+        xml_string = starting_with
+        for attr, value in vars(self).items():
+            if not attr.startswith('_'):
+                if non_empty:
+                    if value:
+                        xml_string += f'<{attr}>{value}</{attr}>\n'
+                else:
+                    xml_string += f'<{attr}>{value}</{attr}>\n'
+        return xml_string
+    
+
     def write_metadata_xml(self, version='1.0', encoding='UTF-8', non_empty=False):
         """create a metadata xml string
         
         Parameters:
         - version (str): default '1.0'
         - encoding (str): default 'UTF-8'
-        - non-empty (bool): when True does not include attributes (tags) with empty values 
+        - non-empty (bool): if True does not include attributes (tags) with empty values 
             - default False
         """
         xml_string = f'<?xml version="{version}" encoding="{encoding}"?>\n'
-        for attr, value in vars(self).items():
-            if not attr.startswith('_'):
-                if non_empty:
-                    if value:
-                        xml_string += f'<{attr}>{value}</{attr}>\n' 
-                else:
-                    xml_string += f'<{attr}>{value}</{attr}>\n'
-        return xml_string
-    
+        return self.write_xml(starting_with=xml_string, non_empty=non_empty)
+
 
     def update_file(self, title:str='', key:str='', time_signature:str=''):
         """overwrite the file with the current state of the object
@@ -228,14 +241,81 @@ class XMLDoc:
             self._path = str(new_path)
 
 
-workspace = Workspace('current_workspace', os.getcwd())
 
-workspace.add_document('myxml', 'f')
-for doc in workspace.documents:
-    doc.create()
-    doc.set_metadata('ishikaribanka', 'A minor', '4/4')
-    doc.update_file(title='A')
+class Tag:
 
+    """an XML tag parent class"""
+    def __init__(self, tag_name:str):
+        self.tag_name = tag_name
+
+
+        
+
+
+class Syllable(Tag):
+    """a class typically representing 1 sung syllable"""
+
+    def __init__(self, *lyric):
+        super().__init__('syllable')
+        if len(lyric) == 1:
+            self.lyric = lyric
+        else:
+            self.lyric = lyric
+        self.notes = []
+
+
+    def add_note(self, pitch:str, duration:str):
+        """add a note: pitch and duration
+
+        Parameters:
+        - pitch (str): C2, A3, E4, B7, ...
+        - duration (str): 1/1, 1/2, 1/4, 1/8, 1/16, ...
+        """
+        self.notes.append({'pitch': pitch, 'duration': duration})
+
+
+    def is_melisma(self):
+        """check if the syllable has multiple notes = (is a melisma)"""
+        return len(self.notes) > 1
+
+    def __repr__(self):
+        notes_repr = ', '.join(note['pitch'] + ' - ' + note['duration'] for note in self.notes)
+        lyric_repr = ''.join(lyr for lyr in self.lyric)
+        return f'{lyric_repr}    [ {notes_repr} ]'
+    
+
+
+class Rest(Tag):
+    """a clas representing a rest"""
+
+    def __init__(self, *duration):
+        super().__init__('rest')
+        self.duration = duration
+
+    
+    def __repr__(self):
+        return f'rest   [ {" - ".join(dur for dur in self.duration)} ]'
+
+    
+
+
+
+# workspace = Workspace('current_workspace', os.getcwd())
+
+# workspace.add_document('myxml', 'f')
+# for doc in workspace.documents:
+#     doc.create()
+#     doc.set_metadata('ishikaribanka', 'A minor', '4/4')
+#     doc.update_file(title='A')
+
+# la = Syllable('ご', 'h')
+# la.add_note('A3', '1/4')
+# la.add_note('A6', '1/2')
+
+# print(la)
+
+# res = Rest('5/7')
+# print(res)
 
 
 # xml = XMLDoc('myxml', 'f')
