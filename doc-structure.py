@@ -25,39 +25,47 @@ class Workspace:
 
     @property
     def name(self):
+        """workspace name getter"""
         return self._name
 
     @name.setter
     def name(self, new_name):
+        """workspace name setter"""
         if new_name:
             self._name = new_name
 
     @property
     def base_directory(self):
+        """workspace base_directory getter"""
         return self._base_directory
     
     @base_directory.setter
     def base_directory(self, new_directory):
+        """workspace base_directory setter"""
         if new_directory:
             self._base_directory = new_directory
     
     @property
     def documents(self):
+        """workspace documents getter"""
         return self._documents
     
     @documents.setter
     def documents(self, documents_list):
+        """workspace documents getter"""
         if documents_list:
             self._documents = documents_list
     
 
-
     def add_document(self, filename, path=''):
+        """add document to the workspace with filename and path"""
         full_path = os.path.join(self._base_directory, path)
         if not os.path.exists(full_path):
             os.makedirs(full_path)
         new_document = XMLDoc(filename, full_path)
         self.documents.append(new_document)
+
+
 
 
 class XMLDoc:
@@ -182,7 +190,18 @@ class XMLDoc:
         except IOError as _:
                 print(f'Error when trying to update the file\n\t {_}')
 
-
+    
+    def delete_file(self):
+        """delete the file from path if exists"""
+        if os.path.exists(self.path):
+            try:
+                os.remove(self.path)
+                print(f'File deleted: {self.path}')
+            except Exception as _:
+                print(f'Error deleting file: {_}')
+        else:
+            print(f'File not found or does not exit.\n{self.path}')
+        
 
     @property
     def filename(self):
