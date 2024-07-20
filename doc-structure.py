@@ -1,6 +1,6 @@
 import os
 import re
-from typing import Union, List
+
 
 from assist import InvalidFilename, FILENAME_REQUIREMENTS
 
@@ -16,7 +16,8 @@ class Workspace:
     Methods:
     - __init__(self, name, base_directory)
     - add_document(self, filename)
-      initializes new XMLDoc instance and appends it to the self.documents attribute"""
+      initializes new XMLDoc instance and appends it to the self.documents attribute
+      """
 
     def __init__(self, name, base_directory):
         self._name = name
@@ -64,8 +65,6 @@ class Workspace:
             os.makedirs(full_path)
         new_document = XMLDoc(filename, full_path)
         self.documents.append(new_document)
-
-
 
 
 class XMLDoc:
@@ -241,7 +240,6 @@ class XMLDoc:
             self._path = str(new_path)
 
 
-
 class Tag:
 
     """an XML tag parent class"""
@@ -249,18 +247,127 @@ class Tag:
         self.tag_name = tag_name
 
 
+    def write_xml(self, *multi_valued_attr):
+        """create an xml string for the tag class instance
         
+        Parameters:
+        - *multi_valued_attr (*args): attributes of the class that are collections
+            - allowed data types: 
+                - list, tuple, set
+                - the above ones with dict elements
+            - by default Syllable.lyric, Syllable.notes, Rest.duration
+        """
+        xml_string = f'<{self.tag_name}>\n\t'
+        for attr, value in vars(self).items():
+            if not attr.startswith('_') and attr != 'tag_name':
+
+                if attr in multi_valued_attr:
+                    for el in value:
+
+                        if isinstance(el, dict):
+                            for key, val in el.items():
+                                xml_string += f'<{key}>{val}</{key}>\n\t'
+                        else:
+                            xml_string += f'<{attr}>{el}</{attr}>\n\t'
+
+                else:
+                    xml_string += f'<{attr}>{value}</{attr}>\n\t'
+
+        xml_string = xml_string[:-1] + f'</{self.tag_name}>'
+        return xml_string
+     
+
+class Melody(Tag):
+    """a class representing the only melody instance within a document"""
+
+    def __init__(self):
+        super().__init__('melody')
+        self.sections = []
+    
+
+class TagWithAttr(Tag):
+    """a child of the Tag class of tags with attributes
+    
+    <tag attr="value"></tag>
+    """
+    
+    def write_xml(self, non_empty=True, *children):
+        """create an xml string for the tag with attributes class instance
+        
+        Parameters:
+        - non_empty (bool): if True does not include empty title, key, time_signature
+            - default True
+        - children (*args): attributes that are collections of children tags 
+            - not included in the xml string
+        
+        """
+        attr_string = ''
+        for attr, value in vars(self).items():
+            if not attr.startswith('_') and attr != 'tag_name' \
+                    and attr not in children:
+                if non_empty:
+                    if value:
+                        attr_string += f'{attr}="{value}"'
+                else:
+                    attr_string += f'{attr}="{value}"'
+        sep = ['', ' '][attr_string != '']
+        xml_string = f'<{self.tag_name}{sep}{attr_string}></{self.tag_name}>'
+        return xml_string
+
+
+class Section(TagWithAttr):
+    """a class representing one logical or musical section within a melody"""
+
+    def __init__(self, name:str=''):
+        super().__init__('section')
+        self.name = name
+        self.mel_phrases = []
+
+    def write_xml(self, non_empty=True, *children):
+        return super().write_xml(non_empty, self.mel_phrases)
+
+
+    def __repr__(self):
+        return f'Section: {self.name}'    
+    
+
+
+class MelPhrase(TagWithAttr):
+    """a class representing one melodic phrase within a section"""
+
+    def __init__(self, mel_p_id:str=''):
+        super().__init__('melodic-phrase')
+        self.id = mel_p_id
+        self.lex_phrases = []
+
+    def write_xml(self, non_empty=True, *children):
+        return super().write_xml(non_empty, self.lex_phrases)
+    
+    def __repr__(self):
+        pass
+
+
+class LexPhrase(TagWithAttr):
+    """a class representing one lexical phrase within a melodic phrase"""
+
+    def __init__(self, lex_ph_id:str=''):
+        super().__init__('lexical-phrase')
+        self.id = lex_ph_id
+        self.syllables = []
+
+    def write_xml(self, non_empty=True, *children):
+        return super().write_xml(non_empty, self.syllables)
+    
+    def __repr__():
+        pass
 
 
 class Syllable(Tag):
-    """a class typically representing 1 sung syllable"""
+    """a class typically representing one sung syllable within a lexical phrase"""
 
     def __init__(self, *lyric):
         super().__init__('syllable')
-        if len(lyric) == 1:
-            self.lyric = lyric
-        else:
-            self.lyric = lyric
+        self.lyric = lyric
         self.notes = []
 
 
@@ -278,15 +385,17 @@ class Syllable(Tag):
         """check if the syllable has multiple notes = (is a melisma)"""
         return len(self.notes) > 1
 
+    def write_xml(self, *multi_valued_attr):
+        return super().write_xml('lyric', 'notes')
+
     def __repr__(self):
         notes_repr = ', '.join(note['pitch'] + ' - ' + note['duration'] for note in self.notes)
         lyric_repr = ''.join(lyr for lyr in self.lyric)
         return f'{lyric_repr}    [ {notes_repr} ]'
-    
 
 
 class Rest(Tag):
-    """a clas representing a rest"""
+    """a class representing a rest within a lexical phrase"""
 
     def __init__(self, *duration):
         super().__init__('rest')
@@ -295,6 +404,14 @@ class Rest(Tag):
     
     def __repr__(self):
         return f'rest   [ {" - ".join(dur for dur in self.duration)} ]'
+    
+
+    def write_xml(self, *multi_valued_attr):
+        return super().write_xml('duration')
+    
+    
+
+
 
     
 
@@ -314,8 +431,11 @@ class Rest(Tag):
 
 # print(la)
 
-# res = Rest('5/7')
-# print(res)
+# # print(la.tag_name)
+# print(la.write_xml())
+
+# res = Rest('5/7', '1/4')
+# print(res.write_xml())
 
 
 # xml = XMLDoc('myxml', 'f')
@@ -323,3 +443,10 @@ class Rest(Tag):
 # print(xml.filename)
 
 
+sec = Section('Verse')
+print(sec.write_xml())
+
+mel = MelPhrase('1')
+le = LexPhrase('')
+print(mel.write_xml())
+print(le.write_xml())
