@@ -56,15 +56,6 @@ class Workspace:
         """workspace documents getter"""
         if documents_list:
             self._documents = documents_list
-    
-
-    def add_document(self, filename, path=''):
-        """add document to the workspace with filename and path"""
-        full_path = os.path.join(self._base_directory, path)
-        if not os.path.exists(full_path):
-            os.makedirs(full_path)
-        new_document = XMLDoc(filename, full_path)
-        self.documents.append(new_document)
 
 
 class XMLDoc:
@@ -242,77 +233,122 @@ class XMLDoc:
 
 class Tag:
 
+    _depths = {'melody': 0, 'section': 1, 'melodic-phrase': 2, 
+              'lexical-phrase': 3, 'syllable': 4, 'rest': 4
+              }
+
     """an XML tag parent class"""
     def __init__(self, tag_name:str):
         self.tag_name = tag_name
+        self.depth = Tag._depths[tag_name]
+        self.children = []
 
-
-    def write_xml(self, *multi_valued_attr):
+    def write_xml(self,  inner='', depth=-1):
         """create an xml string for the tag class instance
         
         Parameters:
-        - *multi_valued_attr (*args): attributes of the class that are collections
+        - *args: attributes of the class that are collections
             - allowed data types: 
                 - list, tuple, set
                 - the above ones with dict elements
             - by default Syllable.lyric, Syllable.notes, Rest.duration
         """
-        xml_string = f'<{self.tag_name}>\n\t'
-        for attr, value in vars(self).items():
-            if not attr.startswith('_') and attr != 'tag_name':
 
-                if attr in multi_valued_attr:
-                    for el in value:
+        curr_depth = depth if depth >= 0 else self.depth
+        tab_l, tab_r = '\t' * curr_depth, '\t' * curr_depth
+        if not inner:
+            inner = '\n'.join(el.write_xml(depth=el.depth) for el in self.children)
 
-                        if isinstance(el, dict):
-                            for key, val in el.items():
-                                xml_string += f'<{key}>{val}</{key}>\n\t'
-                        else:
-                            xml_string += f'<{attr}>{el}</{attr}>\n\t'
-
-                else:
-                    xml_string += f'<{attr}>{value}</{attr}>\n\t'
-
-        xml_string = xml_string[:-1] + f'</{self.tag_name}>'
+        attr_string = ''
+        sep = ['', ' '][attr_string != '']
+        xml_string = f'{tab_l}<{self.tag_name}{sep}{attr_string}>' \
+                     + f'\n{inner}\n' \
+                     + f'{tab_l}</{self.tag_name}>{tab_r}' 
         return xml_string
-     
-
-class Melody(Tag):
-    """a class representing the only melody instance within a document"""
-
-    def __init__(self):
-        super().__init__('melody')
-        self.sections = []
     
+    @classmethod
+    def depths(cls):
+        return cls._depths
 
+    
 class TagWithAttr(Tag):
     """a child of the Tag class of tags with attributes
     
     <tag attr="value"></tag>
     """
     
-    def write_xml(self, non_empty=True, *children):
+    def write_xml(self, non_empty=True, inner='', depth=-1):
         """create an xml string for the tag with attributes class instance
         
         Parameters:
-        - non_empty (bool): if True does not include empty title, key, time_signature
+        - non_empty (bool): if True does not include empty fields
             - default True
-        - children (*args): attributes that are collections of children tags 
-            - not included in the xml string
-        
         """
+
+        tag_depth = depth if depth >= 0 else self.depth
+        tab_l, tab_r = '\t' * tag_depth, '\t' * (tag_depth + 1)
+
+        if not inner:
+            inner = '\n'.join(el.write_xml(depth=el.depth) for el in self.children)
+
         attr_string = ''
         for attr, value in vars(self).items():
-            if not attr.startswith('_') and attr != 'tag_name' \
-                    and attr not in children:
+            if not attr.startswith('_') \
+                    and attr not in ('tag_name', 'depth', 'multi', 'children'):
                 if non_empty:
                     if value:
-                        attr_string += f'{attr}="{value}"'
+                        attr_string += f' {attr}="{value}"'
                 else:
-                    attr_string += f'{attr}="{value}"'
-        sep = ['', ' '][attr_string != '']
-        xml_string = f'<{self.tag_name}{sep}{attr_string}></{self.tag_name}>'
+                    attr_string += f' {attr}="{value}"'
+        xml_string = f'{tab_l}<{self.tag_name}{attr_string}>' \
+                     + f'\n{inner}\n' \
+                     + f'{tab_l}</{self.tag_name}>{tab_r}' 
         return xml_string
+    
+class MultiElTag(Tag):
+
+    def __init__(self, tag_name, multi):
+        super().__init__(tag_name)
+        self.multi = multi
+
+    def write_xml(self, depth=-1):
+        """create an xml string for the tag class instance
+        
+        Parameters:
+        """
+        tag_depth = depth if depth >= 0 else self.depth
+        tab_l, tab_r = '\t' * tag_depth, '\t' * (tag_depth + 1)
+
+        xml_string = f'{tab_l}<{self.tag_name}>\n{tab_r}'
+        for attr, value in self.__dict__.items():
+            if not attr.startswith('_') \
+                    and attr not in ('tag_name', 'depth', 'multi', 'children'):
+                if attr in self.multi:
+                    for el in value:
+
+                        if isinstance(el, dict):
+                            for key, val in el.items():
+                                xml_string += f'<{key}>{val}</{key}>\n{tab_r}'
+                        else:
+                            xml_string += f'<{attr}>{el}</{attr}>\n{tab_r}'
+
+                else:
+                    xml_string += f'<{attr}>{value}</{attr}>\n{tab_r}'
+
+        xml_string = xml_string[:-1] + f'</{self.tag_name}>'
+        return xml_string
+    
+
+
+class Melody(Tag):
+    """a class representing the only melody instance within a document"""
+
+    def __init__(self):
+        super().__init__('melody')
+
+    def add_section(self, section):
+        self.children.append(section)
+        
 
 
 class Section(TagWithAttr):
@@ -321,55 +357,57 @@ class Section(TagWithAttr):
     def __init__(self, name:str=''):
         super().__init__('section')
         self.name = name
-        self.mel_phrases = []
-
-    def write_xml(self, non_empty=True, *children):
-        return super().write_xml(non_empty, self.mel_phrases)
-
+    
+    def add_mel_phrase(self, mel_phrase):
+        self.children.append(mel_phrase)
 
     def __repr__(self):
         return f'Section: {self.name}'    
     
 
 
-class MelPhrase(TagWithAttr):
+class MelPhrase(Tag):
     """a class representing one melodic phrase within a section"""
 
     def __init__(self, mel_p_id:str=''):
         super().__init__('melodic-phrase')
         self.id = mel_p_id
-        self.lex_phrases = []
 
-    def write_xml(self, non_empty=True, *children):
-        return super().write_xml(non_empty, self.lex_phrases)
-    
-    def __repr__(self):
-        pass
+    def add_lex_phrase(self, lex_phrase):
+        self.children.append(lex_phrase)
 
 
 class LexPhrase(TagWithAttr):
     """a class representing one lexical phrase within a melodic phrase"""
 
-    def __init__(self, lex_ph_id:str=''):
+    _lex_ph_count = 0
+
+    def __init__(self):
         super().__init__('lexical-phrase')
-        self.id = lex_ph_id
-        self.syllables = []
+        LexPhrase._lex_ph_count += 1
+        self.id = LexPhrase._lex_ph_count 
+        self.lyrics = ''
 
-    def write_xml(self, non_empty=True, *children):
-        return super().write_xml(non_empty, self.syllables)
+
+    def add_syllable(self, syllable):
+        self.children.append(syllable)
+        self.lyrics = ''.join(''.join(syl.lyric) for syl in self.children
+                              if isinstance(syl, Syllable))
+
+    def add_rest(self, rest):
+        self.children.append(rest)
+
+    def __repr__(self):
+        return f'Lexical Phrase: {self.lyrics}'
     
-    def __repr__():
-        pass
 
-
-class Syllable(Tag):
+class Syllable(MultiElTag):
     """a class typically representing one sung syllable within a lexical phrase"""
 
-    def __init__(self, *lyric):
-        super().__init__('syllable')
-        self.lyric = lyric
+    def __init__(self, *args):
+        super().__init__('syllable', ('lyric', 'notes'))
+        self.lyric = args
         self.notes = []
-
 
     def add_note(self, pitch:str, duration:str):
         """add a note: pitch and duration
@@ -380,73 +418,56 @@ class Syllable(Tag):
         """
         self.notes.append({'pitch': pitch, 'duration': duration})
 
-
     def is_melisma(self):
         """check if the syllable has multiple notes = (is a melisma)"""
-        return len(self.notes) > 1
-
-    def write_xml(self, *multi_valued_attr):
-        return super().write_xml('lyric', 'notes')
+        return len(self.notes) > 1       
 
     def __repr__(self):
-        notes_repr = ', '.join(note['pitch'] + ' - ' + note['duration'] for note in self.notes)
+        notes_repr = ', '.join(note['pitch'] + ' - ' + note['duration'] 
+                               for note in self.notes)
         lyric_repr = ''.join(lyr for lyr in self.lyric)
-        return f'{lyric_repr}    [ {notes_repr} ]'
+        return f'Syllable: {lyric_repr}  {notes_repr}'
 
 
-class Rest(Tag):
+class Rest(MultiElTag):
     """a class representing a rest within a lexical phrase"""
 
-    def __init__(self, *duration):
-        super().__init__('rest')
-        self.duration = duration
-
-    
+    def __init__(self, *args):
+        super().__init__('rest', ('duration'))
+        self.duration = args
+        
     def __repr__(self):
-        return f'rest   [ {" - ".join(dur for dur in self.duration)} ]'
-    
-
-    def write_xml(self, *multi_valued_attr):
-        return super().write_xml('duration')
-    
-    
+        return f'Rest:  {" - ".join(dur for dur in self.duration)}'
 
 
 
-    
+syl1 = Syllable('go')
+syl1.add_note('E4', '1/16')
 
+rest1 = Rest('1/8')
 
+syl2 = Syllable('me')
+syl2.add_note('A4', '1/16')
+syl2.add_note('E4', '1/8')
 
-# workspace = Workspace('current_workspace', os.getcwd())
+syl3 = Syllable('me', 'ma')
+syl3.add_note('A4', '1/16')
+syl3.add_note('E4', '1/8')
 
-# workspace.add_document('myxml', 'f')
-# for doc in workspace.documents:
-#     doc.create()
-#     doc.set_metadata('ishikaribanka', 'A minor', '4/4')
-#     doc.update_file(title='A')
+lp1 = LexPhrase()
+lp1.add_syllable(syl1)
+lp1.add_rest(rest1)
+lp1.add_syllable(syl3)
 
-# la = Syllable('ご', 'h')
-# la.add_note('A3', '1/4')
-# la.add_note('A6', '1/2')
+lp2 = LexPhrase()
+lp2.add_syllable(syl2)
 
-# print(la)
+mp1 = MelPhrase()
+mp1.add_lex_phrase(lp1)
+mp1.add_lex_phrase(lp2)
 
-# # print(la.tag_name)
-# print(la.write_xml())
+sec1 = Section('A')
+sec1.add_mel_phrase(mp1)
 
-# res = Rest('5/7', '1/4')
-# print(res.write_xml())
-
-
-# xml = XMLDoc('myxml', 'f')
-# xml.filename = '67'
-# print(xml.filename)
-
-
-sec = Section('Verse')
-print(sec.write_xml())
-
-mel = MelPhrase('1')
-le = LexPhrase('')
-print(mel.write_xml())
-print(le.write_xml())
+mel = Melody()
+mel.add_section(sec1)
