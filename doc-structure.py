@@ -596,4 +596,7 @@ sec1.add_mel_phrase(mp1)
 mel = Melody()
 mel.add_section(sec1)
 
-print(mel.write_xml())
+print(syl1.write_xml(depth=0))
+
+with open('2.xml', 'w') as file:
+    file.write(mel.write_xml())
