@@ -327,9 +327,9 @@ work1 = Workspace('Try', w_path)
 os.makedirs(w_path, exist_ok=True)
 
 doc1 = work1.add_document('tryxml', w_path)
-doc1.set_metadata('Good morning', 'E major', '4/4')
+doc1.set_metadata('Good morning', 'e major', '4/4')
 
-doc2 = XMLDoc('try2', w_path, 'Hello', 'A minor', '2/2')
+doc2 = XMLDoc('try2', w_path, 'Hello', 'a minor', '2/2')
 work1.add_documents(doc2)
 
 doc1.create()

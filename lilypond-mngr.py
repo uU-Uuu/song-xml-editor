@@ -6,16 +6,48 @@ import subprocess
 
 
 lilypond_content = """
-\version "2.24.4"
-\relative {
-    \time 3/4
-    e16 e4. e16' a4,
-    r8 r4.
+\\version "2.24.4"
+\\header {
+  title = "Good Morning"
+}
+
+\\score {
+  \\header {
+    piece = "Mel phrase id"
+  }
+  \\new Staff \\relative c' {
+    \\key a \\major
+    \\time 2/4
+    c4 d e f |
+    g a b c |
+    }
+}
+
+\\markup {
+  \\column {
+    \\line { \\bold "Section Name" }
+  }
+}
+
+\\header {
+    title = "Second"
+}
+
+\\score {
+  \\header {
+    piece = "Mel phrase id"
+  }
+  \\new Staff \\relative c' {
+    \\key a \\major
+    \\time 2/4
+    c4 d e f |
+    g a b c |
+  }
 }
 """
 
 lily_file = 'lily.ly'
-out_dir = 'f'
+out_dir = 'try'
 
 os.makedirs(out_dir, exist_ok=True)
 
@@ -25,7 +57,7 @@ with open('lily.ly', 'w') as file:
 subprocess.run([
     'lilypond',
     '--png',
-    '--output' + out_dir,
+    '--output=' + out_dir,
     lily_file
 ])
 

@@ -16,8 +16,8 @@ class Tag:
 
     """
 
-    _depths = {'melody': 1, 'section': 2, 'melodic-phrase': 3, 
-              'lexical-phrase': 4, 'syllable': 5, 'rest': 5
+    _depths = {'melody': 1, 'section': 2, 'melodic_phrase': 3, 
+              'lexical_phrase': 4, 'syllable': 5, 'rest': 5
               }
 
     def __init__(self, tag_name:str):
@@ -204,7 +204,7 @@ class MelPhrase(TagWithAttr):
 
     
     def __init__(self):
-        super().__init__('melodic-phrase')
+        super().__init__('melodic_phrase')
         MelPhrase._mel_ph_count += 1        
         self.id = MelPhrase._mel_ph_count
  
@@ -232,7 +232,7 @@ class LexPhrase(TagWithAttr):
 
 
     def __init__(self):
-        super().__init__('lexical-phrase')
+        super().__init__('lexical_phrase')
         LexPhrase._lex_ph_count += 1
         self.id = LexPhrase._lex_ph_count 
         self.lyrics = ''
