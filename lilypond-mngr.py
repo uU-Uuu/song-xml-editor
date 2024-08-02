@@ -1,64 +1,22 @@
 import os
 import subprocess
 
-from xml_to_lilypond import xml_to_lily
+from xml_to_lilypond import XMLToLily
 
 
-
-
-# lilypond_content = """
-# \\version "2.24.4"
-# \\header {
-#   title = "Good Morning"
-# }
-# \\markup {
-#   \\column {
-#     \\line { \\bold "Section Name 2" }
-#   }
-# }
-
-# \\score {
-#   \\header {
-#     piece = "Mel phrase id"
-#   }
-  
-#   \\new Staff \\relative c' {
-#     \\key a \\major
-#     \\time 2/4
-#     c4 d e f |
-#     g a b c |
-#     }
-# }
-
-# \\markup {
-#   \\column {
-#     \\line { \\bold "Section Name 2" }
-#   }
-# }
-
-
-# \\score {
-#   \\header {
-#     piece = "Mel phrase id 2"
-#   }
-#   \\new Staff \\relative c' {
-#     \\key a \\major
-#     \\time 2/4
-#     c4 d e f |
-#     g a b c |
-#   }
-# }
-# """
-
-lily_file = 'lily5.ly'
+lily_file = 'lily.ly'
 out_dir = 'try'
+xml_file = 'try/tryxml.xml'
+img_file = 'lily.png'
 
 os.makedirs(out_dir, exist_ok=True)
 
 
-with open('lily5.ly', 'w') as file:
-    lilypond_content = xml_to_lily('try/tryxml.xml')
+with open(lily_file, 'w') as file:
+    lily_converter = XMLToLily(xml_file)
+    lilypond_content = lily_converter.xml_to_lily()
     file.write(lilypond_content)
+
 
 subprocess.run([
     'lilypond',
@@ -67,7 +25,7 @@ subprocess.run([
     lily_file
 ])
 
-out_img = os.path.join(out_dir, 'lily.png')
+out_img = os.path.join(out_dir, img_file)
 
 
 
