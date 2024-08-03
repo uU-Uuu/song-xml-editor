@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc>
+	<title>Good morning</title>
+	<key>e major</key>
+	<time_signature>4/4</time_signature>
+	<melody>
+		<section name="A">
+			<melodic_phrase id="1">
+				<lexical_phrase id="1" lyrics="gomema">
+					<syllable>
+						<lyric>go</lyric>
+						<pitch>E4</pitch>
+						<duration>1/16</duration>
+					</syllable>
+					<rest>
+						<duration>1/8</duration>
+					</rest>
+					<syllable>
+						<lyric>me</lyric>
+						<lyric>ma</lyric>
+						<pitch>A4</pitch>
+						<duration>1/16</duration>
+						<pitch>E4</pitch>
+						<duration>1/8</duration>
+					</syllable>
+				</lexical_phrase>					
+				<lexical_phrase id="2" lyrics="me">
+					<syllable>
+						<lyric>me</lyric>
+						<pitch>A4</pitch>
+						<duration>1/16</duration>
+						<pitch>E4</pitch>
+						<duration>1/8</duration>
+					</syllable>
+				</lexical_phrase>					
+			</melodic_phrase>
+			<melodic_phrase id="2">
+				<lexical_phrase id="1" lyrics="gomema">
+					<syllable>
+						<lyric>go</lyric>
+						<pitch>E4</pitch>
+						<duration>1/16</duration>
+					</syllable>
+					<rest>
+						<duration>1/8</duration>
+					</rest>
+					<syllable>
+						<lyric>me</lyric>
+						<lyric>ma</lyric>
+						<pitch>A4</pitch>
+						<duration>1/16</duration>
+					</syllable>
+				</lexical_phrase>					
+				<lexical_phrase id="2" lyrics="me">
+					<syllable>
+						<lyric>me</lyric>
+						<pitch>A4</pitch>
+						<duration>1/16</duration>
+						<pitch>E4</pitch>
+						<duration>1/8</duration>
+					</syllable>
+				</lexical_phrase>					
+			</melodic_phrase>								
+		</section>		
+		<section name="B">
+			<melodic_phrase id="1">
+				<lexical_phrase id="1" lyrics="gomema">
+					<syllable>
+						<lyric>go</lyric>
+						<pitch>E4</pitch>
+						<duration>1/16</duration>
+					</syllable>
+					<rest>
+						<duration>1/8</duration>
+					</rest>
+					<syllable>
+						<lyric>me</lyric>
+						<lyric>ma</lyric>
+						<pitch>A4</pitch>
+						<duration>1/16</duration>
+						<pitch>E4</pitch>
+						<duration>1/8</duration>
+					</syllable>
+				</lexical_phrase>					
+				<lexical_phrase id="2" lyrics="me">
+					<syllable>
+						<lyric>me</lyric>
+						<pitch>A4</pitch>
+						<duration>1/16</duration>
+						<pitch>E4</pitch>
+						<duration>1/8</duration>
+					</syllable>
+				</lexical_phrase>					
+			</melodic_phrase>
+			<melodic_phrase id="2">
+				<lexical_phrase id="1" lyrics="gomema">
+					<syllable>
+						<lyric>go</lyric>
+						<pitch>E4</pitch>
+						<duration>1/16</duration>
+					</syllable>
+					<rest>
+						<duration>1/8</duration>
+					</rest>
+					<syllable>
+						<lyric>me</lyric>
+						<lyric>ma</lyric>
+						<pitch>A4</pitch>
+						<duration>1/16</duration>
+					</syllable>
+				</lexical_phrase>					
+				<lexical_phrase id="2" lyrics="me">
+					<syllable>
+						<lyric>me</lyric>
+						<pitch>A4</pitch>
+						<duration>1/16</duration>
+						<pitch>E4</pitch>
+						<duration>1/8</duration>
+					</syllable>
+				</lexical_phrase>					
+			</melodic_phrase>								
+		</section>		
+	</melody>	
+</doc>
