@@ -310,4 +310,3 @@ class Rest(MultiElTag):
         
     def __repr__(self):
         return f'Rest:  {" - ".join(dur for dur in self.duration)}'
-

@@ -2,6 +2,7 @@ from PySide2 import QtWidgets
 from functools import partial
 
 from ui.ui_xml_editor import Ui_MainWindow
+from tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -40,7 +41,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         'octave5Btn': '5',
         'octave6Btn': '6'
     }
-    
+    _tags = {
+        'newSectionOKBtn': Section, 
+        'newMelPhraseOKBtn': MelPhrase,
+        'newLexPhraseOKBtn': LexPhrase,
+        'newSyllableOKBtn': Syllable, 
+        'newRestOKBtn': Rest
+    }
 
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -64,54 +71,144 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.restDur1Btn, self.restDur2Btn, self.restDur4Btn, 
             self.restDur8Btn, self.restDur16Btn
         )
+
+        self._tagBtns = (self.newSectionBtn, self.newMelPhraseBtn, self.newLexPhraseBtn,
+                    self.newSyllableBtn, self.newRestBtn)
+        self._inputFrames = (self.sectionFrame, self.melPhraseFrame, self.lexPhraseFrame,
+                             self.syllableFrame, self.restFrame)
+        self._tagOKBtns = (self.newSectionOKBtn, self.newMelPhraseOKBtn, self.newLexPhraseOKBtn,
+                           self.newSyllableOKBtn, self.newRestOKBtn)
+        self._tagAddBtns = (self.addSyllableLyricBtn, self.addSyllablePitchBtn, 
+                            self.addSyllableDurationBtn, self.addRestDurationBtn)
+
+        self.previewInput.setReadOnly(True)
+        self.enable_frame_with_click()
+        self.set_frames_enabled(self._inputFrames)
+        self.input_btns_actions()
+        self.tag_btns_actions()
+        self.tag_ok_btns_actions()
+        self.tag_add_btns_actions()
+
+
+    def input_btns_actions(self):
        
         for pitchBtn in self._pitchBtns:
-            pitchBtn.clicked.connect(partial(self.write_to_input, 
+            pitchBtn.clicked.connect(partial(self._write_to_input, 
                                              pitchBtn.objectName(), 
                                              self.syllablePitch,
                                              self._pitches))
         for octaveBtn in self._octaveBtns:
-            octaveBtn.clicked.connect(partial(self.append_to_input,
+            octaveBtn.clicked.connect(partial(self._append_to_input,
                                            octaveBtn.objectName(),
                                            self.syllablePitch,
                                            self._octaves))
         
         for modBtn in self._pitchModifierBtns:
-            modBtn.clicked.connect(partial(self.append_to_input,
+            modBtn.clicked.connect(partial(self._append_to_input,
                                            modBtn.objectName(),
                                            self.syllablePitch,
                                            self._pitch_mod))
             
         for durBtn in self._syllableDurationBtns:
-            durBtn.clicked.connect(partial(self.write_to_input,
+            durBtn.clicked.connect(partial(self._write_to_input,
                                            durBtn.objectName(),
                                            self.syllableDuration,
                                            self._durations))
             
-        self.syllableDottedBtn.clicked.connect(partial(self.append_to_input,
+        self.syllableDottedBtn.clicked.connect(partial(self._append_to_input,
                                            self.syllableDottedBtn.objectName(),
                                            self.syllableDuration,
                                            self._dotted))
-            
         
         for durBtn in self._restDurationBtns:
-            durBtn.clicked.connect(partial(self.write_to_input,
+            durBtn.clicked.connect(partial(self._write_to_input,
                                            durBtn.objectName(),
                                            self.restDuration,
                                            self._durations))
         
-        self.restDottedBtn.clicked.connect(partial(self.append_to_input,
+        self.restDottedBtn.clicked.connect(partial(self._append_to_input,
                                            self.restDottedBtn.objectName(),
                                            self.restDuration,
                                            self._dotted))
+    
+    def tag_btns_actions(self):
+        for tagBtn in self._tagBtns:
+            tagBtn.clicked.connect(partial(self._set_frame_enabled,
+                                           tagBtn.parent(),
+                                           True))
+
+    def tag_ok_btns_actions(self):
+        for okBtn in self._tagOKBtns:
+            okBtn.clicked.connect(partial(self._tag_ok_btns_all, okBtn))
+
+    def tag_add_btns_actions(self):
+        for addBtn in self._tagAddBtns:
+            addBtn.clicked.connect(partial(self._append_tag_attributes, addBtn))
+
+    def enable_frame_with_click(self):
+        for frame in self._inputFrames:
+            for childBtn in frame.findChildren(QtWidgets.QToolButton):
+                childBtn.clicked.connect(partial(self._set_frame_enabled,
+                                                frame))
+            for childInp in frame.findChildren(QtWidgets.QLineEdit):
+                childInp.textChanged.connect(partial(self._set_frame_enabled,
+                                                 frame))
+
+
+    def _append_tag_attributes(self, addBtn):
+        frame = addBtn.parent()
+        data = [child.text() for child in 
+                frame.findChildren(QtWidgets.QLineEdit)]
+
+        attr_di = {addBtn.objectName(): data[0]}
+        for inp in frame.findChildren(QtWidgets.QLineEdit):
+            inp.clear()
+        
+
+
+
+    def _tag_ok_btns_all(self, okBtn):
+        frame = okBtn.parent()
+        self._preview_input(frame, okBtn.objectName())
+        for inp in frame.findChildren(QtWidgets.QLineEdit):
+            inp.clear()
+        self.set_frames_enabled(self._inputFrames)
+
+    def _preview_input(self, frame, btn_name):
+        data = [child.text() for child in 
+                frame.findChildren(QtWidgets.QLineEdit)]
+        if isinstance(self._tags[btn_name](), Syllable):
+            tag_obj = self._tags[btn_name](data[0])
+            tag_obj.add_note(pitch=data[2], duration=data[1])
+
+        else:
+            tag_obj = self._tags[btn_name](*data)
+        
+        self.previewInput.setPlainText(tag_obj.write_xml(depth=0))
+
+
+
+    def _set_frame_enabled(self, frame, enabled=True):
+        if frame:
+            if not frame.isEnabled():
+                frame.setEnabled(enabled)
+                for child in frame.findChildren(QtWidgets.QWidget):
+                    child.setEnabled(enabled)
+            self.set_frames_enabled(self._inputFrames, False, besides=frame)
+
+    def set_frames_enabled(self, frames=(), enabled=True, besides=None):
+        if frames:
+            for frame in frames:
+               if frame and frame != besides:
+                    frame.setEnabled(enabled)
+                    for child in frame.findChildren(QtWidgets.QWidget):
+                        child.setEnabled(enabled)
+
             
-            
-       
-            
-    def write_to_input(self, btn_name, input_el, reference):
+    def _write_to_input(self, btn_name, input_el, reference):
         input_el.setText(reference[btn_name])
     
-    def append_to_input(self, btn_name, input_el, reference):  
+    def _append_to_input(self, btn_name, input_el, reference):  
         curr_value = input_el.text()
         mods = ''
         if not curr_value:
@@ -137,7 +234,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             input_el.insert(reference[btn_name])
     
-    
+  
+
+
 
 
 
