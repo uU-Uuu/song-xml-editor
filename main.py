@@ -78,8 +78,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                              self.syllableFrame, self.restFrame)
         self._tagOKBtns = (self.newSectionOKBtn, self.newMelPhraseOKBtn, self.newLexPhraseOKBtn,
                            self.newSyllableOKBtn, self.newRestOKBtn)
-        self._tagAddBtns = (self.addSyllableLyricBtn, self.addSyllablePitchBtn, 
-                            self.addSyllableDurationBtn, self.addRestDurationBtn)
+        self._tagAddBtns = (self.addSyllableLyricBtn, self.addSyllableNoteBtn, self.addRestDurationBtn)
+
+        self._preview_tag = {'obj': None, 'frame': None}
 
         self.previewInput.setReadOnly(True)
         self.enable_frame_with_click()
@@ -88,6 +89,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tag_btns_actions()
         self.tag_ok_btns_actions()
         self.tag_add_btns_actions()
+        self.overwrite_btn_action()
 
 
     def input_btns_actions(self):
@@ -154,17 +156,37 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 childInp.textChanged.connect(partial(self._set_frame_enabled,
                                                  frame))
 
+    def overwrite_btn_action(self):
+        self.overwriteBtn.clicked.connect(self._overwrite_XML)
+        
+
+    def _overwrite_XML(self):
+        data = self.previewInput.toPlainText()
+        print(data)
+
 
     def _append_tag_attributes(self, addBtn):
         frame = addBtn.parent()
-        data = [child.text() for child in 
-                frame.findChildren(QtWidgets.QLineEdit)]
+        if self._preview_tag['obj']:
+            if isinstance(self._preview_tag['obj'], Rest):
+                data = frame.findChild(QtWidgets.QLineEdit).text()
+                if data:
+                    self._preview_tag['obj'].add_duration(data)
 
-        attr_di = {addBtn.objectName(): data[0]}
+            elif isinstance(self._preview_tag['obj'], Syllable):
+                data = [child.text() for child in frame.findChildren(QtWidgets.QLineEdit)]
+                if data:
+                    lyric, pitch, duration = data
+                    if lyric:
+                        self._preview_tag['obj'].add_lyric(lyric)
+                    if pitch and duration:
+                        self._preview_tag['obj'].add_note(pitch, duration)
+    
+            self.previewInput.setPlainText(self._preview_tag['obj'].write_xml(depth=0))
+        
         for inp in frame.findChildren(QtWidgets.QLineEdit):
             inp.clear()
-        
-
+    
 
 
     def _tag_ok_btns_all(self, okBtn):
@@ -175,26 +197,38 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.set_frames_enabled(self._inputFrames)
 
     def _preview_input(self, frame, btn_name):
-        data = [child.text() for child in 
+        if self._preview_tag['obj'] is None:
+            self._preview_tag['obj'] = self._create_tag_instance(frame, btn_name)
+            self._preview_tag['frame'] = frame
+        self.previewInput.setPlainText(self._preview_tag['obj'].write_xml(depth=0))
+        self.previewInput.setReadOnly(False)
+
+    def _create_tag_instance(self, frame, btn_name):
+        if self._tags[btn_name] == Syllable:
+            data = [child.text() for child in 
                 frame.findChildren(QtWidgets.QLineEdit)]
-        if isinstance(self._tags[btn_name](), Syllable):
             tag_obj = self._tags[btn_name](data[0])
             tag_obj.add_note(pitch=data[2], duration=data[1])
-
+        elif self._tags[btn_name] == Rest \
+                    or self._tags[btn_name] == Section:
+                data = frame.findChild(QtWidgets.QLineEdit).text()
+                tag_obj = self._tags[btn_name](data)
         else:
-            tag_obj = self._tags[btn_name](*data)
-        
-        self.previewInput.setPlainText(tag_obj.write_xml(depth=0))
-
+            tag_obj = self._tags[btn_name]()
+        return tag_obj
 
 
     def _set_frame_enabled(self, frame, enabled=True):
         if frame:
-            if not frame.isEnabled():
-                frame.setEnabled(enabled)
-                for child in frame.findChildren(QtWidgets.QWidget):
-                    child.setEnabled(enabled)
+            if self._preview_tag['frame'] != frame:
+                self._preview_tag['obj'] = None
+
+            # if not frame.isEnabled():
+            #     frame.setEnabled(enabled)
+            #     for child in frame.findChildren(QtWidgets.QWidget):
+            #         child.setEnabled(enabled)
             self.set_frames_enabled(self._inputFrames, False, besides=frame)
+
 
     def set_frames_enabled(self, frames=(), enabled=True, besides=None):
         if frames:
@@ -234,7 +268,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             input_el.insert(reference[btn_name])
     
-  
 
 
 

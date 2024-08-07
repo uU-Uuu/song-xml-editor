@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'song-xml_editorLqYVHA.ui'
+## Form generated from reading UI file 'song-xml_editorqUcHdh.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.1
 ##
@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
         self.verticalScrollBar.setOrientation(Qt.Vertical)
         self.previewInput = QPlainTextEdit(self.centralwidget)
         self.previewInput.setObjectName(u"previewInput")
-        self.previewInput.setGeometry(QRect(820, 50, 261, 171))
+        self.previewInput.setGeometry(QRect(820, 50, 261, 161))
         self.treeView = QTreeView(self.centralwidget)
         self.treeView.setObjectName(u"treeView")
         self.treeView.setGeometry(QRect(10, 50, 341, 781))
@@ -287,26 +287,19 @@ class Ui_MainWindow(object):
 "background-color:#dee8fd;\n"
 "border: 2px solid black;\n"
 "")
-        self.addSyllableDurationBtn = QToolButton(self.syllableFrame)
-        self.addSyllableDurationBtn.setObjectName(u"addSyllableDurationBtn")
-        self.addSyllableDurationBtn.setGeometry(QRect(480, 30, 21, 41))
-        self.addSyllableDurationBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
-"font-size: 15px;\n"
-"border: 2px solid black;\n"
-"")
         self.syllableDuration = QLineEdit(self.syllableFrame)
         self.syllableDuration.setObjectName(u"syllableDuration")
-        self.syllableDuration.setGeometry(QRect(420, 30, 51, 41))
+        self.syllableDuration.setGeometry(QRect(380, 30, 51, 41))
         self.syllableDuration.setStyleSheet(u"border: 2px solid black;")
         self.syllDurationLabel = QLabel(self.syllableFrame)
         self.syllDurationLabel.setObjectName(u"syllDurationLabel")
-        self.syllDurationLabel.setGeometry(QRect(410, 0, 71, 21))
+        self.syllDurationLabel.setGeometry(QRect(370, 0, 71, 21))
         self.syllDurationLabel.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;")
-        self.addSyllablePitchBtn = QToolButton(self.syllableFrame)
-        self.addSyllablePitchBtn.setObjectName(u"addSyllablePitchBtn")
-        self.addSyllablePitchBtn.setGeometry(QRect(380, 30, 21, 41))
-        self.addSyllablePitchBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
+        self.addSyllableNoteBtn = QToolButton(self.syllableFrame)
+        self.addSyllableNoteBtn.setObjectName(u"addSyllableNoteBtn")
+        self.addSyllableNoteBtn.setGeometry(QRect(440, 30, 21, 41))
+        self.addSyllableNoteBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 2px solid black;\n"
 "")
@@ -442,6 +435,13 @@ class Ui_MainWindow(object):
 "font-size: 15px;\n"
 "border: 2px solid black;\n"
 "")
+        self.overwriteBtn = QToolButton(self.centralwidget)
+        self.overwriteBtn.setObjectName(u"overwriteBtn")
+        self.overwriteBtn.setGeometry(QRect(890, 230, 121, 41))
+        self.overwriteBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
+"font-size: 15px;\n"
+"border: 2px solid black;\n"
+"")
         MainWindow.setCentralWidget(self.centralwidget)
         self.actionBtnsFrame.raise_()
         self.restFrame.raise_()
@@ -453,6 +453,7 @@ class Ui_MainWindow(object):
         self.treeView.raise_()
         self.verticalScrollBar_2.raise_()
         self.previewInput.raise_()
+        self.overwriteBtn.raise_()
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
@@ -495,10 +496,9 @@ class Ui_MainWindow(object):
         self.GBtn.setText(QCoreApplication.translate("MainWindow", u"G", None))
         self.ABtn.setText(QCoreApplication.translate("MainWindow", u"A", None))
         self.BBtn.setText(QCoreApplication.translate("MainWindow", u"B", None))
-        self.addSyllableDurationBtn.setText(QCoreApplication.translate("MainWindow", u"+", None))
         self.syllableDuration.setText("")
         self.syllDurationLabel.setText(QCoreApplication.translate("MainWindow", u" Duration", None))
-        self.addSyllablePitchBtn.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.addSyllableNoteBtn.setText(QCoreApplication.translate("MainWindow", u"+", None))
         self.syllablePitch.setText("")
         self.pitchLabel.setText(QCoreApplication.translate("MainWindow", u" Pitch", None))
         self.addSyllableLyricBtn.setText(QCoreApplication.translate("MainWindow", u"+", None))
@@ -517,5 +517,6 @@ class Ui_MainWindow(object):
         self.musicSheetBtn.setText(QCoreApplication.translate("MainWindow", u"MusicSheet", None))
         self.XMLBtn.setText(QCoreApplication.translate("MainWindow", u"XML", None))
         self.saveBtn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.overwriteBtn.setText(QCoreApplication.translate("MainWindow", u"Overwrite", None))
     # retranslateUi
 

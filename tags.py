@@ -48,6 +48,9 @@ class Tag:
                      + f'\n{inner}\n' \
                      + f'{tab_l}</{self.tag_name}>{tab_r}' 
         return xml_string
+
+    def from_xml(self):
+        pass
     
     @classmethod
     def depths(cls):
@@ -95,6 +98,7 @@ class TagWithAttr(Tag):
                      + f'\n{inner}\n' \
                      + f'{tab_l}</{self.tag_name}>{tab_r}' 
         return xml_string
+
     
 class MultiElTag(Tag):
     """A child of the Tag class for tags with multiple elements
@@ -131,7 +135,7 @@ class MultiElTag(Tag):
                 if attr in self.multi:
                     for el in value:
 
-                        if isinstance(el, dict):
+                        if isinstance(el, dict):                        
                             for key, val in el.items():
                                 xml_string += f'<{key}>{val}</{key}>\n{tab_r}'
                         else:
@@ -213,6 +217,10 @@ class MelPhrase(TagWithAttr):
         """add a LexPhrase instance to the children list"""
         self.children.append(lex_phrase)
 
+    @classmethod
+    def reset_counter(cls):
+        cls._mel_ph_count = 0
+
 
 class LexPhrase(TagWithAttr):
     """A TagWithAttr child class representing one lexical phrase within a melodic phrase 
@@ -250,6 +258,10 @@ class LexPhrase(TagWithAttr):
 
     def __repr__(self):
         return f'Lexical Phrase: {self.lyrics}'
+
+    @classmethod
+    def reset_counter(cls):
+        cls._lex_ph_count = 0
     
 
 class Syllable(MultiElTag):
@@ -270,7 +282,7 @@ class Syllable(MultiElTag):
 
     def __init__(self, *args):
         super().__init__('syllable', ('lyric', 'notes'))
-        self.lyric = args
+        self.lyric = list(args)
         self.notes = []
 
     def add_note(self, pitch:str, duration:str):
@@ -281,6 +293,9 @@ class Syllable(MultiElTag):
         - duration (str): 1/1, 1/2, 1/4, 1/8, 1/16, ...
         """
         self.notes.append({'pitch': pitch, 'duration': duration})
+    
+    def add_lyric(self, lyric):
+        self.lyric.append(lyric)
 
     def is_melisma(self):
         """check if the syllable has multiple notes = (is a melisma)"""
@@ -306,7 +321,10 @@ class Rest(MultiElTag):
 
     def __init__(self, *args):
         super().__init__('rest', ('duration'))
-        self.duration = args
+        self.duration = list(args)
         
     def __repr__(self):
         return f'Rest:  {" - ".join(dur for dur in self.duration)}'
+
+    def add_duration(self, duration):
+        self.duration.append(duration)
