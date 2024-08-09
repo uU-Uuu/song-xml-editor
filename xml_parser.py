@@ -1,6 +1,7 @@
 from xml.etree import ElementTree as ET
 from xmlschema import XMLSchema, XMLSchemaValidationError
 from enum import Enum
+import json
 
 
 class TagNames(Enum):
@@ -11,6 +12,25 @@ class TagNames(Enum):
     lexical_phrase = 'lexical_phrase'
     syllable = 'syllable'
     rest = 'rest'
+
+    @classmethod
+    def tags(cls):
+        return {
+            'doc': cls.doc,
+            'melody': cls.melody,
+            'section': cls.section,
+            'melodic_phrase': cls.melodic_phrase,
+            'lexical_phrase': cls.lexical_phrase,
+            'syllable': cls.syllable,
+            'rest': cls.rest
+        }
+
+    @classmethod
+    def by_tag(cls, tag_name: str):
+        tags_ = cls.tags()
+        el = tags_.get(tag_name)
+        return el if el else None
+
 
 
 SCHEMAS = {
@@ -32,7 +52,7 @@ class InvalidXMLInputProvided(Exception):
     pass
 
 
-def validate_xml(tag_name: TagNames, xml_file='', xml_str=''):
+def validate_xml(tag_name, xml_file='', xml_str=''):
     try:
         if xml_file:
             tree = ET.parse(xml_file)            
@@ -42,11 +62,14 @@ def validate_xml(tag_name: TagNames, xml_file='', xml_str=''):
             raise InvalidXMLInputProvided('No XML input provided')
 
         if tree:
-            schema = SCHEMAS.get(tag_name)
-            if not schema:
-                raise InvalidXMLInputProvided(f'Invalid tag_name: {tag_name}')
+            if isinstance(tag_name, str):
+                TagNames.by_tag(tag_name)
+            elif isinstance(tag_name, TagNames):
+                schema = SCHEMAS.get(tag_name)
+                if not schema:
+                    raise InvalidXMLInputProvided(f'Invalid tag_name: {tag_name}')
 
-            schema.validate(tree)
+                schema.validate(tree)
 
     except ET.ParseError:
         raise InvalidXMLInputProvided(f'Invalid XML input provided')

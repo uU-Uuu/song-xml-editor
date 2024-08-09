@@ -1,4 +1,3 @@
-
 class Tag:
     """A parent class Tag for all XML tags other than title, key and time_signature
 

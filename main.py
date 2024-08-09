@@ -1,9 +1,10 @@
 from PySide2 import QtWidgets
 from functools import partial
+from copy import deepcopy
 
 from ui.ui_xml_editor import Ui_MainWindow
 from tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
-from xml_parser import TagNames, validate_xml, XMLValidationError, InvalidXMLInputProvided
+from xml_parser import TagNames, SCHEMAS, validate_xml, XMLValidationError, InvalidXMLInputProvided
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -42,13 +43,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         'octave5Btn': '5',
         'octave6Btn': '6'
     }
-    _tags = {
+    _tags_factory = {
         'newSectionOKBtn': Section, 
         'newMelPhraseOKBtn': MelPhrase,
         'newLexPhraseOKBtn': LexPhrase,
         'newSyllableOKBtn': Syllable, 
         'newRestOKBtn': Rest
     }
+    _tags = deepcopy(TagNames)
 
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -164,13 +166,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def _overwrite_XML(self):
         data = self.previewInput.toPlainText()
         tag_name = self._preview_tag['frame'].objectName().split('Frame')[0]
-        tag_name_eval = eval('TagNames.' + tag_name)
         try:
-            validate_xml(tag_name=tag_name_eval, xml_str=data)
+            validate_xml(tag_name, xml_str=data)
+            print(data)
+            schema = SCHEMAS[TagNames.by_tag(tag_name)]
+            data_dict = schema.to_dict(data)
+            print(data_dict)
+            print(self._preview_tag['obj'])
+
+            
         except Exception as e:
             print(e)
-        else:
-            pass
+            # objj = schema.to_objects(data, cls=Section)
+
+    
+
 
 
     def _append_tag_attributes(self, addBtn):
@@ -180,6 +190,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 data = frame.findChild(QtWidgets.QLineEdit).text()
                 if data:
                     self._preview_tag['obj'].add_duration(data)
+                note = False
 
             elif isinstance(self._preview_tag['obj'], Syllable):
                 data = [child.text() for child in frame.findChildren(QtWidgets.QLineEdit)]
@@ -187,13 +198,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     lyric, pitch, duration = data
                     if lyric:
                         self._preview_tag['obj'].add_lyric(lyric)
-                    if pitch and duration:
+                    note = not(bool(pitch) and bool(duration))
+                    if not note:
                         self._preview_tag['obj'].add_note(pitch, duration)
     
             self.previewInput.setPlainText(self._preview_tag['obj'].write_xml(depth=0))
         
-            for inp in frame.findChildren(QtWidgets.QLineEdit):
-                inp.clear()
+            if not note:
+                for inp in frame.findChildren(QtWidgets.QLineEdit):
+                    inp.clear()
     
 
     def _tag_ok_btns_all(self, okBtn='', frame=''):
@@ -210,17 +223,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.previewInput.setReadOnly(False)
 
     def _create_tag_instance(self, frame, btn_name):
-        if self._tags[btn_name] == Syllable:
+        if self._tags_factory[btn_name] == Syllable:
             data = [child.text() for child in 
                 frame.findChildren(QtWidgets.QLineEdit)]
-            tag_obj = self._tags[btn_name](data[0])
+            tag_obj = self._tags_factory[btn_name](data[0])
             tag_obj.add_note(pitch=data[2], duration=data[1])
-        elif self._tags[btn_name] == Rest \
-                    or self._tags[btn_name] == Section:
+        elif self._tags_factory[btn_name] == Rest \
+                    or self._tags_factory[btn_name] == Section:
                 data = frame.findChild(QtWidgets.QLineEdit).text()
-                tag_obj = self._tags[btn_name](data)
+                tag_obj = self._tags_factory[btn_name](data)
         else:
-            tag_obj = self._tags[btn_name]()
+            tag_obj = self._tags_factory[btn_name]()
         return tag_obj
 
 
