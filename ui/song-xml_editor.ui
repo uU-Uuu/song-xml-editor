@@ -33,7 +33,7 @@
       <x>820</x>
       <y>50</y>
       <width>261</width>
-      <height>171</height>
+      <height>161</height>
      </rect>
     </property>
     <property name="plainText">
@@ -718,29 +718,10 @@ border: 2px solid black;
       <string>B</string>
      </property>
     </widget>
-    <widget class="QToolButton" name="addSyllableDurationBtn">
-     <property name="geometry">
-      <rect>
-       <x>480</x>
-       <y>30</y>
-       <width>21</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
-font-size: 15px;
-border: 2px solid black;
-</string>
-     </property>
-     <property name="text">
-      <string>+</string>
-     </property>
-    </widget>
     <widget class="QLineEdit" name="syllableDuration">
      <property name="geometry">
       <rect>
-       <x>420</x>
+       <x>380</x>
        <y>30</y>
        <width>51</width>
        <height>41</height>
@@ -756,7 +737,7 @@ border: 2px solid black;
     <widget class="QLabel" name="syllDurationLabel">
      <property name="geometry">
       <rect>
-       <x>410</x>
+       <x>370</x>
        <y>0</y>
        <width>71</width>
        <height>21</height>
@@ -770,10 +751,10 @@ font-size: 15px;</string>
       <string> Duration</string>
      </property>
     </widget>
-    <widget class="QToolButton" name="addSyllablePitchBtn">
+    <widget class="QToolButton" name="addSyllableNoteBtn">
      <property name="geometry">
       <rect>
-       <x>380</x>
+       <x>440</x>
        <y>30</y>
        <width>21</width>
        <height>41</height>
@@ -1160,6 +1141,25 @@ border: 2px solid black;
      </property>
     </widget>
    </widget>
+   <widget class="QToolButton" name="overwriteBtn">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>230</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 15px;
+border: 2px solid black;
+</string>
+    </property>
+    <property name="text">
+     <string>Overwrite</string>
+    </property>
+   </widget>
    <zorder>actionBtnsFrame</zorder>
    <zorder>restFrame</zorder>
    <zorder>syllableFrame</zorder>
@@ -1170,6 +1170,7 @@ border: 2px solid black;
    <zorder>treeView</zorder>
    <zorder>verticalScrollBar_2</zorder>
    <zorder>previewInput</zorder>
+   <zorder>overwriteBtn</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

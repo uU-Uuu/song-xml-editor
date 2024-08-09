@@ -1,0 +1,36 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="melodic_phrase">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="lexical_phrase" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                        <xs:element name="syllable">
+                            <xs:complexType>
+                                <xs:choice maxOccurs="unbounded" minOccurs="1">
+                                    <xs:element type="xs:string" name="lyric" />
+                                    <xs:element type="xs:string" name="pitch" />
+                                    <xs:element type="xs:string" name="duration" />
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="rest">
+                            <xs:complexType>
+                                <xs:choice maxOccurs="unbounded" minOccurs="1">
+                                    <xs:element type="xs:string" name="duration" />
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:attribute type="xs:byte" name="id" use="optional" />
+                    <xs:attribute type="xs:string" name="lyrics" use="optional" />
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute type="xs:byte" name="id" use="optional" />
+    </xs:complexType>
+</xs:element>
+
+
+</xs:schema>
