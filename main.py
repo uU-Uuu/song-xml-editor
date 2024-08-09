@@ -3,6 +3,7 @@ from functools import partial
 
 from ui.ui_xml_editor import Ui_MainWindow
 from tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
+from xml_parser import TagNames, validate_xml, XMLValidationError, InvalidXMLInputProvided
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -162,7 +163,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def _overwrite_XML(self):
         data = self.previewInput.toPlainText()
-        print(data)
+        tag_name = self._preview_tag['frame'].objectName().split('Frame')[0]
+        tag_name_eval = eval('TagNames.' + tag_name)
+        try:
+            validate_xml(tag_name=tag_name_eval, xml_str=data)
+        except Exception as e:
+            print(e)
+        else:
+            pass
 
 
     def _append_tag_attributes(self, addBtn):
@@ -184,12 +192,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
             self.previewInput.setPlainText(self._preview_tag['obj'].write_xml(depth=0))
         
-        for inp in frame.findChildren(QtWidgets.QLineEdit):
-            inp.clear()
+            for inp in frame.findChildren(QtWidgets.QLineEdit):
+                inp.clear()
     
 
-
-    def _tag_ok_btns_all(self, okBtn):
+    def _tag_ok_btns_all(self, okBtn='', frame=''):
         frame = okBtn.parent()
         self._preview_input(frame, okBtn.objectName())
         for inp in frame.findChildren(QtWidgets.QLineEdit):
@@ -197,9 +204,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.set_frames_enabled(self._inputFrames)
 
     def _preview_input(self, frame, btn_name):
-        if self._preview_tag['obj'] is None:
-            self._preview_tag['obj'] = self._create_tag_instance(frame, btn_name)
-            self._preview_tag['frame'] = frame
+        self._preview_tag['obj'] = self._create_tag_instance(frame, btn_name)
+        self._preview_tag['frame'] = frame
         self.previewInput.setPlainText(self._preview_tag['obj'].write_xml(depth=0))
         self.previewInput.setReadOnly(False)
 
@@ -222,11 +228,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if frame:
             if self._preview_tag['frame'] != frame:
                 self._preview_tag['obj'] = None
-
-            # if not frame.isEnabled():
-            #     frame.setEnabled(enabled)
-            #     for child in frame.findChildren(QtWidgets.QWidget):
-            #         child.setEnabled(enabled)
             self.set_frames_enabled(self._inputFrames, False, besides=frame)
 
 
