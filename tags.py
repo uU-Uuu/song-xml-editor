@@ -314,6 +314,7 @@ class Syllable(MultiElTag):
         super().__init__('syllable', ('lyric', 'notes'))
         self.lyric = list(args)
         self.notes = []
+        self.check_dotted_duration()
 
     def add_note(self, pitch:str, duration:str):
         """add a note: pitch and duration
@@ -323,13 +324,21 @@ class Syllable(MultiElTag):
         - duration (str): 1/1, 1/2, 1/4, 1/8, 1/16, ...
         """
         self.notes.append({'pitch': pitch, 'duration': duration})
-    
+        self.check_dotted_duration()
+
     def add_lyric(self, lyric):
         self.lyric.append(lyric)
 
     def is_melisma(self):
         """check if the syllable has multiple notes = (is a melisma)"""
         return len(self.notes) > 1       
+    
+    def check_dotted_duration(self):
+        for note in self.notes:
+            if note['duration'].endswith('.'):
+                numer, denom  = (int(note['duration'].split('/')[0]), 
+                                 note['duration'].split('/')[1].strip('. '))
+                note['duration'] = '/'.join((str(numer * 3), str(denom)))
 
     def __repr__(self):
         return f'Syllable: {self.values_()}'
@@ -358,15 +367,25 @@ class Rest(MultiElTag):
     def __init__(self, *args):
         super().__init__('rest', ('duration'))
         self.duration = list(args)
+        self.check_dotted_duration()
         
     def __repr__(self):
         return f'Rest:  {self.values_()}'
 
     def add_duration(self, duration):
         self.duration.append(duration)
+        self.check_dotted_duration()
 
+    def check_dotted_duration(self):
+        for indx in range(len(self.duration)):
+            if self.duration[indx].endswith('.'):
+                duration = self.duration[indx]
+                numer, denom  = int(duration.split('/')[0]), duration.split('/')[1].strip('. ')
+                self.duration[indx] = '/'.join((str(numer * 3), str(denom)))
+                
     def add_child(self):
         pass
 
     def values_(self):
         return " - ".join(dur for dur in self.duration)
+

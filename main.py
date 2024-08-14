@@ -354,7 +354,7 @@ class MainWindow(MainWindowGen):
         self.cancel_xml_btn_action()
         self.set_up_tree()
         self.xml_btn_action()
-
+        
         self.melody = Melody()
 
 
