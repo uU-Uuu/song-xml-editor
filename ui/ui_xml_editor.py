@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'song-xml_editorvQAilg.ui'
+## Form generated from reading UI file 'song-xml_editorcOxsaE.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.1
 ##
@@ -458,6 +458,20 @@ class Ui_MainWindow(object):
 "background-color: ;\n"
 "border: 2px solid black;\n"
 "")
+        self.deleteNodeBtn = QToolButton(self.centralwidget)
+        self.deleteNodeBtn.setObjectName(u"deleteNodeBtn")
+        self.deleteNodeBtn.setGeometry(QRect(370, 10, 31, 31))
+        self.deleteNodeBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
+"font-size: 15px;\n"
+"border: 2px solid black;\n"
+"")
+        self.editNodeBtn = QToolButton(self.centralwidget)
+        self.editNodeBtn.setObjectName(u"editNodeBtn")
+        self.editNodeBtn.setGeometry(QRect(330, 10, 31, 31))
+        self.editNodeBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
+"font-size: 16px;\n"
+"border: 2px solid black;\n"
+"")
         MainWindow.setCentralWidget(self.centralwidget)
         self.actionBtnsFrame.raise_()
         self.restFrame.raise_()
@@ -472,6 +486,8 @@ class Ui_MainWindow(object):
         self.overwriteBtn.raise_()
         self.saveXMLBtn.raise_()
         self.cancelXMLBtn.raise_()
+        self.deleteNodeBtn.raise_()
+        self.editNodeBtn.raise_()
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
@@ -538,5 +554,7 @@ class Ui_MainWindow(object):
         self.overwriteBtn.setText(QCoreApplication.translate("MainWindow", u"Overwrite", None))
         self.saveXMLBtn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.cancelXMLBtn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
+        self.deleteNodeBtn.setText(QCoreApplication.translate("MainWindow", u"\u2014", None))
+        self.editNodeBtn.setText(QCoreApplication.translate("MainWindow", u"...", None))
     # retranslateUi
 

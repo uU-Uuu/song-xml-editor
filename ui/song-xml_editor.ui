@@ -1200,6 +1200,44 @@ border: 2px solid black;
      <string>Cancel</string>
     </property>
    </widget>
+   <widget class="QToolButton" name="deleteNodeBtn">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>10</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 15px;
+border: 2px solid black;
+</string>
+    </property>
+    <property name="text">
+     <string>—</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="saveTreeChangesBtn">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>10</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 16px;
+border: 2px solid black;
+</string>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+   </widget>
    <zorder>actionBtnsFrame</zorder>
    <zorder>restFrame</zorder>
    <zorder>syllableFrame</zorder>
@@ -1213,6 +1251,8 @@ border: 2px solid black;
    <zorder>overwriteBtn</zorder>
    <zorder>saveXMLBtn</zorder>
    <zorder>cancelXMLBtn</zorder>
+   <zorder>deleteNodeBtn</zorder>
+   <zorder>saveTreeChangesBtn</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

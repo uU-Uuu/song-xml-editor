@@ -1,3 +1,4 @@
+import select
 from tkinter import NO
 from PySide2 import QtWidgets
 from PySide2.QtGui import QStandardItemModel, QStandardItem, QFont, QColor
@@ -132,14 +133,21 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
     def xml_btn_action(self):
         self.XMLBtn.clicked.connect(self._get_xml_doc)
 
+    def delete_node_btn_action(self):
+        self.deleteNodeBtn.clicked.connect(self._delete_selected_node)
+
+    def edit_node_btn_action(self):
+        self.editNodeBtn.clicked.connect(self._edit_selected_node)
 
     def _cancel_xml(self):
         self._preview_tag['obj'] = None
         self.previewInput.clear()
+        self.set_frames_enabled(self._inputFrames)
 
-    def _overwrite_XML(self):
+
+    def _overwrite_XML(self, tag_name=''):
         data = self.previewInput.toPlainText()
-        tag_name = self._preview_tag['frame'].objectName().split('Frame')[0]
+        tag_name = self._preview_tag['obj'].tag_name
         try:
             validate_xml(tag_name, xml_str=data)
             print(data)
@@ -278,7 +286,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         
         if obj and not parent:
             curr_node = (StandardItem(obj, txt=obj.tag_name), 
-                         StandardItem(obj, txt=obj.values_(), set_editable=True)
+                         StandardItem(obj, txt=obj.values_())
             )
             if obj.depth == self._last_node.obj.depth + 1:
                 parent_node = self._last_node
@@ -331,6 +339,35 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
                     children.append(child_node)
                     self._iterate_tree(child_node)
         return children
+    
+
+    def _delete_selected_node(self):
+        try:
+            selected_node = self.treeView.selectedIndexes()[0]
+            item = self.treeModel.itemFromIndex(selected_node)
+            if not isinstance(item.obj, Melody):
+                self.treeModel.removeRow(selected_node.row(), selected_node.parent())
+        except IndexError:
+            pass
+
+
+    def _edit_selected_node(self):
+        try:
+            selected_node = self.treeView.selectedIndexes()[0]
+            item = self.treeModel.itemFromIndex(selected_node)
+            if not isinstance(item.obj, Melody):
+    #             self._preview_tag['obj'] = item.obj
+                self.previewInput.setPlainText(item.obj.write_xml_plain())
+                children = item.obj.children
+        except:
+            pass
+
+    # def _insert_edited_node(self, item, parent):
+    #     self.treeModel.appendRow(parent)
+
+
+
+
         
     
     def _get_xml_doc(self):
@@ -354,6 +391,9 @@ class MainWindow(MainWindowGen):
         self.cancel_xml_btn_action()
         self.set_up_tree()
         self.xml_btn_action()
+        self.delete_node_btn_action()
+        self.edit_node_btn_action()
+
         
         self.melody = Melody()
 

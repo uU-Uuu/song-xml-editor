@@ -49,6 +49,9 @@ class Tag:
                      + f'{tab_l}</{self.tag_name}>{tab_r}' 
         return xml_string
     
+    def write_xml_plain(self):
+        pass
+    
     def add_child(self, child):
         self.children.append(child)
 
@@ -111,6 +114,16 @@ class TagWithAttr(Tag):
                      + f'\n{inner}\n' \
                      + f'{tab_l}</{self.tag_name}>{tab_r}' 
         return xml_string
+    
+    def write_xml_plain(self):
+        attr_string = ''
+        for attr, value in vars(self).items():
+            if not attr.startswith('_') \
+                    and attr not in ('tag_name', 'depth', 'multi', 'children', 'parent'):
+                attr_string += f' {attr}="{value}"'
+        xml_string = f'<{self.tag_name}{attr_string}>\n' \
+                      + f'</{self.tag_name}>'
+        return xml_string
 
     
 class MultiElTag(Tag):
@@ -160,6 +173,8 @@ class MultiElTag(Tag):
         xml_string = xml_string[:-1] + f'</{self.tag_name}>'
         return xml_string
     
+    def write_xml_plain(self):
+        return self.write_xml(depth=0)
 
 
 class Melody(Tag):

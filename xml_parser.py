@@ -62,6 +62,7 @@ def validate_xml(tag_name, xml_file='', xml_str=''):
             raise InvalidXMLInputProvided('No XML input provided')
 
         if tree:
+            print(tag_name)
             if isinstance(tag_name, str):
                 TagNames.by_tag(tag_name)
             elif isinstance(tag_name, TagNames):
