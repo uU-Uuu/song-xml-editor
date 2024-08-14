@@ -259,37 +259,46 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
                      StandardItem(obj=self.melody)
         )
         rootNode.appendRow([melodyNode[0], melodyNode[1]])
-        self._tag_parents = {1: [melodyNode], 2: [], 3: [], 4: [], 5:[]}
+        self._tag_parents = {1: [self.melody], 2: [], 3: [], 4: [], 5:[]}
         self._node_parents = {1: melodyNode, 2: None, 3: None, 4: None, 5:None}
+
+        self._last_nodes = {1: melodyNode[0], 2: None, 3: None, 4: None, 5:None}
+        self._last_node = melodyNode[0]
+        self.treeView.expandAll()
 
 
     
     def _add_xml_item(self, obj=None, parent=None):
         if obj is None:
             obj = self._preview_tag['obj']
+        
+        if obj and not parent:
+            curr_node = (StandardItem(obj, txt=obj.tag_name), 
+                         StandardItem(obj, txt=repr(obj), set_editable=True)
+            )
+            if obj.depth == self._last_node.obj.depth + 1:
+                self._last_node.appendRow([curr_node[0], curr_node[1]])
+                
+            elif obj.depth <= self._last_node.obj.depth:
+                self._last_nodes[obj.depth-1].appendRow([curr_node[0], curr_node[1]])
+           
+            self._last_nodes[obj.depth] = curr_node[0]
+            self._last_node = curr_node[0]
 
-        # key = StandardItem(obj=obj, txt=obj.tag_name)
-        # value = StandardItem(obj=obj, txt=repr(obj), set_editable=True)
 
-        if not parent:
-            self._autocomplete_parents(obj)
-            print(self._node_parents)
-            for key in self._node_parents:
-                parent = self._node_parents[key][0]
-                try:
-                    child = self._node_parents[key+1]
-                    parent.appendRow([child[0], child[1]])
-                except KeyError:
-                    pass
-
-    def _autocomplete_parents(self, obj):
+    def _autocomplete_parents(self, obj, closest_depth):
+        if obj.depth < closest_depth:
+            return
         try:
             parent = self._tag_parents[obj.depth-1][-1]
         except IndexError:
             parent_item = PARENTS_FACTORY[obj.depth]
-            parent = self._autocomplete_parents(obj=parent_item)
+            parent = self._autocomplete_parents(obj=parent_item, closest_depth=closest_depth)
+
+        parent_node = (StandardItem(obj, txt=obj.tag_name), 
+                        StandardItem(obj, txt=repr(obj)))
         self._tag_parents[obj.depth].append(obj)
-        parent_node = StandardItem(obj, txt=obj.tag_name), StandardItem(obj, txt=repr(obj))
+        self._tag_parents[obj.depth-1].append(parent)
         self._node_parents[obj.depth] = parent_node
 
         return parent
