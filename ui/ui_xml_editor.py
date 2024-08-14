@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'song-xml_editorqUcHdh.ui'
+## Form generated from reading UI file 'song-xml_editorIMAGfg.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.1
 ##
@@ -428,18 +428,34 @@ class Ui_MainWindow(object):
 "font-size: 15px;\n"
 "border: 2px solid black;\n"
 "")
-        self.saveBtn = QToolButton(self.actionBtnsFrame)
-        self.saveBtn.setObjectName(u"saveBtn")
-        self.saveBtn.setGeometry(QRect(320, 20, 121, 41))
-        self.saveBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
+        self.saveFileBtn = QToolButton(self.actionBtnsFrame)
+        self.saveFileBtn.setObjectName(u"saveFileBtn")
+        self.saveFileBtn.setGeometry(QRect(320, 20, 121, 41))
+        self.saveFileBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 2px solid black;\n"
 "")
         self.overwriteBtn = QToolButton(self.centralwidget)
         self.overwriteBtn.setObjectName(u"overwriteBtn")
-        self.overwriteBtn.setGeometry(QRect(890, 230, 121, 41))
+        self.overwriteBtn.setGeometry(QRect(820, 230, 121, 41))
         self.overwriteBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
+"border: 2px solid black;\n"
+"")
+        self.saveXMLBtn = QToolButton(self.centralwidget)
+        self.saveXMLBtn.setObjectName(u"saveXMLBtn")
+        self.saveXMLBtn.setGeometry(QRect(960, 230, 51, 41))
+        self.saveXMLBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
+"font-size: 15px;\n"
+"background-color: ;\n"
+"border: 2px solid black;\n"
+"")
+        self.cancelXMLBtn = QToolButton(self.centralwidget)
+        self.cancelXMLBtn.setObjectName(u"cancelXMLBtn")
+        self.cancelXMLBtn.setGeometry(QRect(1030, 230, 51, 41))
+        self.cancelXMLBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
+"font-size: 15px;\n"
+"background-color: ;\n"
 "border: 2px solid black;\n"
 "")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -454,6 +470,8 @@ class Ui_MainWindow(object):
         self.verticalScrollBar_2.raise_()
         self.previewInput.raise_()
         self.overwriteBtn.raise_()
+        self.saveXMLBtn.raise_()
+        self.cancelXMLBtn.raise_()
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
@@ -516,7 +534,9 @@ class Ui_MainWindow(object):
         self.restDottedBtn.setText(QCoreApplication.translate("MainWindow", u".", None))
         self.musicSheetBtn.setText(QCoreApplication.translate("MainWindow", u"MusicSheet", None))
         self.XMLBtn.setText(QCoreApplication.translate("MainWindow", u"XML", None))
-        self.saveBtn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.saveFileBtn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.overwriteBtn.setText(QCoreApplication.translate("MainWindow", u"Overwrite", None))
+        self.saveXMLBtn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.cancelXMLBtn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
     # retranslateUi
 

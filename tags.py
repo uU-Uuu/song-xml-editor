@@ -14,15 +14,16 @@ class Tag:
       
 
     """
-
     _depths = {'melody': 1, 'section': 2, 'melodic_phrase': 3, 
               'lexical_phrase': 4, 'syllable': 5, 'rest': 5
               }
+    _swapped = {val: key for key, val in _depths.items()}
 
     def __init__(self, tag_name:str):
         self.tag_name = tag_name
         self.depth = Tag._depths[tag_name]
         self.children = []
+        self.parent = self.get_parent(tag_name)
 
     def write_xml(self,  inner='', depth=-1):
         """create an XML string for the tag class instance
@@ -47,6 +48,14 @@ class Tag:
                      + f'\n{inner}\n' \
                      + f'{tab_l}</{self.tag_name}>{tab_r}' 
         return xml_string
+    
+    def add_child(self, child):
+        self.children.append(child)
+
+    def give_parent(self):
+        from constants import PARENTS_FACTORY
+    
+        return PARENTS_FACTORY.get(self.depth - 1)
 
     def from_xml(self):
         pass
@@ -54,7 +63,12 @@ class Tag:
     @classmethod
     def depths(cls):
         return cls._depths
-
+    
+    @classmethod
+    def get_parent(cls, tag_name):
+        depth = cls._depths[tag_name]
+        return cls._swapped.get(depth - 1)
+        
     
 class TagWithAttr(Tag):
     """A child of the Tag class for tags with attributes <tag attr="value"></tag>
@@ -87,7 +101,7 @@ class TagWithAttr(Tag):
         attr_string = ''
         for attr, value in vars(self).items():
             if not attr.startswith('_') \
-                    and attr not in ('tag_name', 'depth', 'multi', 'children'):
+                    and attr not in ('tag_name', 'depth', 'multi', 'children', 'parent'):
                 if non_empty:
                     if value:
                         attr_string += f' {attr}="{value}"'
@@ -130,7 +144,7 @@ class MultiElTag(Tag):
         xml_string = f'{tab_l}<{self.tag_name}>\n{tab_r}'
         for attr, value in self.__dict__.items():
             if not attr.startswith('_') \
-                    and attr not in ('tag_name', 'depth', 'multi', 'children'):
+                    and attr not in ('tag_name', 'depth', 'multi', 'children', 'parent'):
                 if attr in self.multi:
                     for el in value:
 
@@ -305,6 +319,9 @@ class Syllable(MultiElTag):
                                for note in self.notes)
         lyric_repr = ''.join(lyr for lyr in self.lyric)
         return f'Syllable: {lyric_repr}  {notes_repr}'
+    
+    def add_child(self):
+        pass
 
 
 class Rest(MultiElTag):
@@ -327,3 +344,6 @@ class Rest(MultiElTag):
 
     def add_duration(self, duration):
         self.duration.append(duration)
+
+    def add_child(self):
+        pass

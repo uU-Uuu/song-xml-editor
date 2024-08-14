@@ -2,7 +2,8 @@ import os
 import re
 
 
-from assist import InvalidFilename, FILENAME_REQUIREMENTS
+from utils import InvalidFilename
+from constants import FILENAME_REQUIREMENTS
 from tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
 
 
@@ -336,5 +337,4 @@ doc1.create()
 doc1.melody = mel
 doc1.update_file()
 
-# with open('2.xml', 'w') as file:
-    # file.write(mel.write_xml())
+print(rest1.parent)

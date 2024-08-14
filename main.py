@@ -1,59 +1,27 @@
+from tkinter import NO
 from PySide2 import QtWidgets
+from PySide2.QtGui import QStandardItemModel, QStandardItem, QFont, QColor
 from functools import partial
 from copy import deepcopy
 
 from ui.ui_xml_editor import Ui_MainWindow
 from tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
 from xml_parser import TagNames, SCHEMAS, validate_xml, XMLValidationError, InvalidXMLInputProvided
+from constants import PARENTS_FACTORY, PITCHES, PITCH_MOD, DURATIONS, DOTTED, OCTAVES, TAGS_FACTORY
 
 
-class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
-    _pitches = {
-        'CBtn': 'C',
-        'DBtn': 'D',
-        'EBtn': 'E', 
-        'FBtn': 'F', 
-        'GBtn': 'G',
-        'ABtn': 'A',
-        'BBtn': 'B'
-    }
-    _pitch_mod = {
-        'sharpBtn': '#',
-        'flatBtn': 'b'
-    }
-    _durations = {
-        'syllableDur1Btn': '1/1',
-        'syllableDur2Btn': '1/2',
-        'syllableDur4Btn': '1/4',
-        'syllableDur8Btn': '1/8',
-        'syllableDur16Btn': '1/16',
-        'restDur1Btn': '1/1',
-        'restDur2Btn': '1/2',
-        'restDur4Btn': '1/4',
-        'restDur8Btn': '1/8',
-        'restDur16Btn': '1/16'
-    }
-    _dotted = {
-        'syllableDottedBtn': '.',
-        'restDottedBtn': '.',
-    }
-    _octaves = {
-        'octave3Btn': '3',
-        'octave4Btn': '4',
-        'octave5Btn': '5',
-        'octave6Btn': '6'
-    }
-    _tags_factory = {
-        'newSectionOKBtn': Section, 
-        'newMelPhraseOKBtn': MelPhrase,
-        'newLexPhraseOKBtn': LexPhrase,
-        'newSyllableOKBtn': Syllable, 
-        'newRestOKBtn': Rest
-    }
+
+class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
+    _pitches = deepcopy(PITCHES)
+    _pitch_mod = deepcopy(PITCH_MOD)
+    _durations = deepcopy(DURATIONS)
+    _dotted = deepcopy(DOTTED)
+    _octaves = deepcopy(OCTAVES)
+    _tags_factory = deepcopy(TAGS_FACTORY)
     _tags = deepcopy(TagNames)
 
     def __init__(self):
-        super(MainWindow, self).__init__()
+        super(MainWindowGen, self).__init__()
         self.setupUi(self)
 
         self._pitchBtns = (
@@ -85,14 +53,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self._preview_tag = {'obj': None, 'frame': None}
 
-        self.previewInput.setReadOnly(True)
-        self.enable_frame_with_click()
-        self.set_frames_enabled(self._inputFrames)
-        self.input_btns_actions()
-        self.tag_btns_actions()
-        self.tag_ok_btns_actions()
-        self.tag_add_btns_actions()
-        self.overwrite_btn_action()
+        self.melody = Melody()
 
 
     def input_btns_actions(self):
@@ -161,7 +122,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def overwrite_btn_action(self):
         self.overwriteBtn.clicked.connect(self._overwrite_XML)
-        
+
+    def save_xml_btn_action(self):
+        self.saveXMLBtn.clicked.connect(self._add_xml_item)
+
+    def cancel_xml_btn_action(self):
+        self.cancelXMLBtn.clicked.connect(self._cancel_xml)
+
+
+    def _cancel_xml(self):
+        self._preview_tag['obj'] = None
+        self.previewInput.clear()
 
     def _overwrite_XML(self):
         data = self.previewInput.toPlainText()
@@ -174,13 +145,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             print(data_dict)
             print(self._preview_tag['obj'])
 
-            
         except Exception as e:
             print(e)
             # objj = schema.to_objects(data, cls=Section)
-
-    
-
 
 
     def _append_tag_attributes(self, addBtn):
@@ -281,9 +248,104 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             input_el.setText(curr_value[:-condition] + reference[btn_name] + mods)
         else:
             input_el.insert(reference[btn_name])
+
+
+    def set_up_tree(self):
+        self.treeModel = QStandardItemModel()
+        self.treeModel.setHorizontalHeaderLabels(['Tag', 'Value'])
+        self.treeView.setModel(self.treeModel)
+        rootNode = self.treeModel.invisibleRootItem()
+        melodyNode= (StandardItem(obj=self.melody, txt=self.melody.tag_name),
+                     StandardItem(obj=self.melody)
+        )
+        rootNode.appendRow([melodyNode[0], melodyNode[1]])
+        self._tag_parents = {1: [melodyNode], 2: [], 3: [], 4: [], 5:[]}
+        self._node_parents = {1: melodyNode, 2: None, 3: None, 4: None, 5:None}
+
+
     
+    def _add_xml_item(self, obj=None, parent=None):
+        if obj is None:
+            obj = self._preview_tag['obj']
+
+        # key = StandardItem(obj=obj, txt=obj.tag_name)
+        # value = StandardItem(obj=obj, txt=repr(obj), set_editable=True)
+
+        if not parent:
+            self._autocomplete_parents(obj)
+            print(self._node_parents)
+            for key in self._node_parents:
+                parent = self._node_parents[key][0]
+                try:
+                    child = self._node_parents[key+1]
+                    parent.appendRow([child[0], child[1]])
+                except KeyError:
+                    pass
+
+    def _autocomplete_parents(self, obj):
+        try:
+            parent = self._tag_parents[obj.depth-1][-1]
+        except IndexError:
+            parent_item = PARENTS_FACTORY[obj.depth]
+            parent = self._autocomplete_parents(obj=parent_item)
+        self._tag_parents[obj.depth].append(obj)
+        parent_node = StandardItem(obj, txt=obj.tag_name), StandardItem(obj, txt=repr(obj))
+        self._node_parents[obj.depth] = parent_node
+
+        return parent
+
+    
+    # def _iterate_tree(self, depth, parent_node=None):
+    #     if parent_node is None:
+    #         parent_node = self.treeModel.invisibleRootItem()
+    #     if depth == 1:
+    #         children = [parent_node.child(row) for row in range(parent_node.rowCount())]
+    #     else:
+    #         children = []
+    #         for row in range(parent_node.rowCount()):
+    #             child_node = parent_node.child(row)
+    #             if child_node.depth == depth - 1:
+    #                 children.append(child_node)
+    #                 self._iterate_tree(child_node)
+    #     return children
+        
+        
+        
+
+class MainWindow(MainWindowGen):
+     def __init__(self):
+        super(MainWindow, self).__init__()
+
+        self.previewInput.setReadOnly(True)
+        self.enable_frame_with_click()
+        self.set_frames_enabled(self._inputFrames)
+        self.input_btns_actions()
+        self.tag_btns_actions()
+        self.tag_ok_btns_actions()
+        self.tag_add_btns_actions()
+        self.overwrite_btn_action()
+        self.save_xml_btn_action()
+        self.cancel_xml_btn_action()
+        self.set_up_tree()
+
+        self.melody = Melody()
 
 
+class StandardItem(QStandardItem):
+    def __init__(self, obj, txt='', font_size=8, set_bold=False, set_editable=False, color=QColor(0, 0, 0)):
+        super().__init__()
+        fnt = QFont('Open Sans', font_size)
+        fnt.setBold(set_bold)
+        self.setFont(fnt)
+        self.setForeground(color)
+        self.setEditable(True)
+        self.obj = obj
+        self.setText(txt)
+        self.setEditable(set_editable)
+
+    def __repr__(self):
+        return repr(self.obj)
+    
 
 
 

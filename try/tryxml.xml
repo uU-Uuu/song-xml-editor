@@ -4,18 +4,21 @@
 	<key>e major</key>
 	<time_signature>4/4</time_signature>
 	<melody>
-		<section name="A">
-			<melodic_phrase id="1">
-				<lexical_phrase id="1" lyrics="gomema">
+		<section parent="melody" name="A">
+			<melodic_phrase parent="section" id="1">
+				<lexical_phrase parent="melodic_phrase" id="1" lyrics="gomema">
 					<syllable>
+						<parent>lexical_phrase</parent>
 						<lyric>go</lyric>
 						<pitch>E4</pitch>
 						<duration>1/16</duration>
 					</syllable>
 					<rest>
+						<parent>lexical_phrase</parent>
 						<duration>1/8</duration>
 					</rest>
 					<syllable>
+						<parent>lexical_phrase</parent>
 						<lyric>me</lyric>
 						<lyric>ma</lyric>
 						<pitch>A4</pitch>
@@ -24,8 +27,9 @@
 						<duration>1/8</duration>
 					</syllable>
 				</lexical_phrase>					
-				<lexical_phrase id="2" lyrics="me">
+				<lexical_phrase parent="melodic_phrase" id="2" lyrics="me">
 					<syllable>
+						<parent>lexical_phrase</parent>
 						<lyric>me</lyric>
 						<pitch>A4</pitch>
 						<duration>1/16</duration>
@@ -33,92 +37,7 @@
 						<duration>1/8</duration>
 					</syllable>
 				</lexical_phrase>					
-			</melodic_phrase>
-			<melodic_phrase id="2">
-				<lexical_phrase id="1" lyrics="gomema">
-					<syllable>
-						<lyric>go</lyric>
-						<pitch>E4</pitch>
-						<duration>1/16</duration>
-					</syllable>
-					<rest>
-						<duration>1/8</duration>
-					</rest>
-					<syllable>
-						<lyric>me</lyric>
-						<lyric>ma</lyric>
-						<pitch>A4</pitch>
-						<duration>1/16</duration>
-					</syllable>
-				</lexical_phrase>					
-				<lexical_phrase id="2" lyrics="me">
-					<syllable>
-						<lyric>me</lyric>
-						<pitch>A4</pitch>
-						<duration>1/16</duration>
-						<pitch>E4</pitch>
-						<duration>1/8</duration>
-					</syllable>
-				</lexical_phrase>					
-			</melodic_phrase>								
-		</section>		
-		<section name="B">
-			<melodic_phrase id="1">
-				<lexical_phrase id="1" lyrics="gomema">
-					<syllable>
-						<lyric>go</lyric>
-						<pitch>E4</pitch>
-						<duration>1/16</duration>
-					</syllable>
-					<rest>
-						<duration>1/8</duration>
-					</rest>
-					<syllable>
-						<lyric>me</lyric>
-						<lyric>ma</lyric>
-						<pitch>A4</pitch>
-						<duration>1/16</duration>
-						<pitch>E4</pitch>
-						<duration>1/8</duration>
-					</syllable>
-				</lexical_phrase>					
-				<lexical_phrase id="2" lyrics="me">
-					<syllable>
-						<lyric>me</lyric>
-						<pitch>A4</pitch>
-						<duration>1/16</duration>
-						<pitch>E4</pitch>
-						<duration>1/8</duration>
-					</syllable>
-				</lexical_phrase>					
-			</melodic_phrase>
-			<melodic_phrase id="2">
-				<lexical_phrase id="1" lyrics="gomema">
-					<syllable>
-						<lyric>go</lyric>
-						<pitch>E4</pitch>
-						<duration>1/16</duration>
-					</syllable>
-					<rest>
-						<duration>1/8</duration>
-					</rest>
-					<syllable>
-						<lyric>me</lyric>
-						<lyric>ma</lyric>
-						<pitch>A4</pitch>
-						<duration>1/16</duration>
-					</syllable>
-				</lexical_phrase>					
-				<lexical_phrase id="2" lyrics="me">
-					<syllable>
-						<lyric>me</lyric>
-						<pitch>A4</pitch>
-						<duration>1/16</duration>
-						<pitch>E4</pitch>
-						<duration>1/8</duration>
-					</syllable>
-				</lexical_phrase>					
-			</melodic_phrase>								
-		</section>		
+			</melodic_phrase>				
+		</section>			
 	</melody>	
 </doc>
