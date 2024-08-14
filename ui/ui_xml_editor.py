@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'song-xml_editorIMAGfg.ui'
+## Form generated from reading UI file 'song-xml_editorvQAilg.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.1
 ##
@@ -20,26 +20,26 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1117, 862)
+        MainWindow.resize(1192, 859)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalScrollBar = QScrollBar(self.centralwidget)
         self.verticalScrollBar.setObjectName(u"verticalScrollBar")
-        self.verticalScrollBar.setGeometry(QRect(330, 60, 20, 761))
+        self.verticalScrollBar.setGeometry(QRect(290, 60, 20, 761))
         self.verticalScrollBar.setOrientation(Qt.Vertical)
         self.previewInput = QPlainTextEdit(self.centralwidget)
         self.previewInput.setObjectName(u"previewInput")
-        self.previewInput.setGeometry(QRect(820, 50, 261, 161))
+        self.previewInput.setGeometry(QRect(880, 70, 261, 161))
         self.treeView = QTreeView(self.centralwidget)
         self.treeView.setObjectName(u"treeView")
-        self.treeView.setGeometry(QRect(10, 50, 341, 781))
+        self.treeView.setGeometry(QRect(20, 50, 381, 781))
         self.verticalScrollBar_2 = QScrollBar(self.centralwidget)
         self.verticalScrollBar_2.setObjectName(u"verticalScrollBar_2")
-        self.verticalScrollBar_2.setGeometry(QRect(330, 60, 20, 761))
+        self.verticalScrollBar_2.setGeometry(QRect(380, 60, 20, 761))
         self.verticalScrollBar_2.setOrientation(Qt.Vertical)
         self.sectionFrame = QFrame(self.centralwidget)
         self.sectionFrame.setObjectName(u"sectionFrame")
-        self.sectionFrame.setGeometry(QRect(400, 20, 351, 91))
+        self.sectionFrame.setGeometry(QRect(460, 40, 351, 91))
         self.sectionFrame.setFrameShape(QFrame.StyledPanel)
         self.sectionFrame.setFrameShadow(QFrame.Raised)
         self.sectionName = QLineEdit(self.sectionFrame)
@@ -69,7 +69,7 @@ class Ui_MainWindow(object):
 "font-size: 15px;")
         self.melPhraseFrame = QFrame(self.centralwidget)
         self.melPhraseFrame.setObjectName(u"melPhraseFrame")
-        self.melPhraseFrame.setGeometry(QRect(400, 110, 351, 91))
+        self.melPhraseFrame.setGeometry(QRect(460, 130, 351, 91))
         self.melPhraseFrame.setFrameShape(QFrame.StyledPanel)
         self.melPhraseFrame.setFrameShadow(QFrame.Raised)
         self.newMelPhraseOKBtn = QToolButton(self.melPhraseFrame)
@@ -90,7 +90,7 @@ class Ui_MainWindow(object):
 "")
         self.lexPhraseFrame = QFrame(self.centralwidget)
         self.lexPhraseFrame.setObjectName(u"lexPhraseFrame")
-        self.lexPhraseFrame.setGeometry(QRect(400, 200, 351, 91))
+        self.lexPhraseFrame.setGeometry(QRect(460, 220, 351, 91))
         self.lexPhraseFrame.setFrameShape(QFrame.StyledPanel)
         self.lexPhraseFrame.setFrameShadow(QFrame.Raised)
         self.newLexPhraseOKBtn = QToolButton(self.lexPhraseFrame)
@@ -111,7 +111,7 @@ class Ui_MainWindow(object):
 "")
         self.syllableFrame = QFrame(self.centralwidget)
         self.syllableFrame.setObjectName(u"syllableFrame")
-        self.syllableFrame.setGeometry(QRect(400, 290, 701, 251))
+        self.syllableFrame.setGeometry(QRect(460, 310, 701, 251))
         self.syllableFrame.setFrameShape(QFrame.StyledPanel)
         self.syllableFrame.setFrameShadow(QFrame.Raised)
         self.newSyllableBtn = QToolButton(self.syllableFrame)
@@ -326,7 +326,7 @@ class Ui_MainWindow(object):
 "font-size: 15px;")
         self.restFrame = QFrame(self.centralwidget)
         self.restFrame.setObjectName(u"restFrame")
-        self.restFrame.setGeometry(QRect(400, 540, 701, 151))
+        self.restFrame.setGeometry(QRect(460, 560, 701, 151))
         self.restFrame.setFrameShape(QFrame.StyledPanel)
         self.restFrame.setFrameShadow(QFrame.Raised)
         self.newRestBtn = QToolButton(self.restFrame)
@@ -411,7 +411,7 @@ class Ui_MainWindow(object):
 "")
         self.actionBtnsFrame = QFrame(self.centralwidget)
         self.actionBtnsFrame.setObjectName(u"actionBtnsFrame")
-        self.actionBtnsFrame.setGeometry(QRect(600, 730, 461, 81))
+        self.actionBtnsFrame.setGeometry(QRect(660, 750, 461, 81))
         self.actionBtnsFrame.setFrameShape(QFrame.StyledPanel)
         self.actionBtnsFrame.setFrameShadow(QFrame.Raised)
         self.musicSheetBtn = QToolButton(self.actionBtnsFrame)
@@ -437,14 +437,14 @@ class Ui_MainWindow(object):
 "")
         self.overwriteBtn = QToolButton(self.centralwidget)
         self.overwriteBtn.setObjectName(u"overwriteBtn")
-        self.overwriteBtn.setGeometry(QRect(820, 230, 121, 41))
+        self.overwriteBtn.setGeometry(QRect(880, 250, 121, 41))
         self.overwriteBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 2px solid black;\n"
 "")
         self.saveXMLBtn = QToolButton(self.centralwidget)
         self.saveXMLBtn.setObjectName(u"saveXMLBtn")
-        self.saveXMLBtn.setGeometry(QRect(960, 230, 51, 41))
+        self.saveXMLBtn.setGeometry(QRect(1020, 250, 51, 41))
         self.saveXMLBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "background-color: ;\n"
@@ -452,7 +452,7 @@ class Ui_MainWindow(object):
 "")
         self.cancelXMLBtn = QToolButton(self.centralwidget)
         self.cancelXMLBtn.setObjectName(u"cancelXMLBtn")
-        self.cancelXMLBtn.setGeometry(QRect(1030, 230, 51, 41))
+        self.cancelXMLBtn.setGeometry(QRect(1090, 250, 51, 41))
         self.cancelXMLBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "background-color: ;\n"

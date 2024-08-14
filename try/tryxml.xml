@@ -4,21 +4,18 @@
 	<key>e major</key>
 	<time_signature>4/4</time_signature>
 	<melody>
-		<section parent="melody" name="A">
-			<melodic_phrase parent="section" id="1">
-				<lexical_phrase parent="melodic_phrase" id="1" lyrics="gomema">
+		<section name="A">
+			<melodic_phrase id="2">
+				<lexical_phrase id="2" lyrics="gomema">
 					<syllable>
-						<parent>lexical_phrase</parent>
 						<lyric>go</lyric>
 						<pitch>E4</pitch>
 						<duration>1/16</duration>
 					</syllable>
 					<rest>
-						<parent>lexical_phrase</parent>
 						<duration>1/8</duration>
 					</rest>
 					<syllable>
-						<parent>lexical_phrase</parent>
 						<lyric>me</lyric>
 						<lyric>ma</lyric>
 						<pitch>A4</pitch>
@@ -27,9 +24,8 @@
 						<duration>1/8</duration>
 					</syllable>
 				</lexical_phrase>					
-				<lexical_phrase parent="melodic_phrase" id="2" lyrics="me">
+				<lexical_phrase id="3" lyrics="me">
 					<syllable>
-						<parent>lexical_phrase</parent>
 						<lyric>me</lyric>
 						<pitch>A4</pitch>
 						<duration>1/16</duration>

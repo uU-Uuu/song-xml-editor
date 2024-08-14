@@ -177,6 +177,9 @@ class Melody(Tag):
     def add_section(self, section):
         """add a Section instance into the children list"""
         self.children.append(section)
+
+    def values_(self):
+        return ''
         
 
 
@@ -202,6 +205,9 @@ class Section(TagWithAttr):
 
     def __repr__(self):
         return f'Section: {self.name}'    
+    
+    def values_(self):
+        return self.name
     
 
 
@@ -230,9 +236,16 @@ class MelPhrase(TagWithAttr):
         """add a LexPhrase instance to the children list"""
         self.children.append(lex_phrase)
 
+    def values_(self):
+        return str(self.id)
+    
+    def __repr__(self):
+        return f'Musical Phrase {self.id}'
+
     @classmethod
-    def reset_counter(cls):
-        cls._mel_ph_count = 0
+    def reset_counter(cls, init_value=0):
+        cls._mel_ph_count = init_value
+
 
 
 class LexPhrase(TagWithAttr):
@@ -270,11 +283,15 @@ class LexPhrase(TagWithAttr):
         self.children.append(rest)
 
     def __repr__(self):
-        return f'Lexical Phrase: {self.lyrics}'
+        return f'Lexical Phrase {self.id}: {self.lyrics}'
+    
+    def values_(self):
+        return str(self.id)
 
     @classmethod
-    def reset_counter(cls):
-        cls._lex_ph_count = 0
+    def reset_counter(cls, init_value=0):
+        cls._lex_ph_count = init_value
+
     
 
 class Syllable(MultiElTag):
@@ -315,13 +332,16 @@ class Syllable(MultiElTag):
         return len(self.notes) > 1       
 
     def __repr__(self):
-        notes_repr = ', '.join(note['pitch'] + ' - ' + note['duration'] 
-                               for note in self.notes)
-        lyric_repr = ''.join(lyr for lyr in self.lyric)
-        return f'Syllable: {lyric_repr}  {notes_repr}'
+        return f'Syllable: {self.values_()}'
     
     def add_child(self):
         pass
+
+    def values_(self):
+        notes_repr = ', '.join(note['pitch'] + ' - ' + note['duration'] 
+                               for note in self.notes)
+        lyric_repr = ''.join(lyr for lyr in self.lyric)
+        return f'{lyric_repr}  {notes_repr}'
 
 
 class Rest(MultiElTag):
@@ -340,10 +360,13 @@ class Rest(MultiElTag):
         self.duration = list(args)
         
     def __repr__(self):
-        return f'Rest:  {" - ".join(dur for dur in self.duration)}'
+        return f'Rest:  {self.values_()}'
 
     def add_duration(self, duration):
         self.duration.append(duration)
 
     def add_child(self):
         pass
+
+    def values_(self):
+        return " - ".join(dur for dur in self.duration)

@@ -129,6 +129,9 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
     def cancel_xml_btn_action(self):
         self.cancelXMLBtn.clicked.connect(self._cancel_xml)
 
+    def xml_btn_action(self):
+        self.XMLBtn.clicked.connect(self._get_xml_doc)
+
 
     def _cancel_xml(self):
         self._preview_tag['obj'] = None
@@ -147,7 +150,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
         except Exception as e:
             print(e)
-            # objj = schema.to_objects(data, cls=Section)
+        self.set_frames_enabled(self._inputFrames)
 
 
     def _append_tag_attributes(self, addBtn):
@@ -162,12 +165,12 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
             elif isinstance(self._preview_tag['obj'], Syllable):
                 data = [child.text() for child in frame.findChildren(QtWidgets.QLineEdit)]
                 if data:
-                    lyric, pitch, duration = data
+                    lyric, duration, pitch = data
                     if lyric:
                         self._preview_tag['obj'].add_lyric(lyric)
                     note = not(bool(pitch) and bool(duration))
                     if not note:
-                        self._preview_tag['obj'].add_note(pitch, duration)
+                        self._preview_tag['obj'].add_note(pitch=pitch, duration=duration)
     
             self.previewInput.setPlainText(self._preview_tag['obj'].write_xml(depth=0))
         
@@ -208,7 +211,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         if frame:
             if self._preview_tag['frame'] != frame:
                 self._preview_tag['obj'] = None
-            self.set_frames_enabled(self._inputFrames, False, besides=frame)
+            self.set_frames_enabled(self._inputFrames, enabled=not enabled, besides=frame)
 
 
     def set_frames_enabled(self, frames=(), enabled=True, besides=None):
@@ -254,15 +257,16 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self.treeModel = QStandardItemModel()
         self.treeModel.setHorizontalHeaderLabels(['Tag', 'Value'])
         self.treeView.setModel(self.treeModel)
+        self.treeView.setColumnWidth(0, 200)
+
         rootNode = self.treeModel.invisibleRootItem()
         melodyNode= (StandardItem(obj=self.melody, txt=self.melody.tag_name),
                      StandardItem(obj=self.melody)
         )
         rootNode.appendRow([melodyNode[0], melodyNode[1]])
-        self._tag_parents = {1: [self.melody], 2: [], 3: [], 4: [], 5:[]}
-        self._node_parents = {1: melodyNode, 2: None, 3: None, 4: None, 5:None}
-
-        self._last_nodes = {1: melodyNode[0], 2: None, 3: None, 4: None, 5:None}
+        self._node_parents = {1: melodyNode, 2: None, 3: None, 4: None, 5: None}
+        self._last_tags = {1: self.melody, 2: None, 3: None, 4: None, 5: None}
+        self._last_nodes = {1: melodyNode[0], 2: None, 3: None, 4: None, 5: None}
         self._last_node = melodyNode[0]
         self.treeView.expandAll()
 
@@ -274,16 +278,26 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         
         if obj and not parent:
             curr_node = (StandardItem(obj, txt=obj.tag_name), 
-                         StandardItem(obj, txt=repr(obj), set_editable=True)
+                         StandardItem(obj, txt=obj.values_(), set_editable=True)
             )
             if obj.depth == self._last_node.obj.depth + 1:
-                self._last_node.appendRow([curr_node[0], curr_node[1]])
+                parent_node = self._last_node
                 
             elif obj.depth <= self._last_node.obj.depth:
-                self._last_nodes[obj.depth-1].appendRow([curr_node[0], curr_node[1]])
+                parent_node = self._last_nodes[obj.depth-1]
+            
+            else:
+                return
            
+            parent_node.appendRow([curr_node[0], curr_node[1]])
+            self._last_tags[obj.depth-1].add_child(obj)
+            self._last_tags[obj.depth] = obj
             self._last_nodes[obj.depth] = curr_node[0]
             self._last_node = curr_node[0]
+            self.set_frames_enabled()
+
+        # print(self._last_tags[1].write_xml())
+        self.treeView.expandAll()
 
 
     def _autocomplete_parents(self, obj, closest_depth):
@@ -304,20 +318,23 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         return parent
 
     
-    # def _iterate_tree(self, depth, parent_node=None):
-    #     if parent_node is None:
-    #         parent_node = self.treeModel.invisibleRootItem()
-    #     if depth == 1:
-    #         children = [parent_node.child(row) for row in range(parent_node.rowCount())]
-    #     else:
-    #         children = []
-    #         for row in range(parent_node.rowCount()):
-    #             child_node = parent_node.child(row)
-    #             if child_node.depth == depth - 1:
-    #                 children.append(child_node)
-    #                 self._iterate_tree(child_node)
-    #     return children
+    def _iterate_tree(self, depth, parent_node=None):
+        if parent_node is None:
+            parent_node = self.treeModel.invisibleRootItem()
+        if depth == 1:
+            children = [parent_node.child(row) for row in range(parent_node.rowCount())]
+        else:
+            children = []
+            for row in range(parent_node.rowCount()):
+                child_node = parent_node.child(row)
+                if child_node.depth == depth - 1:
+                    children.append(child_node)
+                    self._iterate_tree(child_node)
+        return children
         
+    
+    def _get_xml_doc(self):
+        print(self._last_tags[1].write_xml())
         
         
 
@@ -336,6 +353,7 @@ class MainWindow(MainWindowGen):
         self.save_xml_btn_action()
         self.cancel_xml_btn_action()
         self.set_up_tree()
+        self.xml_btn_action()
 
         self.melody = Melody()
 

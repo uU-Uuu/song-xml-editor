@@ -47,8 +47,8 @@ TAGS_FACTORY = {
 PARENTS_FACTORY = {
     2: Melody(),
     3: Section(),
-    4: MelPhrase(),
-    5: LexPhrase()
+    4: MelPhrase().reset_counter(),
+    5: LexPhrase().reset_counter()
 }
 
 FILENAME_REQUIREMENTS = """\t - starting from lowercase or uppercase alphabetic characters

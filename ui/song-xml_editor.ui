@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1117</width>
-    <height>862</height>
+    <width>1192</width>
+    <height>859</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <widget class="QScrollBar" name="verticalScrollBar">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>290</x>
       <y>60</y>
       <width>20</width>
       <height>761</height>
@@ -30,8 +30,8 @@
    <widget class="QPlainTextEdit" name="previewInput">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>50</y>
+      <x>880</x>
+      <y>70</y>
       <width>261</width>
       <height>161</height>
      </rect>
@@ -43,9 +43,9 @@
    <widget class="QTreeView" name="treeView">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>50</y>
-      <width>341</width>
+      <width>381</width>
       <height>781</height>
      </rect>
     </property>
@@ -53,7 +53,7 @@
    <widget class="QScrollBar" name="verticalScrollBar_2">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>380</x>
       <y>60</y>
       <width>20</width>
       <height>761</height>
@@ -66,8 +66,8 @@
    <widget class="QFrame" name="sectionFrame">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>20</y>
+      <x>460</x>
+      <y>40</y>
       <width>351</width>
       <height>91</height>
      </rect>
@@ -155,8 +155,8 @@ font-size: 15px;</string>
    <widget class="QFrame" name="melPhraseFrame">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>110</y>
+      <x>460</x>
+      <y>130</y>
       <width>351</width>
       <height>91</height>
      </rect>
@@ -211,8 +211,8 @@ border: 2px solid black;
    <widget class="QFrame" name="lexPhraseFrame">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>200</y>
+      <x>460</x>
+      <y>220</y>
       <width>351</width>
       <height>91</height>
      </rect>
@@ -267,8 +267,8 @@ border: 2px solid black;
    <widget class="QFrame" name="syllableFrame">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>290</y>
+      <x>460</x>
+      <y>310</y>
       <width>701</width>
       <height>251</height>
      </rect>
@@ -843,8 +843,8 @@ font-size: 15px;</string>
    <widget class="QFrame" name="restFrame">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>540</y>
+      <x>460</x>
+      <y>560</y>
       <width>701</width>
       <height>151</height>
      </rect>
@@ -1071,8 +1071,8 @@ border: 2px solid black;
    <widget class="QFrame" name="actionBtnsFrame">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>730</y>
+      <x>660</x>
+      <y>750</y>
       <width>461</width>
       <height>81</height>
      </rect>
@@ -1144,8 +1144,8 @@ border: 2px solid black;
    <widget class="QToolButton" name="overwriteBtn">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>230</y>
+      <x>880</x>
+      <y>250</y>
       <width>121</width>
       <height>41</height>
      </rect>
@@ -1163,8 +1163,8 @@ border: 2px solid black;
    <widget class="QToolButton" name="saveXMLBtn">
     <property name="geometry">
      <rect>
-      <x>960</x>
-      <y>230</y>
+      <x>1020</x>
+      <y>250</y>
       <width>51</width>
       <height>41</height>
      </rect>
@@ -1183,8 +1183,8 @@ border: 2px solid black;
    <widget class="QToolButton" name="cancelXMLBtn">
     <property name="geometry">
      <rect>
-      <x>1030</x>
-      <y>230</y>
+      <x>1090</x>
+      <y>250</y>
       <width>51</width>
       <height>41</height>
      </rect>

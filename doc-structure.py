@@ -291,50 +291,49 @@ class XMLDoc:
             self._melody = melody
 
 
-syl1 = Syllable('go')
-syl1.add_note('E4', '1/16')
+# syl1 = Syllable('go')
+# syl1.add_note('E4', '1/16')
 
-rest1 = Rest('1/8')
+# rest1 = Rest('1/8')
 
-syl2 = Syllable('me')
-syl2.add_note('A4', '1/16')
-syl2.add_note('E4', '1/8')
+# syl2 = Syllable('me')
+# syl2.add_note('A4', '1/16')
+# syl2.add_note('E4', '1/8')
 
-syl3 = Syllable('me', 'ma')
-syl3.add_note('A4', '1/16')
-syl3.add_note('E4', '1/8')
+# syl3 = Syllable('me', 'ma')
+# syl3.add_note('A4', '1/16')
+# syl3.add_note('E4', '1/8')
 
-lp1 = LexPhrase()
-lp1.add_syllable(syl1)
-lp1.add_rest(rest1)
-lp1.add_syllable(syl3)
+# lp1 = LexPhrase()
+# lp1.add_syllable(syl1)
+# lp1.add_rest(rest1)
+# lp1.add_syllable(syl3)
 
-lp2 = LexPhrase()
-lp2.add_syllable(syl2)
+# lp2 = LexPhrase()
+# lp2.add_syllable(syl2)
 
-mp1 = MelPhrase()
-mp1.add_lex_phrase(lp1)
-mp1.add_lex_phrase(lp2)
+# mp1 = MelPhrase()
+# mp1.add_lex_phrase(lp1)
+# mp1.add_lex_phrase(lp2)
 
-sec1 = Section('A')
-sec1.add_mel_phrase(mp1)
+# sec1 = Section('A')
+# sec1.add_mel_phrase(mp1)
 
-mel = Melody()
-mel.add_section(sec1)
+# mel = Melody()
+# mel.add_section(sec1)
 
 
-w_path = os.path.join(os.getcwd(), 'try')
-work1 = Workspace('Try', w_path)
-os.makedirs(w_path, exist_ok=True)
+# w_path = os.path.join(os.getcwd(), 'try')
+# work1 = Workspace('Try', w_path)
+# os.makedirs(w_path, exist_ok=True)
 
-doc1 = work1.add_document('tryxml', w_path)
-doc1.set_metadata('Good morning', 'e major', '4/4')
+# doc1 = work1.add_document('tryxml', w_path)
+# doc1.set_metadata('Good morning', 'e major', '4/4')
 
-doc2 = XMLDoc('try2', w_path, 'Hello', 'a minor', '2/2')
-work1.add_documents(doc2)
+# doc2 = XMLDoc('try2', w_path, 'Hello', 'a minor', '2/2')
+# work1.add_documents(doc2)
 
-doc1.create()
-doc1.melody = mel
-doc1.update_file()
+# doc1.create()
+# doc1.melody = mel
+# doc1.update_file()
 
-print(rest1.parent)
