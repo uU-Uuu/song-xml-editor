@@ -272,8 +272,11 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
                      StandardItem(obj=self.melody)
         )
         rootNode.appendRow([melodyNode[0], melodyNode[1]])
-        self._node_parents = {1: melodyNode, 2: None, 3: None, 4: None, 5: None}
+        # self._node_parents = {1: melodyNode, 2: None, 3: None, 4: None, 5: None}
         self._last_tags = {1: self.melody, 2: None, 3: None, 4: None, 5: None}
+        # self._last_nodes = {1: {'node': melodyNode[0], 'tag': self.melody}, 2: {'node': None, 'tag': None}, 
+        #                     3: {'node': None, 'tag': None}, 4: {'node': None, 'tag': None}, 5: {'node': None, 'tag': None}
+        # }
         self._last_nodes = {1: melodyNode[0], 2: None, 3: None, 4: None, 5: None}
         self._last_node = melodyNode[0]
         self.treeView.expandAll()
@@ -303,50 +306,50 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
             self._last_nodes[obj.depth] = curr_node[0]
             self._last_node = curr_node[0]
             self.set_frames_enabled()
-
-        # print(self._last_tags[1].write_xml())
         self.treeView.expandAll()
 
 
-    def _autocomplete_parents(self, obj, closest_depth):
-        if obj.depth < closest_depth:
-            return
-        try:
-            parent = self._tag_parents[obj.depth-1][-1]
-        except IndexError:
-            parent_item = PARENTS_FACTORY[obj.depth]
-            parent = self._autocomplete_parents(obj=parent_item, closest_depth=closest_depth)
+    # def _autocomplete_parents(self, obj, closest_depth):
+    #     if obj.depth < closest_depth:
+    #         return
+    #     try:
+    #         parent = self._tag_parents[obj.depth-1][-1]
+    #     except IndexError:
+    #         parent_item = PARENTS_FACTORY[obj.depth]
+    #         parent = self._autocomplete_parents(obj=parent_item, closest_depth=closest_depth)
 
-        parent_node = (StandardItem(obj, txt=obj.tag_name), 
-                        StandardItem(obj, txt=repr(obj)))
-        self._tag_parents[obj.depth].append(obj)
-        self._tag_parents[obj.depth-1].append(parent)
-        self._node_parents[obj.depth] = parent_node
+    #     parent_node = (StandardItem(obj, txt=obj.tag_name), 
+    #                     StandardItem(obj, txt=repr(obj)))
+    #     self._tag_parents[obj.depth].append(obj)
+    #     self._tag_parents[obj.depth-1].append(parent)
+    #     self._node_parents[obj.depth] = parent_node
 
-        return parent
+    #     return parent
 
     
-    def _iterate_tree(self, depth, parent_node=None):
-        if parent_node is None:
-            parent_node = self.treeModel.invisibleRootItem()
-        if depth == 1:
-            children = [parent_node.child(row) for row in range(parent_node.rowCount())]
-        else:
-            children = []
-            for row in range(parent_node.rowCount()):
-                child_node = parent_node.child(row)
-                if child_node.depth == depth - 1:
-                    children.append(child_node)
-                    self._iterate_tree(child_node)
-        return children
+    # def _iterate_tree(self, depth, parent_node=None):
+    #     if parent_node is None:
+    #         parent_node = self.treeModel.invisibleRootItem()
+    #     if depth == 1:
+    #         children = [parent_node.child(row) for row in range(parent_node.rowCount())]
+    #     else:
+    #         children = []
+    #         for row in range(parent_node.rowCount()):
+    #             child_node = parent_node.child(row)
+    #             if child_node.depth == depth - 1:
+    #                 children.append(child_node)
+    #                 self._iterate_tree(child_node)
+    #     return children
     
 
     def _delete_selected_node(self):
         try:
             selected_node = self.treeView.selectedIndexes()[0]
             item = self.treeModel.itemFromIndex(selected_node)
+            parent = self.treeModel.itemFromIndex(selected_node.parent())
             if not isinstance(item.obj, Melody):
                 self.treeModel.removeRow(selected_node.row(), selected_node.parent())
+                parent.obj.delete_child(item.obj)
         except IndexError:
             pass
 
@@ -365,13 +368,8 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
     # def _insert_edited_node(self, item, parent):
     #     self.treeModel.appendRow(parent)
 
-
-
-
-        
-    
     def _get_xml_doc(self):
-        print(self._last_tags[1].write_xml())
+        print(self._last_nodes[1].obj.write_xml())
         
         
 

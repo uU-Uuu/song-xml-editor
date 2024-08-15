@@ -55,6 +55,19 @@ class Tag:
     def add_child(self, child):
         self.children.append(child)
 
+    def delete_child(self, child):
+        try:
+            self.children.remove(child)
+        except ValueError:
+            pass
+    
+    def delete_child_recursive(self, rm_child):
+        try:
+            self.children.remove(rm_child)
+        except ValueError:
+            map(lambda el: el.delete_child(rm_child), self.children)
+        
+
     def give_parent(self):
         from constants import PARENTS_FACTORY
     
@@ -194,8 +207,7 @@ class Melody(Tag):
         self.children.append(section)
 
     def values_(self):
-        return ''
-        
+        return ''        
 
 
 class Section(TagWithAttr):
@@ -361,6 +373,9 @@ class Syllable(MultiElTag):
     def add_child(self):
         pass
 
+    def delete_child(self, child):
+        return
+
     def values_(self):
         notes_repr = ', '.join(note['pitch'] + ' - ' + note['duration'] 
                                for note in self.notes)
@@ -400,6 +415,9 @@ class Rest(MultiElTag):
                 
     def add_child(self):
         pass
+
+    def delete_child(self, child):
+        return
 
     def values_(self):
         return " - ".join(dur for dur in self.duration)

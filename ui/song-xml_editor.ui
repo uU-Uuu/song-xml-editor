@@ -1219,7 +1219,7 @@ border: 2px solid black;
      <string>—</string>
     </property>
    </widget>
-   <widget class="QToolButton" name="saveTreeChangesBtn">
+   <widget class="QToolButton" name="editNodeBtn">
     <property name="geometry">
      <rect>
       <x>330</x>
@@ -1252,7 +1252,7 @@ border: 2px solid black;
    <zorder>saveXMLBtn</zorder>
    <zorder>cancelXMLBtn</zorder>
    <zorder>deleteNodeBtn</zorder>
-   <zorder>saveTreeChangesBtn</zorder>
+   <zorder>editNodeBtn</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
