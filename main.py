@@ -5,6 +5,8 @@ from PySide2.QtGui import QStandardItemModel, QStandardItem, QFont, QColor
 from functools import partial
 from copy import deepcopy
 
+from click import edit
+
 from ui.ui_xml_editor import Ui_MainWindow
 from tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
 from xml_parser import TagNames, SCHEMAS, validate_xml, XMLValidationError, InvalidXMLInputProvided
@@ -53,6 +55,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self._tagAddBtns = (self.addSyllableLyricBtn, self.addSyllableNoteBtn, self.addRestDurationBtn)
 
         self._preview_tag = {'obj': None, 'frame': None}
+        self._edit_mode = False
 
         self.melody = Melody()
 
@@ -122,7 +125,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
                                                  frame))
 
     def overwrite_btn_action(self):
-        self.overwriteBtn.clicked.connect(self._overwrite_XML)
+        self.overwriteBtn.clicked.connect(self._overwrite_xml)
 
     def save_xml_btn_action(self):
         self.saveXMLBtn.clicked.connect(self._add_xml_item)
@@ -145,19 +148,22 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self.set_frames_enabled(self._inputFrames)
 
 
-    def _overwrite_XML(self, tag_name=''):
+    def _overwrite_xml(self, tag_name=''):
         data = self.previewInput.toPlainText()
         tag_name = self._preview_tag['obj'].tag_name
         try:
             validate_xml(tag_name, xml_str=data)
-            print(data)
             schema = SCHEMAS[TagNames.by_tag(tag_name)]
-            data_dict = schema.to_dict(data)
-            print(data_dict)
-            print(self._preview_tag['obj'])
+            if type(self._preview_tag['obj']) in (Section, MelPhrase, LexPhrase):
+                data_dict = schema.to_dict(data)
+                if data_dict:
+                    key = tuple(data_dict.keys())[0].strip('@')
+                    self._preview_tag['obj'].__dict__[key] = data_dict[f'@{key}']
+                    if type(self._preview_tag['obj']) in (MelPhrase, LexPhrase):
+                        self._preview_tag['obj'].reset_counter(data_dict[f'@{key}'])
 
         except Exception as e:
-            print(e)
+            pass
         self.set_frames_enabled(self._inputFrames)
 
 
@@ -272,11 +278,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
                      StandardItem(obj=self.melody)
         )
         rootNode.appendRow([melodyNode[0], melodyNode[1]])
-        # self._node_parents = {1: melodyNode, 2: None, 3: None, 4: None, 5: None}
         self._last_tags = {1: self.melody, 2: None, 3: None, 4: None, 5: None}
-        # self._last_nodes = {1: {'node': melodyNode[0], 'tag': self.melody}, 2: {'node': None, 'tag': None}, 
-        #                     3: {'node': None, 'tag': None}, 4: {'node': None, 'tag': None}, 5: {'node': None, 'tag': None}
-        # }
         self._last_nodes = {1: melodyNode[0], 2: None, 3: None, 4: None, 5: None}
         self._last_node = melodyNode[0]
         self.treeView.expandAll()
@@ -286,63 +288,39 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
     def _add_xml_item(self, obj=None, parent=None):
         if obj is None:
             obj = self._preview_tag['obj']
-        
-        if obj and not parent:
-            curr_node = (StandardItem(obj, txt=obj.tag_name), 
-                         StandardItem(obj, txt=obj.values_())
-            )
-            if obj.depth == self._last_node.obj.depth + 1:
-                parent_node = self._last_node
                 
-            elif obj.depth <= self._last_node.obj.depth:
-                parent_node = self._last_nodes[obj.depth-1]
+        if obj and not parent:
+            curr_node = (StandardItem(obj=obj, txt=obj.tag_name), 
+                        StandardItem(obj=obj, txt=obj.values_())
+            )
+            if not self._edit_mode:
+
+                if obj.depth == self._last_node.obj.depth + 1:
+                    parent_node = self._last_node
+                    
+                elif obj.depth <= self._last_node.obj.depth:
+                    parent_node = self._last_nodes[obj.depth-1]
+                
+                else:
+                    return
             
+                parent_node.appendRow([curr_node[0], curr_node[1]])
+                self._last_tags[obj.depth-1].add_child(obj)
+                self._last_tags[obj.depth] = obj
+                self._last_nodes[obj.depth] = curr_node[0]
+                self._last_node = curr_node[0]
             else:
-                return
-           
-            parent_node.appendRow([curr_node[0], curr_node[1]])
-            self._last_tags[obj.depth-1].add_child(obj)
-            self._last_tags[obj.depth] = obj
-            self._last_nodes[obj.depth] = curr_node[0]
-            self._last_node = curr_node[0]
-            self.set_frames_enabled()
+                self._save_edited_node(curr_node)
+                self._edit_mode = False
+
+        self.set_frames_enabled()
         self.treeView.expandAll()
 
-
-    # def _autocomplete_parents(self, obj, closest_depth):
-    #     if obj.depth < closest_depth:
-    #         return
-    #     try:
-    #         parent = self._tag_parents[obj.depth-1][-1]
-    #     except IndexError:
-    #         parent_item = PARENTS_FACTORY[obj.depth]
-    #         parent = self._autocomplete_parents(obj=parent_item, closest_depth=closest_depth)
-
-    #     parent_node = (StandardItem(obj, txt=obj.tag_name), 
-    #                     StandardItem(obj, txt=repr(obj)))
-    #     self._tag_parents[obj.depth].append(obj)
-    #     self._tag_parents[obj.depth-1].append(parent)
-    #     self._node_parents[obj.depth] = parent_node
-
-    #     return parent
-
-    
-    # def _iterate_tree(self, depth, parent_node=None):
-    #     if parent_node is None:
-    #         parent_node = self.treeModel.invisibleRootItem()
-    #     if depth == 1:
-    #         children = [parent_node.child(row) for row in range(parent_node.rowCount())]
-    #     else:
-    #         children = []
-    #         for row in range(parent_node.rowCount()):
-    #             child_node = parent_node.child(row)
-    #             if child_node.depth == depth - 1:
-    #                 children.append(child_node)
-    #                 self._iterate_tree(child_node)
-    #     return children
     
 
     def _delete_selected_node(self):
+        if self._edit_mode:
+                self._edit_mode = False
         try:
             selected_node = self.treeView.selectedIndexes()[0]
             item = self.treeModel.itemFromIndex(selected_node)
@@ -357,16 +335,25 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
     def _edit_selected_node(self):
         try:
             selected_node = self.treeView.selectedIndexes()[0]
-            item = self.treeModel.itemFromIndex(selected_node)
-            if not isinstance(item.obj, Melody):
-    #             self._preview_tag['obj'] = item.obj
-                self.previewInput.setPlainText(item.obj.write_xml_plain())
-                children = item.obj.children
-        except:
+            selected_item = self.treeModel.itemFromIndex(selected_node)
+            if not isinstance(selected_item.obj, Melody):
+                indx = self.treeView.selectedIndexes()[0]
+                if indx:
+                    self._selected_indx = self.treeView.selectedIndexes()[0]
+                    self._preview_tag['obj'] = selected_item.obj
+                    self.previewInput.setPlainText(selected_item.obj.write_xml_plain())
+                    self._edit_mode = True
+        except Exception as e:
             pass
 
-    # def _insert_edited_node(self, item, parent):
-    #     self.treeModel.appendRow(parent)
+    def _save_edited_node(self, edited_node):
+        tag_item = self.treeModel.itemFromIndex(self._selected_indx)
+        value_item = self.treeModel.itemFromIndex(self._selected_indx.siblingAtColumn(1))
+        if type(tag_item.obj) == type(edited_node[0].obj):
+            tag_item.obj = value_item.obj = edited_node[0].obj
+            value_item.edit_value()
+        self._preview_tag['obj'] = None
+
 
     def _get_xml_doc(self):
         print(self._last_nodes[1].obj.write_xml())
@@ -407,6 +394,12 @@ class StandardItem(QStandardItem):
         self.obj = obj
         self.setText(txt)
         self.setEditable(set_editable)
+
+    def edit_value(self, txt=''):
+        if not txt:
+            self.setText(self.obj.values_())
+        else:
+            self.setText(txt)
 
     def __repr__(self):
         return repr(self.obj)

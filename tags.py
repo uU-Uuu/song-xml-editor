@@ -119,7 +119,7 @@ class TagWithAttr(Tag):
             if not attr.startswith('_') \
                     and attr not in ('tag_name', 'depth', 'multi', 'children', 'parent'):
                 if non_empty:
-                    if value:
+                    if value or value == 0:
                         attr_string += f' {attr}="{value}"'
                 else:
                     attr_string += f' {attr}="{value}"'
@@ -256,7 +256,7 @@ class MelPhrase(TagWithAttr):
     def __init__(self):
         super().__init__('melodic_phrase')
         MelPhrase._mel_ph_count += 1        
-        self.id = MelPhrase._mel_ph_count
+        self.id = str(MelPhrase._mel_ph_count)
  
 
     def add_lex_phrase(self, lex_phrase):
@@ -271,7 +271,11 @@ class MelPhrase(TagWithAttr):
 
     @classmethod
     def reset_counter(cls, init_value=0):
-        cls._mel_ph_count = init_value
+        try:
+            if init_value >= 0:
+                cls._mel_ph_count = int(init_value)
+        except:
+            pass
 
 
 
@@ -295,7 +299,7 @@ class LexPhrase(TagWithAttr):
     def __init__(self):
         super().__init__('lexical_phrase')
         LexPhrase._lex_ph_count += 1
-        self.id = LexPhrase._lex_ph_count 
+        self.id = str(LexPhrase._lex_ph_count) 
         self.lyrics = ''
 
 
@@ -317,7 +321,11 @@ class LexPhrase(TagWithAttr):
 
     @classmethod
     def reset_counter(cls, init_value=0):
-        cls._lex_ph_count = init_value
+        try:
+            if init_value >= 0:
+                cls._lex_ph_count = int(init_value)
+        except:
+            pass
 
     
 
