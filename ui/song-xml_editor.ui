@@ -1092,6 +1092,9 @@ border: 2px solid black;
        <height>41</height>
       </rect>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -1111,6 +1114,9 @@ border: 2px solid black;
        <height>41</height>
       </rect>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -1129,6 +1135,15 @@ border: 2px solid black;
        <width>121</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="tabletTracking">
+      <bool>false</bool>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;

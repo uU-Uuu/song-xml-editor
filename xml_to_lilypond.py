@@ -13,16 +13,18 @@ class XMLToLily:
 
     @staticmethod
     def _note_formatter(raw_pitch, raw_duration):
-        pitch, octave = re.match(r'(\w+)([0-9]$)', raw_pitch).groups()
-        pitch_o = pitch.lower() + XMLToLily._OCTAVES[int(octave) - 1]
-        return pitch_o + XMLToLily._duration_formatter(raw_duration, rest=False)
+        if raw_pitch and raw_duration:
+            pitch, octave = re.match(r'(\w+)([0-9]$)', raw_pitch).groups()
+            pitch_o = pitch.lower() + XMLToLily._OCTAVES[int(octave) - 1]
+            return pitch_o + XMLToLily._duration_formatter(raw_duration, rest=False)
 
     @staticmethod
     def _duration_formatter(raw_duration, rest=True):
-        numer, denom  = list(map(int, raw_duration.split('/')))
-        dotted = numer == 3 and (denom & (denom - 1)) == 0
-        duration = f'{denom}{["", "."][dotted]}'
-        return f'{["", "r"][rest]}{duration}'
+        if raw_duration:
+            numer, denom  = list(map(int, raw_duration.split('/')))
+            dotted = numer == 3 and (denom & (denom - 1)) == 0
+            duration = f'{denom}{["", "."][dotted]}'
+            return f'{["", "r"][rest]}{duration}'
     
     def _get_root(self):
         tree = ET.parse(self.xml_file)

@@ -176,6 +176,8 @@ class MultiElTag(Tag):
 
                         if isinstance(el, dict):                        
                             for key, val in el.items():
+                                if not val:
+                                    val = ''
                                 xml_string += f'<{key}>{val}</{key}>\n{tab_r}'
                         else:
                             xml_string += f'<{attr}>{el}</{attr}>\n{tab_r}'
@@ -370,7 +372,7 @@ class Syllable(MultiElTag):
     
     def check_dotted_duration(self):
         for note in self.notes:
-            if note['duration'].endswith('.'):
+            if note['duration'] and note['duration'].endswith('.'):
                 numer, denom  = (int(note['duration'].split('/')[0]), 
                                  note['duration'].split('/')[1].strip('. '))
                 note['duration'] = '/'.join((str(numer * 3), str(denom)))
@@ -386,8 +388,10 @@ class Syllable(MultiElTag):
 
     def values_(self):
         notes_repr = ', '.join(note['pitch'] + ' - ' + note['duration'] 
-                               for note in self.notes)
-        lyric_repr = ''.join(lyr for lyr in self.lyric)
+                               for note in self.notes 
+                               if note['pitch'] and note['duration'])
+        
+        lyric_repr = ''.join(lyr for lyr in self.lyric if lyr)
         return f'{lyric_repr}  {notes_repr}'
 
 
@@ -428,5 +432,8 @@ class Rest(MultiElTag):
         return
 
     def values_(self):
-        return " - ".join(dur for dur in self.duration)
+        if self.duration:
+            return " - ".join(dur for dur in self.duration if dur)
+
+
 

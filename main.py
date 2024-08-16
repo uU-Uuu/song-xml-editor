@@ -1,13 +1,9 @@
-import select
-from tkinter import NO
 from PySide2 import QtWidgets
 from PySide2.QtGui import QStandardItemModel, QStandardItem, QFont, QColor
 from functools import partial
 from copy import deepcopy
 
-from click import edit
-
-from ui.ui_xml_editor import Ui_MainWindow
+from ui.ui_xml_editor import Ui_MainWindow, Ui_XMLWindow
 from tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
 from xml_parser import TagNames, SCHEMAS, validate_xml, XMLValidationError, InvalidXMLInputProvided
 from constants import PARENTS_FACTORY, PITCHES, PITCH_MOD, DURATIONS, DOTTED, OCTAVES, TAGS_FACTORY
@@ -154,11 +150,25 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         try:
             validate_xml(tag_name, xml_str=data)
             schema = SCHEMAS[TagNames.by_tag(tag_name)]
-            if type(self._preview_tag['obj']) in (Section, MelPhrase, LexPhrase):
+            if type(self._preview_tag['obj']) in (Section, MelPhrase, LexPhrase, Syllable, Rest):
                 data_dict = schema.to_dict(data)
                 if data_dict:
-                    key = tuple(data_dict.keys())[0].strip('@')
-                    self._preview_tag['obj'].__dict__[key] = data_dict[f'@{key}']
+                    if isinstance(self._preview_tag['obj'], Syllable):
+                        if data_dict['lyric']:
+                            self._preview_tag['obj'].lyric = data_dict['lyric']
+                        else:
+                            self._preview_tag['obj'].lyric = ''
+                        zipped = zip(data_dict['pitch'], data_dict['duration'])
+                        self._preview_tag['obj'].notes = [
+                            {'pitch': pitch, 'duration': duration}
+                            if pitch and duration 
+                            else {'pitch': '', 'duration': ''} 
+                            for pitch, duration in zipped
+                        ]
+                    else:
+
+                        for key in data_dict.keys():
+                            self._preview_tag['obj'].__dict__[key.strip('@')] = data_dict[key]
                     if type(self._preview_tag['obj']) in (MelPhrase, LexPhrase):
                         self._preview_tag['obj'].reset_counter(data_dict[f'@{key}'])
 
@@ -178,6 +188,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
             elif isinstance(self._preview_tag['obj'], Syllable):
                 data = [child.text() for child in frame.findChildren(QtWidgets.QLineEdit)]
+
                 if data:
                     lyric, duration, pitch = data
                     if lyric:
@@ -223,7 +234,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def _set_frame_enabled(self, frame, enabled=True):
         if frame:
-            if self._preview_tag['frame'] != frame:
+            if not self._edit_mode and self._preview_tag['frame'] != frame:
                 self._preview_tag['obj'] = None
             self.set_frames_enabled(self._inputFrames, enabled=not enabled, besides=frame)
 
@@ -313,8 +324,8 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
                 self._save_edited_node(curr_node)
                 self._edit_mode = False
 
-        self.set_frames_enabled()
         self.treeView.expandAll()
+        self._cancel_xml()
 
     
 
@@ -352,11 +363,17 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         if type(tag_item.obj) == type(edited_node[0].obj):
             tag_item.obj = value_item.obj = edited_node[0].obj
             value_item.edit_value()
-        self._preview_tag['obj'] = None
+        self._edit_mode = False
+
 
 
     def _get_xml_doc(self):
-        print(self._last_nodes[1].obj.write_xml())
+        xml_str = self._last_nodes[1].obj.write_xml()
+        self.xml_window = XMLWindow()
+        self.xml_window.show()
+        self.xml_window.xmlEdit.setPlainText(xml_str)
+
+
         
         
 
@@ -378,9 +395,6 @@ class MainWindow(MainWindowGen):
         self.xml_btn_action()
         self.delete_node_btn_action()
         self.edit_node_btn_action()
-
-        
-        self.melody = Melody()
 
 
 class StandardItem(QStandardItem):
@@ -405,7 +419,12 @@ class StandardItem(QStandardItem):
         return repr(self.obj)
     
 
+class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
+    def __init__(self):
+        super(XMLWindow, self).__init__()
+        self.setupUi(self)
 
+        self.xmlEdit.setReadOnly(True)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
