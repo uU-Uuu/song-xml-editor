@@ -1,10 +1,8 @@
 from PySide2 import QtWidgets
 from PySide2.QtCore import Qt
-from PySide2.QtGui import QStandardItemModel, QStandardItem, QFont, QColor, QPixmap
+from PySide2.QtGui import QStandardItemModel, QStandardItem, QFont, QColor, QPixmap, QIcon
 from functools import partial
 from copy import deepcopy
-
-import PySide2.QtGui
 
 from ui.ui_xml_editor import Ui_MainWindow, Ui_XMLWindow, Ui_LilyPondWindow, Ui_SplashWindow
 from tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
@@ -25,6 +23,9 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindowGen, self).__init__()
         self.setupUi(self)
+
+        self.setWindowIcon(QIcon('img/logo.png'))
+
 
         self._pitchBtns = (
             self.CBtn, self.DBtn, self.EBtn, self.FBtn, self.GBtn, 
@@ -56,7 +57,15 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self._preview_tag = {'obj': None, 'frame': None}
         self._edit_mode = False
 
+
+        self.previewInput.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.previewInput.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+
+        self.treeView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.treeView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+
         self.melody = Melody()
+
 
 
     def input_btns_actions(self):
@@ -286,9 +295,10 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def set_up_tree(self):
         self.treeModel = QStandardItemModel()
-        self.treeModel.setHorizontalHeaderLabels(['Tag', 'Value'])
+        self.treeModel.setHorizontalHeaderLabels(['', ''])
         self.treeView.setModel(self.treeModel)
         self.treeView.setColumnWidth(0, 200)
+        self.treeView.header().hide()
 
         rootNode = self.treeModel.invisibleRootItem()
         melodyNode= (StandardItem(obj=self.melody, txt=self.melody.tag_name),
@@ -460,13 +470,17 @@ class SplashWindow(QtWidgets.QSplashScreen, Ui_SplashWindow):
 
 
 if __name__ == '__main__':
+    import ctypes
+    myappid = 'mycompany.myproduct.subproduct.version' # arbitrary string
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+
     app = QtWidgets.QApplication([])
 
     splash = SplashWindow()
     splash.show()
 
     import time
-    time.sleep(2)
+    time.sleep(3)
     splash.close()
 
     window = MainWindow()

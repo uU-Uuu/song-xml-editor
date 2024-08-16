@@ -10,23 +10,31 @@
     <height>859</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1192</width>
+    <height>859</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QScrollBar" name="verticalScrollBar">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>60</y>
-      <width>20</width>
-      <height>761</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
-    </property>
-   </widget>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(33, 38, 42);
+background-image: url(':/img/b-noah-silliman-_k9dCeh5Ca0-unsplash.jpg');
+background-size: cover;
+</string>
+   </property>
    <widget class="QPlainTextEdit" name="previewInput">
     <property name="geometry">
      <rect>
@@ -36,6 +44,13 @@
       <height>161</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background: rgba(206, 227, 232, 120);
+font: 25 9pt &quot;Yu Mincho Light&quot;;
+border: 0.5px solid rgb(70, 70, 70);
+border-radius: 10px
+</string>
+    </property>
     <property name="plainText">
      <string/>
     </property>
@@ -43,11 +58,18 @@
    <widget class="QTreeView" name="treeView">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>30</x>
       <y>50</y>
       <width>381</width>
       <height>781</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: rgba(206, 227, 232, 120);
+font: 25 9pt &quot;Yu Mincho Light&quot;;
+border: 0.5px solid rgb(70, 70, 70);
+border-radius: 10px
+</string>
     </property>
    </widget>
    <widget class="QFrame" name="sectionFrame">
@@ -58,6 +80,10 @@
       <width>351</width>
       <height>91</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;
+</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -75,7 +101,11 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px solid black;</string>
+      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 15px;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 100);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string/>
@@ -93,8 +123,9 @@
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color: #fbfaeb;
-border: 2px solid black;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(103, 205, 239, 65);
+border-radius: 10px
 </string>
      </property>
      <property name="text">
@@ -113,8 +144,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color: #fbfaeb;
-border: 2px solid black;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(103, 205, 239, 65);
+border-radius: 10px
 </string>
      </property>
      <property name="text">
@@ -148,6 +180,10 @@ font-size: 15px;</string>
       <height>91</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;
+</string>
+    </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
     </property>
@@ -166,8 +202,9 @@ font-size: 15px;</string>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color: #fbf8dc;
-border: 2px solid black;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(103, 205, 239, 65);
+border-radius: 10px
 </string>
      </property>
      <property name="text">
@@ -186,8 +223,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color: #fbf8dc;
-border: 2px solid black;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(103, 205, 239, 65);
+border-radius: 10px
 </string>
      </property>
      <property name="text">
@@ -203,6 +241,10 @@ border: 2px solid black;
       <width>351</width>
       <height>91</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;
+</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -222,8 +264,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color: #e7f4f3;
-border: 2px solid black;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(103, 205, 239, 65);
+border-radius: 10px
 </string>
      </property>
      <property name="text">
@@ -242,8 +285,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color: #e7f4f3;
-border: 2px solid black;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(103, 205, 239, 65);
+border-radius: 10px
 </string>
      </property>
      <property name="text">
@@ -259,6 +303,10 @@ border: 2px solid black;
       <width>701</width>
       <height>251</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;
+</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -278,8 +326,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(103, 205, 239, 65);
+border-radius: 10px
 </string>
      </property>
      <property name="text">
@@ -298,8 +347,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(103, 205, 239, 65);
+border-radius: 10px
 </string>
      </property>
      <property name="text">
@@ -316,7 +366,11 @@ border: 2px solid black;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px solid black;</string>
+      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 15px;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 100);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string/>
@@ -334,9 +388,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>.</string>
@@ -354,9 +408,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>#</string>
@@ -374,9 +428,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>b</string>
@@ -394,9 +448,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>1/16</string>
@@ -414,9 +468,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>1/8</string>
@@ -434,9 +488,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>1/4</string>
@@ -454,9 +508,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>1/2</string>
@@ -474,9 +528,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>1/1</string>
@@ -494,9 +548,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>3</string>
@@ -514,9 +568,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>4</string>
@@ -537,9 +591,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>5</string>
@@ -557,9 +611,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>6</string>
@@ -577,9 +631,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>C</string>
@@ -597,9 +651,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>D</string>
@@ -617,9 +671,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>E</string>
@@ -637,9 +691,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>F</string>
@@ -657,9 +711,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>G</string>
@@ -677,9 +731,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>A</string>
@@ -697,9 +751,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#dee8fd;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>B</string>
@@ -715,7 +769,11 @@ border: 2px solid black;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px solid black;</string>
+      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 15px;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 100);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string/>
@@ -750,8 +808,9 @@ font-size: 15px;</string>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 120);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>+</string>
@@ -767,7 +826,11 @@ border: 2px solid black;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px solid black;</string>
+      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 15px;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 100);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string/>
@@ -802,8 +865,9 @@ font-size: 15px;</string>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 120);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>+</string>
@@ -836,6 +900,10 @@ font-size: 15px;</string>
       <height>151</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;
+</string>
+    </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
     </property>
@@ -854,12 +922,13 @@ font-size: 15px;</string>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color: #d6def9;
-border: 2px solid black;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(103, 205, 239, 55);
+border-radius: 10px
 </string>
      </property>
      <property name="text">
-      <string>Rest</string>
+      <string>Rest  </string>
      </property>
     </widget>
     <widget class="QToolButton" name="newRestOKBtn">
@@ -874,8 +943,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#d6def9;
-border: 2px solid black;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(103, 205, 239, 65);
+border-radius: 10px
 </string>
      </property>
      <property name="text">
@@ -892,7 +962,11 @@ border: 2px solid black;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px solid black;</string>
+      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 15px;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 100);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string/>
@@ -910,8 +984,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 120);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>+</string>
@@ -920,7 +995,7 @@ border: 2px solid black;
     <widget class="QLabel" name="restDurationLabel">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>210</x>
        <y>0</y>
        <width>71</width>
        <height>21</height>
@@ -928,7 +1003,9 @@ border: 2px solid black;
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
-font-size: 15px;</string>
+font-size: 15px;
+color: black;
+</string>
      </property>
      <property name="text">
       <string> Duration</string>
@@ -946,9 +1023,9 @@ font-size: 15px;</string>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#d6def9;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>1/1</string>
@@ -966,9 +1043,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#d6def9;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>1/2</string>
@@ -986,9 +1063,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#d6def9;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>1/4</string>
@@ -1006,9 +1083,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#d6def9;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>1/8</string>
@@ -1026,9 +1103,9 @@ border: 2px solid black;
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color:#d6def9;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>1/16</string>
@@ -1045,10 +1122,10 @@ border: 2px solid black;
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
-font-size: 15px;
-background-color:#d6def9;
-border: 2px solid black;
-</string>
+font-size: 16px;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 160);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>.</string>
@@ -1063,6 +1140,10 @@ border: 2px solid black;
       <width>461</width>
       <height>81</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;
+</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -1084,9 +1165,10 @@ border: 2px solid black;
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
-font-size: 15px;
-border: 2px solid black;
-</string>
+font-size: 16px;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 120);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>MusicSheet</string>
@@ -1106,9 +1188,10 @@ border: 2px solid black;
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
-font-size: 15px;
-border: 2px solid black;
-</string>
+font-size: 16px;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 120);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>XML</string>
@@ -1134,9 +1217,10 @@ border: 2px solid black;
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
-font-size: 15px;
-border: 2px solid black;
-</string>
+font-size: 16px;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 120);
+border-radius: 10px</string>
      </property>
      <property name="text">
       <string>Save</string>
@@ -1155,8 +1239,9 @@ border: 2px solid black;
     <property name="styleSheet">
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 120);
+border-radius: 10px</string>
     </property>
     <property name="text">
      <string>Overwrite</string>
@@ -1174,9 +1259,9 @@ border: 2px solid black;
     <property name="styleSheet">
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color: ;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 120);
+border-radius: 10px</string>
     </property>
     <property name="text">
      <string>Save</string>
@@ -1194,9 +1279,9 @@ border: 2px solid black;
     <property name="styleSheet">
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
-background-color: ;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 120);
+border-radius: 10px</string>
     </property>
     <property name="text">
      <string>Cancel</string>
@@ -1205,26 +1290,7 @@ border: 2px solid black;
    <widget class="QToolButton" name="deleteNodeBtn">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>10</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
-font-size: 15px;
-border: 2px solid black;
-</string>
-    </property>
-    <property name="text">
-     <string>—</string>
-    </property>
-   </widget>
-   <widget class="QToolButton" name="editNodeBtn">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
+      <x>380</x>
       <y>10</y>
       <width>31</width>
       <height>31</height>
@@ -1233,8 +1299,29 @@ border: 2px solid black;
     <property name="styleSheet">
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 16px;
-border: 2px solid black;
-</string>
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 120);
+border-radius: 10px</string>
+    </property>
+    <property name="text">
+     <string>—</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="editNodeBtn">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>10</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 16px;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 120);
+border-radius: 10px</string>
     </property>
     <property name="text">
      <string>...</string>
@@ -1246,7 +1333,6 @@ border: 2px solid black;
    <zorder>lexPhraseFrame</zorder>
    <zorder>melPhraseFrame</zorder>
    <zorder>sectionFrame</zorder>
-   <zorder>verticalScrollBar</zorder>
    <zorder>treeView</zorder>
    <zorder>previewInput</zorder>
    <zorder>overwriteBtn</zorder>
@@ -1255,8 +1341,9 @@ border: 2px solid black;
    <zorder>deleteNodeBtn</zorder>
    <zorder>editNodeBtn</zorder>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="../img/img.qrc"/>
+ </resources>
  <connections/>
 </ui>
