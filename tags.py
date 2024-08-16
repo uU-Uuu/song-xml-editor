@@ -25,7 +25,7 @@ class Tag:
         self.children = []
         self.parent = self.get_parent(tag_name)
 
-    def write_xml(self,  inner='', depth=-1):
+    def write_xml(self,  inner='', depth=-1, indent='\t'):
         """create an XML string for the tag class instance
         
         Parameters:
@@ -38,9 +38,10 @@ class Tag:
         """
 
         curr_depth = depth if depth >= 0 else self.depth
-        tab_l, tab_r = '\t' * curr_depth, '\t' * curr_depth
+        # tab_l, tab_r = '\t' * curr_depth, '\t' * curr_depth
+        tab_l, tab_r = indent * curr_depth, indent * curr_depth
         if not inner:
-            inner = '\n'.join(el.write_xml(depth=el.depth) for el in self.children)
+            inner = '\n'.join(el.write_xml(depth=el.depth, indent=indent) for el in self.children)
 
         attr_string = ''
         sep = ['', ' '][attr_string != '']
@@ -94,7 +95,7 @@ class TagWithAttr(Tag):
         - create an XML string for the tag with attributes class instance
     """
     
-    def write_xml(self, non_empty=True, inner='', depth=-1):
+    def write_xml(self, non_empty=True, inner='', depth=-1, indent='\t'):
         """create an XML string for the tag with attributes class instance
         
         Parameters:
@@ -109,10 +110,11 @@ class TagWithAttr(Tag):
         """
 
         tag_depth = depth if depth >= 0 else self.depth
-        tab_l, tab_r = '\t' * tag_depth, '\t' * (tag_depth + 1)
+        # tab_l, tab_r = '\t' * tag_depth, '\t' * (tag_depth + 1)
+        tab_l, tab_r = indent * tag_depth, indent * (tag_depth + 1)
 
         if not inner:
-            inner = '\n'.join(el.write_xml(depth=el.depth) for el in self.children)
+            inner = '\n'.join(el.write_xml(depth=el.depth, indent=indent) for el in self.children)
 
         attr_string = ''
         for attr, value in vars(self).items():
@@ -156,7 +158,7 @@ class MultiElTag(Tag):
         super().__init__(tag_name)
         self.multi = multi
 
-    def write_xml(self, depth=-1):
+    def write_xml(self, depth=-1, indent='\t'):
         """create an xml string for the tag class instance
         
         Parameters:
@@ -165,7 +167,8 @@ class MultiElTag(Tag):
             - if not specified, automatically takes self.depth
         """
         tag_depth = depth if depth >= 0 else self.depth
-        tab_l, tab_r = '\t' * tag_depth, '\t' * (tag_depth + 1)
+        # tab_l, tab_r = '\t' * tag_depth, '\t' * (tag_depth + 1)
+        tab_l, tab_r = indent * tag_depth, indent * (tag_depth + 1)
 
         xml_string = f'{tab_l}<{self.tag_name}>\n{tab_r}'
         for attr, value in self.__dict__.items():

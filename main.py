@@ -1,9 +1,12 @@
 from PySide2 import QtWidgets
-from PySide2.QtGui import QStandardItemModel, QStandardItem, QFont, QColor
+from PySide2.QtCore import Qt
+from PySide2.QtGui import QStandardItemModel, QStandardItem, QFont, QColor, QPixmap
 from functools import partial
 from copy import deepcopy
 
-from ui.ui_xml_editor import Ui_MainWindow, Ui_XMLWindow
+import PySide2.QtGui
+
+from ui.ui_xml_editor import Ui_MainWindow, Ui_XMLWindow, Ui_LilyPondWindow, Ui_SplashWindow
 from tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
 from xml_parser import TagNames, SCHEMAS, validate_xml, XMLValidationError, InvalidXMLInputProvided
 from constants import PARENTS_FACTORY, PITCHES, PITCH_MOD, DURATIONS, DOTTED, OCTAVES, TAGS_FACTORY
@@ -131,6 +134,9 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def xml_btn_action(self):
         self.XMLBtn.clicked.connect(self._get_xml_doc)
+
+    def music_sheet_btn_action(self):
+        self.musicSheetBtn.clicked.connect(self._get_lilypond_img)
 
     def delete_node_btn_action(self):
         self.deleteNodeBtn.clicked.connect(self._delete_selected_node)
@@ -365,13 +371,16 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
             value_item.edit_value()
         self._edit_mode = False
 
-
-
     def _get_xml_doc(self):
-        xml_str = self._last_nodes[1].obj.write_xml()
+        xml_str = self._last_nodes[1].obj.write_xml(indent='  ')
         self.xml_window = XMLWindow()
         self.xml_window.show()
         self.xml_window.xmlEdit.setPlainText(xml_str)
+
+    
+    def _get_lilypond_img(self):
+        self.lilypond_window = LilyPondWindow()
+        self.lilypond_window.show()
 
 
         
@@ -393,6 +402,7 @@ class MainWindow(MainWindowGen):
         self.cancel_xml_btn_action()
         self.set_up_tree()
         self.xml_btn_action()
+        self.music_sheet_btn_action()
         self.delete_node_btn_action()
         self.edit_node_btn_action()
 
@@ -426,8 +436,39 @@ class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
 
         self.xmlEdit.setReadOnly(True)
 
+        self.editXMLFileBtn.clicked.connect(self.edit_xml_file)
+        self.saveXMLFIleBtn.clicked.connect(self.save_xml_file)
+    
+    def edit_xml_file(self):
+        self.xmlEdit.setReadOnly(False)
+
+    def save_xml_file(self):
+        self.xmlEdit.setReadOnly(True)
+        return self.xmlEdit.toPlainText()
+    
+
+class LilyPondWindow(QtWidgets.QDialog, Ui_LilyPondWindow):
+    def __init__(self):
+        super(LilyPondWindow, self).__init__()
+        self.setupUi(self)
+
+class SplashWindow(QtWidgets.QSplashScreen, Ui_SplashWindow):
+    def __init__(self):
+        super(SplashWindow, self).__init__()
+        self.setupUi(self)
+        self.move(600, 260)
+
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
+
+    splash = SplashWindow()
+    splash.show()
+
+    import time
+    time.sleep(2)
+    splash.close()
+
     window = MainWindow()
     window.show()
     app.exec_()
