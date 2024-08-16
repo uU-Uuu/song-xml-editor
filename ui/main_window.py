@@ -62,6 +62,7 @@ class Ui_MainWindow(object):
         self.sectionName = QLineEdit(self.sectionFrame)
         self.sectionName.setObjectName(u"sectionName")
         self.sectionName.setGeometry(QRect(220, 30, 81, 41))
+        self.sectionName.setAlignment(Qt.AlignCenter)
         self.sectionName.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -168,6 +169,7 @@ class Ui_MainWindow(object):
         self.syllableLyric = QLineEdit(self.syllableFrame)
         self.syllableLyric.setObjectName(u"syllableLyric")
         self.syllableLyric.setGeometry(QRect(220, 30, 51, 41))
+        self.syllableLyric.setAlignment(Qt.AlignCenter)
         self.syllableLyric.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -329,6 +331,7 @@ class Ui_MainWindow(object):
         self.syllableDuration = QLineEdit(self.syllableFrame)
         self.syllableDuration.setObjectName(u"syllableDuration")
         self.syllableDuration.setGeometry(QRect(380, 30, 51, 41))
+        self.syllableDuration.setAlignment(Qt.AlignCenter)
         self.syllableDuration.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -350,6 +353,7 @@ class Ui_MainWindow(object):
         self.syllablePitch = QLineEdit(self.syllableFrame)
         self.syllablePitch.setObjectName(u"syllablePitch")
         self.syllablePitch.setGeometry(QRect(320, 30, 51, 41))
+        self.syllablePitch.setAlignment(Qt.AlignCenter)
         self.syllablePitch.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -401,6 +405,7 @@ class Ui_MainWindow(object):
         self.restDuration = QLineEdit(self.restFrame)
         self.restDuration.setObjectName(u"restDuration")
         self.restDuration.setGeometry(QRect(220, 30, 51, 41))
+        self.restDuration.setAlignment(Qt.AlignCenter)
         self.restDuration.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -625,147 +630,3 @@ class Ui_MainWindow(object):
         self.deleteNodeBtn.setText(QCoreApplication.translate("MainWindow", u"\u2014", None))
         self.editNodeBtn.setText(QCoreApplication.translate("MainWindow", u"...", None))
     # retranslateUi
-
-
-
-class Ui_XMLWindow(object):
-    def setupUi(self, XMLWindow):
-        if XMLWindow.objectName():
-            XMLWindow.setObjectName(u"XMLWindow")
-        XMLWindow.resize(450, 824)
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(XMLWindow.sizePolicy().hasHeightForWidth())
-        XMLWindow.setSizePolicy(sizePolicy)
-        XMLWindow.setMaximumSize(QSize(700, 900))
-        self.verticalLayout = QVBoxLayout(XMLWindow)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.xmlEdit = QPlainTextEdit(XMLWindow)
-        self.xmlEdit.setObjectName(u"xmlEdit")
-        sizePolicy.setHeightForWidth(self.xmlEdit.sizePolicy().hasHeightForWidth())
-        self.xmlEdit.setSizePolicy(sizePolicy)
-        self.xmlEdit.setMaximumSize(QSize(700, 800))
-
-        self.verticalLayout.addWidget(self.xmlEdit)
-
-        self.frame = QFrame(XMLWindow)
-        self.frame.setObjectName(u"frame")
-        self.frame.setEnabled(True)
-        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
-        self.frame.setSizePolicy(sizePolicy1)
-        self.frame.setMinimumSize(QSize(0, 50))
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout = QHBoxLayout(self.frame)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.editXMLFileBtn = QToolButton(self.frame)
-        self.editXMLFileBtn.setObjectName(u"editXMLFileBtn")
-        self.editXMLFileBtn.setMinimumSize(QSize(125, 35))
-        font = QFont()
-        font.setFamily(u"Yu Mincho")
-        font.setPointSize(9)
-        self.editXMLFileBtn.setFont(font)
-
-        self.horizontalLayout.addWidget(self.editXMLFileBtn)
-
-        self.saveXMLFIleBtn = QToolButton(self.frame)
-        self.saveXMLFIleBtn.setObjectName(u"saveXMLFIleBtn")
-        self.saveXMLFIleBtn.setMinimumSize(QSize(125, 35))
-        self.saveXMLFIleBtn.setFont(font)
-        self.saveXMLFIleBtn.setAutoFillBackground(False)
-
-        self.horizontalLayout.addWidget(self.saveXMLFIleBtn)
-
-
-        self.verticalLayout.addWidget(self.frame)
-
-
-        self.retranslateUi(XMLWindow)
-
-        QMetaObject.connectSlotsByName(XMLWindow)
-    # setupUi
-
-    def retranslateUi(self, XMLWindow):
-        XMLWindow.setWindowTitle(QCoreApplication.translate("XMLWindow", u"XML Editor", None))
-        self.editXMLFileBtn.setText(QCoreApplication.translate("XMLWindow", u"Edit", None))
-        self.saveXMLFIleBtn.setText(QCoreApplication.translate("XMLWindow", u"Save", None))
-    # retranslateUi
-
-
-
-class Ui_LilyPondWindow(object):
-    def setupUi(self, LilyPondWindow):
-        if LilyPondWindow.objectName():
-            LilyPondWindow.setObjectName(u"LilyPondWindow")
-        LilyPondWindow.resize(660, 556)
-        LilyPondWindow.setMaximumSize(QSize(850, 800))
-        self.verticalLayout = QVBoxLayout(LilyPondWindow)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.lilyPondSheetView = QGraphicsView(LilyPondWindow)
-        self.lilyPondSheetView.setObjectName(u"lilyPondSheetView")
-
-        self.verticalLayout.addWidget(self.lilyPondSheetView)
-
-
-        self.retranslateUi(LilyPondWindow)
-
-        QMetaObject.connectSlotsByName(LilyPondWindow)
-    # setupUi
-
-    def retranslateUi(self, LilyPondWindow):
-        LilyPondWindow.setWindowTitle(QCoreApplication.translate("LilyPondWindow", u"Music Sheet Preview", None))
-    # retranslateUi
-
-
-# import img_rc
-
-class Ui_SplashWindow(object):
-    def setupUi(self, SplashWindow):
-        if SplashWindow.objectName():
-            SplashWindow.setObjectName(u"SplashWindow")
-        SplashWindow.resize(637, 361)
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(SplashWindow.sizePolicy().hasHeightForWidth())
-        SplashWindow.setSizePolicy(sizePolicy)
-        SplashWindow.setCursor(QCursor(Qt.ArrowCursor))
-        SplashWindow.setStyleSheet(u"")
-        self.frame = QFrame(SplashWindow)
-        self.frame.setObjectName(u"frame")
-        self.frame.setGeometry(QRect(-10, -10, 660, 380))
-        self.frame.setCursor(QCursor(Qt.WaitCursor))
-        self.frame.setStyleSheet(u"background-image: url('./img/noah-silliman-_k9dCeh5Ca0-unsplash.jpg');\n"
-"background-repeat: no-repeat;\n"
-"background-position: center;")
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
-        self.label_2 = QLabel(self.frame)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(370, 280, 381, 111))
-        font = QFont()
-        font.setFamily(u"Yu Mincho Demibold")
-        font.setPointSize(16)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(7)
-        self.label_2.setFont(font)
-        self.label_2.setCursor(QCursor(Qt.WaitCursor))
-        self.label_2.setStyleSheet(u"color: rgb(206, 225, 231);\n"
-"font: 63 16pt \"Yu Mincho Demibold\";\n"
-"background: transparent;")
-
-        self.retranslateUi(SplashWindow)
-
-        QMetaObject.connectSlotsByName(SplashWindow)
-    # setupUi
-
-    def retranslateUi(self, SplashWindow):
-        SplashWindow.setWindowTitle(QCoreApplication.translate("SplashWindow", u"Song XML Editor", None))
-        self.label_2.setText(QCoreApplication.translate("SplashWindow", u"Song XML Editor", None))
-    # retranslateUi
-

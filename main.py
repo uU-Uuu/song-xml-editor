@@ -4,10 +4,14 @@ from PySide2.QtGui import QStandardItemModel, QStandardItem, QFont, QColor, QPix
 from functools import partial
 from copy import deepcopy
 
-from ui.ui_xml_editor import Ui_MainWindow, Ui_XMLWindow, Ui_LilyPondWindow, Ui_SplashWindow
+from ui.main_window import Ui_MainWindow
+from ui.dialog_windows import Ui_XMLWindow, Ui_LilyPondWindow
+from ui.splash_window import Ui_SplashWindow
+from ui.home_panel_window import Ui_WorkspacePanelWindow
+
 from tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
 from xml_parser import TagNames, SCHEMAS, validate_xml, XMLValidationError, InvalidXMLInputProvided
-from constants import PARENTS_FACTORY, PITCHES, PITCH_MOD, DURATIONS, DOTTED, OCTAVES, TAGS_FACTORY
+from constants import PITCHES, PITCH_MOD, DURATIONS, DOTTED, OCTAVES, TAGS_FACTORY
 
 
 
@@ -469,6 +473,15 @@ class SplashWindow(QtWidgets.QSplashScreen, Ui_SplashWindow):
         self.move(600, 260)
 
 
+class WorkspacePanewWindow(QtWidgets.QWidget, Ui_WorkspacePanelWindow):
+    def __init__(self):
+        super(WorkspacePanewWindow, self).__init__()
+        self.setupUi(self)
+        self.move(600, 260)
+        self.setWindowIcon(QIcon('img/logo.png'))
+
+
+
 if __name__ == '__main__':
     import ctypes
     myappid = 'mycompany.myproduct.subproduct.version' # arbitrary string
@@ -483,6 +496,9 @@ if __name__ == '__main__':
     time.sleep(3)
     splash.close()
 
-    window = MainWindow()
-    window.show()
+    workspace_panel = WorkspacePanewWindow()
+    workspace_panel.show()
+
+    # window = MainWindow()
+    # window.show()
     app.exec_()
