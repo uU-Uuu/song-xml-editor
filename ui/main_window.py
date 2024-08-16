@@ -69,6 +69,7 @@ class Ui_MainWindow(object):
 "background: rgba(206, 227, 232, 100);\n"
 "border-radius: 10px")
         self.newSectionOKBtn = QToolButton(self.sectionFrame)
+        self.newSectionOKBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newSectionOKBtn.setObjectName(u"newSectionOKBtn")
         self.newSectionOKBtn.setGeometry(QRect(150, 30, 51, 41))
         self.newSectionOKBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
@@ -80,6 +81,7 @@ class Ui_MainWindow(object):
         self.newSectionBtn = QToolButton(self.sectionFrame)
         self.newSectionBtn.setObjectName(u"newSectionBtn")
         self.newSectionBtn.setGeometry(QRect(10, 30, 121, 41))
+        self.newSectionBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newSectionBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -99,6 +101,7 @@ class Ui_MainWindow(object):
         self.melPhraseFrame.setFrameShape(QFrame.StyledPanel)
         self.melPhraseFrame.setFrameShadow(QFrame.Raised)
         self.newMelPhraseOKBtn = QToolButton(self.melPhraseFrame)
+        self.newMelPhraseOKBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newMelPhraseOKBtn.setObjectName(u"newMelPhraseOKBtn")
         self.newMelPhraseOKBtn.setGeometry(QRect(150, 30, 51, 41))
         self.newMelPhraseOKBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
@@ -110,6 +113,7 @@ class Ui_MainWindow(object):
         self.newMelPhraseBtn = QToolButton(self.melPhraseFrame)
         self.newMelPhraseBtn.setObjectName(u"newMelPhraseBtn")
         self.newMelPhraseBtn.setGeometry(QRect(10, 30, 121, 41))
+        self.newMelPhraseBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newMelPhraseBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -125,6 +129,7 @@ class Ui_MainWindow(object):
         self.lexPhraseFrame.setFrameShadow(QFrame.Raised)
         self.newLexPhraseOKBtn = QToolButton(self.lexPhraseFrame)
         self.newLexPhraseOKBtn.setObjectName(u"newLexPhraseOKBtn")
+        self.newLexPhraseOKBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newLexPhraseOKBtn.setGeometry(QRect(150, 30, 51, 41))
         self.newLexPhraseOKBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
@@ -135,6 +140,7 @@ class Ui_MainWindow(object):
         self.newLexPhraseBtn = QToolButton(self.lexPhraseFrame)
         self.newLexPhraseBtn.setObjectName(u"newLexPhraseBtn")
         self.newLexPhraseBtn.setGeometry(QRect(10, 30, 121, 41))
+        self.newLexPhraseBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newLexPhraseBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -150,6 +156,7 @@ class Ui_MainWindow(object):
         self.syllableFrame.setFrameShadow(QFrame.Raised)
         self.newSyllableBtn = QToolButton(self.syllableFrame)
         self.newSyllableBtn.setObjectName(u"newSyllableBtn")
+        self.newSyllableBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newSyllableBtn.setGeometry(QRect(10, 30, 121, 41))
         self.newSyllableBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
@@ -160,6 +167,7 @@ class Ui_MainWindow(object):
         self.newSyllableOKBtn = QToolButton(self.syllableFrame)
         self.newSyllableOKBtn.setObjectName(u"newSyllableOKBtn")
         self.newSyllableOKBtn.setGeometry(QRect(150, 30, 51, 41))
+        self.newSyllableOKBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newSyllableOKBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -178,6 +186,7 @@ class Ui_MainWindow(object):
         self.syllableDottedBtn = QToolButton(self.syllableFrame)
         self.syllableDottedBtn.setObjectName(u"syllableDottedBtn")
         self.syllableDottedBtn.setGeometry(QRect(600, 190, 41, 41))
+        self.syllableDottedBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.syllableDottedBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -186,6 +195,7 @@ class Ui_MainWindow(object):
         self.sharpBtn = QToolButton(self.syllableFrame)
         self.sharpBtn.setObjectName(u"sharpBtn")
         self.sharpBtn.setGeometry(QRect(600, 90, 41, 41))
+        self.sharpBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.sharpBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -194,6 +204,7 @@ class Ui_MainWindow(object):
         self.flatBtn = QToolButton(self.syllableFrame)
         self.flatBtn.setObjectName(u"flatBtn")
         self.flatBtn.setGeometry(QRect(650, 90, 41, 41))
+        self.flatBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.flatBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -202,6 +213,7 @@ class Ui_MainWindow(object):
         self.syllableDur16Btn = QToolButton(self.syllableFrame)
         self.syllableDur16Btn.setObjectName(u"syllableDur16Btn")
         self.syllableDur16Btn.setGeometry(QRect(420, 190, 41, 41))
+        self.syllableDur16Btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.syllableDur16Btn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -210,6 +222,7 @@ class Ui_MainWindow(object):
         self.syllableDur8Btn = QToolButton(self.syllableFrame)
         self.syllableDur8Btn.setObjectName(u"syllableDur8Btn")
         self.syllableDur8Btn.setGeometry(QRect(370, 190, 41, 41))
+        self.syllableDur8Btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.syllableDur8Btn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -218,6 +231,7 @@ class Ui_MainWindow(object):
         self.syllableDur4Btn = QToolButton(self.syllableFrame)
         self.syllableDur4Btn.setObjectName(u"syllableDur4Btn")
         self.syllableDur4Btn.setGeometry(QRect(320, 190, 41, 41))
+        self.syllableDur4Btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.syllableDur4Btn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -226,6 +240,7 @@ class Ui_MainWindow(object):
         self.syllableDur2Btn = QToolButton(self.syllableFrame)
         self.syllableDur2Btn.setObjectName(u"syllableDur2Btn")
         self.syllableDur2Btn.setGeometry(QRect(270, 190, 41, 41))
+        self.syllableDur2Btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.syllableDur2Btn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -234,6 +249,7 @@ class Ui_MainWindow(object):
         self.syllableDur1Btn = QToolButton(self.syllableFrame)
         self.syllableDur1Btn.setObjectName(u"syllableDur1Btn")
         self.syllableDur1Btn.setGeometry(QRect(220, 190, 41, 41))
+        self.syllableDur1Btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.syllableDur1Btn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -242,6 +258,7 @@ class Ui_MainWindow(object):
         self.octave3Btn = QToolButton(self.syllableFrame)
         self.octave3Btn.setObjectName(u"octave3Btn")
         self.octave3Btn.setGeometry(QRect(220, 140, 41, 41))
+        self.octave3Btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.octave3Btn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -250,6 +267,7 @@ class Ui_MainWindow(object):
         self.octave4Btn = QToolButton(self.syllableFrame)
         self.octave4Btn.setObjectName(u"octave4Btn")
         self.octave4Btn.setGeometry(QRect(270, 140, 41, 41))
+        self.octave4Btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.octave4Btn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -259,6 +277,7 @@ class Ui_MainWindow(object):
         self.octave5Btn.setObjectName(u"octave5Btn")
         self.octave5Btn.setEnabled(True)
         self.octave5Btn.setGeometry(QRect(320, 140, 41, 41))
+        self.octave5Btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.octave5Btn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -267,6 +286,7 @@ class Ui_MainWindow(object):
         self.octave6Btn = QToolButton(self.syllableFrame)
         self.octave6Btn.setObjectName(u"octave6Btn")
         self.octave6Btn.setGeometry(QRect(370, 140, 41, 41))
+        self.octave6Btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.octave6Btn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -275,6 +295,7 @@ class Ui_MainWindow(object):
         self.CBtn = QToolButton(self.syllableFrame)
         self.CBtn.setObjectName(u"CBtn")
         self.CBtn.setGeometry(QRect(220, 90, 41, 41))
+        self.CBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.CBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -283,6 +304,7 @@ class Ui_MainWindow(object):
         self.DBtn = QToolButton(self.syllableFrame)
         self.DBtn.setObjectName(u"DBtn")
         self.DBtn.setGeometry(QRect(270, 90, 41, 41))
+        self.DBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.DBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -291,6 +313,7 @@ class Ui_MainWindow(object):
         self.EBtn = QToolButton(self.syllableFrame)
         self.EBtn.setObjectName(u"EBtn")
         self.EBtn.setGeometry(QRect(320, 90, 41, 41))
+        self.EBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.EBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -299,6 +322,7 @@ class Ui_MainWindow(object):
         self.FBtn = QToolButton(self.syllableFrame)
         self.FBtn.setObjectName(u"FBtn")
         self.FBtn.setGeometry(QRect(370, 90, 41, 41))
+        self.FBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.FBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -307,6 +331,7 @@ class Ui_MainWindow(object):
         self.GBtn = QToolButton(self.syllableFrame)
         self.GBtn.setObjectName(u"GBtn")
         self.GBtn.setGeometry(QRect(420, 90, 41, 41))
+        self.GBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.GBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -315,6 +340,7 @@ class Ui_MainWindow(object):
         self.ABtn = QToolButton(self.syllableFrame)
         self.ABtn.setObjectName(u"ABtn")
         self.ABtn.setGeometry(QRect(470, 90, 41, 41))
+        self.ABtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.ABtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -323,6 +349,7 @@ class Ui_MainWindow(object):
         self.BBtn = QToolButton(self.syllableFrame)
         self.BBtn.setObjectName(u"BBtn")
         self.BBtn.setGeometry(QRect(520, 90, 41, 41))
+        self.BBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.BBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -345,6 +372,7 @@ class Ui_MainWindow(object):
         self.addSyllableNoteBtn = QToolButton(self.syllableFrame)
         self.addSyllableNoteBtn.setObjectName(u"addSyllableNoteBtn")
         self.addSyllableNoteBtn.setGeometry(QRect(440, 30, 21, 41))
+        self.addSyllableNoteBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.addSyllableNoteBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -367,6 +395,7 @@ class Ui_MainWindow(object):
         self.addSyllableLyricBtn = QToolButton(self.syllableFrame)
         self.addSyllableLyricBtn.setObjectName(u"addSyllableLyricBtn")
         self.addSyllableLyricBtn.setGeometry(QRect(280, 30, 21, 41))
+        self.addSyllableLyricBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.addSyllableLyricBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -386,6 +415,7 @@ class Ui_MainWindow(object):
         self.restFrame.setFrameShadow(QFrame.Raised)
         self.newRestBtn = QToolButton(self.restFrame)
         self.newRestBtn.setObjectName(u"newRestBtn")
+        self.newRestBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newRestBtn.setGeometry(QRect(10, 30, 121, 41))
         self.newRestBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
@@ -396,6 +426,7 @@ class Ui_MainWindow(object):
         self.newRestOKBtn = QToolButton(self.restFrame)
         self.newRestOKBtn.setObjectName(u"newRestOKBtn")
         self.newRestOKBtn.setGeometry(QRect(150, 30, 51, 41))
+        self.newRestOKBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newRestOKBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -414,6 +445,7 @@ class Ui_MainWindow(object):
         self.addRestDurationBtn = QToolButton(self.restFrame)
         self.addRestDurationBtn.setObjectName(u"addRestDurationBtn")
         self.addRestDurationBtn.setGeometry(QRect(280, 30, 21, 41))
+        self.addRestDurationBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.addRestDurationBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -429,6 +461,7 @@ class Ui_MainWindow(object):
         self.restDur1Btn = QToolButton(self.restFrame)
         self.restDur1Btn.setObjectName(u"restDur1Btn")
         self.restDur1Btn.setGeometry(QRect(220, 90, 41, 41))
+        self.restDur1Btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.restDur1Btn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -437,6 +470,7 @@ class Ui_MainWindow(object):
         self.restDur2Btn = QToolButton(self.restFrame)
         self.restDur2Btn.setObjectName(u"restDur2Btn")
         self.restDur2Btn.setGeometry(QRect(270, 90, 41, 41))
+        self.restDur2Btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.restDur2Btn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -445,6 +479,7 @@ class Ui_MainWindow(object):
         self.restDur4Btn = QToolButton(self.restFrame)
         self.restDur4Btn.setObjectName(u"restDur4Btn")
         self.restDur4Btn.setGeometry(QRect(320, 90, 41, 41))
+        self.restDur4Btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.restDur4Btn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -453,6 +488,7 @@ class Ui_MainWindow(object):
         self.restDur8Btn = QToolButton(self.restFrame)
         self.restDur8Btn.setObjectName(u"restDur8Btn")
         self.restDur8Btn.setGeometry(QRect(370, 90, 41, 41))
+        self.restDur8Btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.restDur8Btn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -461,6 +497,7 @@ class Ui_MainWindow(object):
         self.restDur16Btn = QToolButton(self.restFrame)
         self.restDur16Btn.setObjectName(u"restDur16Btn")
         self.restDur16Btn.setGeometry(QRect(420, 90, 41, 41))
+        self.restDur16Btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.restDur16Btn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -469,6 +506,7 @@ class Ui_MainWindow(object):
         self.restDottedBtn = QToolButton(self.restFrame)
         self.restDottedBtn.setObjectName(u"restDottedBtn")
         self.restDottedBtn.setGeometry(QRect(600, 90, 41, 41))
+        self.restDottedBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.restDottedBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -485,6 +523,7 @@ class Ui_MainWindow(object):
         self.musicSheetBtn.setObjectName(u"musicSheetBtn")
         self.musicSheetBtn.setGeometry(QRect(20, 20, 121, 41))
         self.musicSheetBtn.setFocusPolicy(Qt.NoFocus)
+        self.musicSheetBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.musicSheetBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -494,6 +533,7 @@ class Ui_MainWindow(object):
         self.XMLBtn.setObjectName(u"XMLBtn")
         self.XMLBtn.setGeometry(QRect(170, 20, 121, 41))
         self.XMLBtn.setFocusPolicy(Qt.NoFocus)
+        self.XMLBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.XMLBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -505,6 +545,7 @@ class Ui_MainWindow(object):
         self.saveFileBtn.setMouseTracking(False)
         self.saveFileBtn.setTabletTracking(False)
         self.saveFileBtn.setFocusPolicy(Qt.NoFocus)
+        self.saveFileBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.saveFileBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -513,6 +554,7 @@ class Ui_MainWindow(object):
         self.overwriteBtn = QToolButton(self.centralwidget)
         self.overwriteBtn.setObjectName(u"overwriteBtn")
         self.overwriteBtn.setGeometry(QRect(880, 250, 121, 41))
+        self.overwriteBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.overwriteBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -520,6 +562,7 @@ class Ui_MainWindow(object):
 "border-radius: 10px")
         self.saveXMLBtn = QToolButton(self.centralwidget)
         self.saveXMLBtn.setObjectName(u"saveXMLBtn")
+        self.saveXMLBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.saveXMLBtn.setGeometry(QRect(1020, 250, 51, 41))
         self.saveXMLBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
@@ -529,6 +572,7 @@ class Ui_MainWindow(object):
         self.cancelXMLBtn = QToolButton(self.centralwidget)
         self.cancelXMLBtn.setObjectName(u"cancelXMLBtn")
         self.cancelXMLBtn.setGeometry(QRect(1090, 250, 51, 41))
+        self.cancelXMLBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.cancelXMLBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -537,6 +581,7 @@ class Ui_MainWindow(object):
         self.deleteNodeBtn = QToolButton(self.centralwidget)
         self.deleteNodeBtn.setObjectName(u"deleteNodeBtn")
         self.deleteNodeBtn.setGeometry(QRect(380, 10, 31, 31))
+        self.deleteNodeBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.deleteNodeBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -545,6 +590,7 @@ class Ui_MainWindow(object):
         self.editNodeBtn = QToolButton(self.centralwidget)
         self.editNodeBtn.setObjectName(u"editNodeBtn")
         self.editNodeBtn.setGeometry(QRect(340, 10, 31, 31))
+        self.editNodeBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.editNodeBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"

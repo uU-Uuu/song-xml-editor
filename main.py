@@ -1,8 +1,10 @@
 from PySide2 import QtWidgets
 from PySide2.QtCore import Qt
-from PySide2.QtGui import QStandardItemModel, QStandardItem, QFont, QColor, QPixmap, QIcon
+from PySide2.QtGui import (QStandardItemModel, QStandardItem, 
+                           QFont, QColor, QCursor, QIcon)
 from functools import partial
 from copy import deepcopy
+import os
 
 from ui.main_window import Ui_MainWindow
 from ui.dialog_windows import Ui_XMLWindow, Ui_LilyPondWindow
@@ -12,7 +14,7 @@ from ui.home_panel_window import Ui_WorkspacePanelWindow
 from tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
 from xml_parser import TagNames, SCHEMAS, validate_xml, XMLValidationError, InvalidXMLInputProvided
 from constants import PITCHES, PITCH_MOD, DURATIONS, DOTTED, OCTAVES, TAGS_FACTORY
-
+from doc_structure import Workspace, XMLDoc
 
 
 class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -165,8 +167,8 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def _overwrite_xml(self, tag_name=''):
         data = self.previewInput.toPlainText()
-        tag_name = self._preview_tag['obj'].tag_name
         try:
+            tag_name = self._preview_tag['obj'].tag_name
             validate_xml(tag_name, xml_str=data)
             schema = SCHEMAS[TagNames.by_tag(tag_name)]
             if type(self._preview_tag['obj']) in (Section, MelPhrase, LexPhrase, Syllable, Rest):
@@ -398,8 +400,6 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
         
-        
-
 class MainWindow(MainWindowGen):
      def __init__(self):
         super(MainWindow, self).__init__()
@@ -473,12 +473,73 @@ class SplashWindow(QtWidgets.QSplashScreen, Ui_SplashWindow):
         self.move(600, 260)
 
 
-class WorkspacePanewWindow(QtWidgets.QWidget, Ui_WorkspacePanelWindow):
+class WorkspacePanelWindow(QtWidgets.QWidget, Ui_WorkspacePanelWindow):
     def __init__(self):
-        super(WorkspacePanewWindow, self).__init__()
+        super(WorkspacePanelWindow, self).__init__()
         self.setupUi(self)
         self.move(600, 260)
         self.setWindowIcon(QIcon('img/logo.png'))
+
+        self._valid_dir = False
+        self._enable_doc_creation(enabled=False)
+
+        self.openBtn.clicked.connect(self._open_file_dialog)
+        self.createWorkspaceBtn.clicked.connect(self._open_directory_dialog)
+        self.workspaceOKBtn.clicked.connect(self._confirm_worspace_creation)
+
+        self.createXMLDocBtn.clicked.connect(self._create_xml_doc)
+        self.docOKBtn.clicked.connect(self._confirm_doc_creation)
+
+
+    def _enable_doc_creation(self, enabled=True):
+        self.docKeyInput.setEnabled(enabled)
+        self.docTitleInput.setEnabled(enabled)
+        self.docTimeInput.setEnabled(enabled)
+        self.createXMLDocBtn.setEnabled(enabled)
+        self.docOKBtn.setEnabled(enabled)
+
+
+    def _open_file_dialog(self):
+        self._path, _ = QtWidgets.QFileDialog.getOpenFileName(
+            self, 'Open File', '', 'All Files (*);;All Files(*)')
+        if self._path:
+            print(self._path)
+
+    def _open_directory_dialog(self):
+        self._name = self.workspaceNameInput.text()
+        if self._name:
+            self._directory = QtWidgets.QFileDialog.getExistingDirectory(
+                                        self, 'Select Directory')
+            if self._directory:
+                self._valid_dir = True
+
+    def _confirm_worspace_creation(self):
+        if self._valid_dir:
+            self.workspace = Workspace(self._name, self._directory)
+            self.workspaceNameInput.setReadOnly(True)
+            self._enable_doc_creation()
+
+    def _create_xml_doc(self):
+        title, key, time_s = [inp.text() for inp in 
+                            (self.docTitleInput, self.docKeyInput, self.docTimeInput)]
+        f_path, _ = QtWidgets.QFileDialog.getSaveFileName(self, 'Save File', 
+                                                     self.workspace.base_directory,
+                                                     'All Files (*);; XML Files (*.xml)') 
+        name = os.path.basename(f_path)
+        self.doc = XMLDoc(filename=name, path=f_path, title=title, key=key, time_signature=time_s)
+
+
+    def _confirm_doc_creation(self):
+        self.workspace.add_documents(self.doc)
+        print(self.workspace.documents)
+
+
+
+
+
+    
+
+
 
 
 
@@ -496,7 +557,7 @@ if __name__ == '__main__':
     time.sleep(3)
     splash.close()
 
-    workspace_panel = WorkspacePanewWindow()
+    workspace_panel = WorkspacePanelWindow()
     workspace_panel.show()
 
     # window = MainWindow()

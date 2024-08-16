@@ -42,6 +42,7 @@ class Ui_XMLWindow(object):
         self.horizontalLayout = QHBoxLayout(self.frame)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.editXMLFileBtn = QToolButton(self.frame)
+        self.editXMLFileBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.editXMLFileBtn.setObjectName(u"editXMLFileBtn")
         self.editXMLFileBtn.setMinimumSize(QSize(125, 35))
         font = QFont()
@@ -54,6 +55,7 @@ class Ui_XMLWindow(object):
         self.saveXMLFIleBtn = QToolButton(self.frame)
         self.saveXMLFIleBtn.setObjectName(u"saveXMLFIleBtn")
         self.saveXMLFIleBtn.setMinimumSize(QSize(125, 35))
+        self.saveXMLFIleBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.saveXMLFIleBtn.setFont(font)
         self.saveXMLFIleBtn.setAutoFillBackground(False)
 
