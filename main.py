@@ -1,3 +1,4 @@
+from traceback import print_tb
 from PySide2 import QtWidgets
 from PySide2.QtCore import Qt
 from PySide2.QtGui import (QStandardItemModel, QStandardItem, 
@@ -70,6 +71,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self.treeView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.treeView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
+        self.doc = None
         self.melody = Melody()
 
 
@@ -388,10 +390,29 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self._edit_mode = False
 
     def _get_xml_doc(self):
-        xml_str = self._last_nodes[1].obj.write_xml(indent='  ')
+        indent='    '
+        from_file_str = self.doc.read_file(to_indent=indent) 
+        meta, closing, from_scratch = self._handle_loaded_file_xml(from_file_str)
+        new_xml_str = self._last_nodes[1].obj.write_xml(indent=indent)
+
+        if from_scratch:
+            xml_str = meta + new_xml_str + closing
+        else:
+            xml_str = meta \
+                    + new_xml_str.replace('<melody>', '').replace('</melody>', '').rstrip('\t').rstrip(' ') \
+                    + closing
         self.xml_window = XMLWindow()
         self.xml_window.show()
-        self.xml_window.xmlEdit.setPlainText(xml_str)
+        self.xml_window.xmlEdit.setPlainText(XMLDoc.delete_empty_lines(xml_str))
+
+    def _handle_loaded_file_xml(self, file_xml):
+        from_scratch = 'melody' not in file_xml
+        if from_scratch:
+            meta, closing = file_xml.split('</doc>')[0], '\n</doc>'
+        else:
+            meta, doc_closing = file_xml.split('</melody>')
+            closing = f'  </melody>\n{doc_closing}'
+        return meta, closing, from_scratch
 
     
     def _get_lilypond_img(self):
@@ -505,7 +526,7 @@ class WorkspacePanelWindow(QtWidgets.QWidget, Ui_WorkspacePanelWindow):
     def _open_file_dialog(self):
         f_path, _ = QtWidgets.QFileDialog.getOpenFileName(
                                             self, 'Open File', '', 
-                                            'All Files (*);; XML Files (*.xml)')
+                                            'XML Files (*.xml);; XML Files (*.xml)')
         if f_path:
             name = os.path.basename(f_path)
             self.doc = XMLDoc(filename=name, path=f_path)
@@ -519,23 +540,33 @@ class WorkspacePanelWindow(QtWidgets.QWidget, Ui_WorkspacePanelWindow):
             if self._name:
                 self.workspaceNameInput.setText(self._name)
             self._valid_dir = True
+        else:
+            self.infoLabel.setText('* no directory provided')
 
     def _open_directory_dialog(self):
+        self._valid_dir = False
         self._name = self.workspaceNameInput.text()
         if self._name:
             self._directory = QtWidgets.QFileDialog.getExistingDirectory(
                                         self, 'Select Directory')
             if self._directory:
                 self._valid_dir = True
+        else:
+            self.infoLabel.setText('* no name provided')
 
     def _confirm_worspace_creation(self):
         if self._valid_dir:
+            self.infoLabel.clear()
+            self.workspaceNameInput.clear()
             self.workspace = Workspace(self._name, self._directory)
-            self.workspaceNameInput.setReadOnly(True)
-            self.workspaceNameInput.insert('*')           
             self._enable_doc_creation()
+            self.infoLabel.setText(self._name)
+        else:
+            self.infoLabel.setText('* no directory provided')
+
 
     def _create_xml_doc(self):
+        self.infoLabel.clear()
         title, key, time_s = [inp.text() for inp in 
                             (self.docTitleInput, self.docKeyInput, self.docTimeInput)]
         f_path, _ = QtWidgets.QFileDialog.getSaveFileName(self, 'Save File', 
@@ -546,12 +577,13 @@ class WorkspacePanelWindow(QtWidgets.QWidget, Ui_WorkspacePanelWindow):
 
 
     def _confirm_doc_creation(self):
-        self.workspace.add_documents(self.doc)
         try:
             self.doc.create()
-            self._open_xml_editor_window()
         except Exception:
-            pass
+            self.infoLabel.setText('* invalid filename or path')
+        else:
+            self._open_xml_editor_window()
+            self.workspace.add_documents(self.doc)
 
     def _open_xml_editor_window(self):
             self.main_window = MainWindow()

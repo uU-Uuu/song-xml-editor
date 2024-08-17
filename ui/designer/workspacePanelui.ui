@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>647</width>
-    <height>444</height>
+    <height>436</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -16,11 +16,17 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>647</width>
+    <height>436</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background: rgb(53, 75, 98)</string>
+   <string notr="true">background: rgb(25, 37, 48);</string>
   </property>
   <widget class="QFrame" name="frame">
    <property name="geometry">
@@ -40,11 +46,14 @@
    <widget class="QToolButton" name="createXMLDocBtn">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>370</y>
+      <x>170</x>
+      <y>360</y>
       <width>121</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
@@ -53,7 +62,7 @@
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 16px;
 border: 0.5px solid rgb(70, 70, 70);
-background: rgba(206, 227, 232, 120);
+background:rgba(186, 223, 225, 100);
 border-radius: 10px;
 color: rgb(242, 255, 245)</string>
     </property>
@@ -64,11 +73,14 @@ color: rgb(242, 255, 245)</string>
    <widget class="QToolButton" name="createWorkspaceBtn">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>210</x>
       <y>110</y>
-      <width>121</width>
+      <width>71</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
@@ -77,7 +89,7 @@ color: rgb(242, 255, 245)</string>
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 16px;
 border: 0.5px solid rgb(70, 70, 70);
-background: rgba(206, 227, 232, 120);
+background:rgba(186, 223, 225, 100);
 border-radius: 10px;
 color: rgb(242, 255, 245)</string>
     </property>
@@ -89,7 +101,7 @@ color: rgb(242, 255, 245)</string>
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>240</y>
+      <y>230</y>
       <width>301</width>
       <height>121</height>
      </rect>
@@ -177,9 +189,9 @@ color: rgb(242, 255, 245)</string>
         <widget class="QLineEdit" name="docTitleInput">
          <property name="styleSheet">
           <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
-font-size: 15px;
+font-size: 16px;
 border: 0.5px solid rgb(70, 70, 70);
-background: rgba(206, 227, 232, 150);
+background:rgba(186, 223, 225, 135);
 border-radius: 10px;
 padding: 2px;
 color: rgb(242, 255, 245)</string>
@@ -198,7 +210,7 @@ color: rgb(242, 255, 245)</string>
           <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
 border: 0.5px solid rgb(70, 70, 70);
-background: rgba(206, 227, 232, 100);
+background:rgba(186, 223, 225, 100);
 border-radius: 10px;
 padding: 2px;
 color: rgb(242, 255, 245);</string>
@@ -217,7 +229,7 @@ color: rgb(242, 255, 245);</string>
           <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
 border: 0.5px solid rgb(70, 70, 70);
-background: rgba(206, 227, 232, 100);
+background:rgba(186, 223, 225, 100);
 border-radius: 10px;
 padding: 2px;
 color: rgb(242, 255, 245)</string>
@@ -245,9 +257,9 @@ color: rgb(242, 255, 245)</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
-font-size: 15px;
+font-size: 16px;
 border: 0.5px solid rgb(70, 70, 70);
-background: rgba(206, 227, 232, 150);
+background:rgba(186, 223, 225, 135);
 border-radius: 10px;
 padding: 2px;
 color: rgb(242, 255, 245)</string>
@@ -259,7 +271,7 @@ color: rgb(242, 255, 245)</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="lyricLabel_2">
+   <widget class="QLabel" name="workspaceNameLabel">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -298,7 +310,7 @@ color: rgb(242, 255, 245)</string>
    <widget class="QLabel" name="lyricLabel_6">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>160</x>
       <y>190</y>
       <width>131</width>
       <height>32</height>
@@ -313,14 +325,111 @@ color: rgb(242, 255, 245)</string>
      <string>XML Document</string>
     </property>
    </widget>
+   <widget class="QToolButton" name="workspaceOKBtn">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>110</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 16px;
+border: 0.5px solid rgb(70, 70, 70);
+background:rgba(186, 223, 225, 100);
+border-radius: 10px;
+color: rgb(242, 255, 245)</string>
+    </property>
+    <property name="text">
+     <string>OK</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="docOKBtn">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>360</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 16px;
+border: 0.5px solid rgb(70, 70, 70);
+background:rgba(186, 223, 225, 100);
+border-radius: 10px;
+color: rgb(242, 255, 245)</string>
+    </property>
+    <property name="text">
+     <string>OK</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="openWorkspaceBtn">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>110</y>
+      <width>71</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 16px;
+border: 0.5px solid rgb(70, 70, 70);
+background:rgba(186, 223, 225, 100);
+border-radius: 10px;
+color: rgb(242, 255, 245)</string>
+    </property>
+    <property name="text">
+     <string>Open</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="infoLabel">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>150</y>
+      <width>181</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 14px;
+color: rgb(110, 135, 142);
+background-color: transparent</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QFrame" name="frame_4">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>261</width>
-     <height>441</height>
+     <height>471</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -338,11 +447,11 @@ color: rgb(242, 255, 245)</string>
       <x>0</x>
       <y>0</y>
       <width>261</width>
-      <height>441</height>
+      <height>471</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background: rgba(177, 200, 194, 100)</string>
+     <string notr="true"/>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -350,14 +459,33 @@ color: rgb(242, 255, 245)</string>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <widget class="QGraphicsView" name="graphicsView">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>60</y>
+       <width>201</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-image: url(':/img/s-logo.png');
+background-repeat: norepeat;
+border: 0px solid black;
+background-color: transparent;</string>
+     </property>
+    </widget>
     <widget class="QToolButton" name="openBtn">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>280</y>
+       <x>80</x>
+       <y>270</y>
        <width>121</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
@@ -374,22 +502,6 @@ background: rgba(199, 230, 245, 100)
      </property>
      <property name="text">
       <string>Open</string>
-     </property>
-    </widget>
-    <widget class="QGraphicsView" name="graphicsView">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>60</y>
-       <width>201</width>
-       <height>191</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-image: url(':/img/s-logo.png');
-background-repeat: norepeat;
-border: 0px solid black;
-background-color: transparent;</string>
      </property>
     </widget>
    </widget>

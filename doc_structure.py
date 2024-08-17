@@ -166,8 +166,8 @@ class XMLDoc:
                         file.write(self.write_metadata_xml(non_empty=non_empty))
                 except IOError as _:
                     print(f'Error when trying to save file\n\t {_}')
-        except InvalidFilename as e:
-            print(e)
+        except InvalidFilename:
+            raise Exception
 
 
     def set_metadata(self, title:str='', key:str='', time_signature:str=''):
@@ -226,6 +226,26 @@ class XMLDoc:
     
         return self.write_xml(starting_with=st_xml_string, ending_with=fin_xml_string,
                               non_empty=non_empty)
+    
+
+    def read_file(self, prettify_indent=True, from_indent='\t', to_indent='   '):
+        with open(self._path, 'r') as file:
+            data = file.read()
+            if prettify_indent:
+                try:
+                    pretty_data = data.replace(str(from_indent), str(to_indent))
+                except TypeError:
+                    pass
+                else:
+                    return f'{pretty_data}\n'
+            return data
+    
+    @staticmethod
+    def delete_empty_lines(txt):
+        split_txt = txt.splitlines()
+        clear_txt = '\n'.join(line for line in split_txt
+                              if line.strip() and line.strip('\t'))
+        return clear_txt
                 
 
     def update_file(self, title:str='', key:str='', time_signature:str=''):
@@ -291,6 +311,8 @@ class XMLDoc:
     def melody(self, melody:Melody):
         if isinstance(melody, Melody):
             self._melody = melody
+
+
 
 
 # syl1 = Syllable('go')

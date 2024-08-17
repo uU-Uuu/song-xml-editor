@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'workspacePaneluinAaDMx.ui'
+## Form generated from reading UI file 'workspacePaneluiVugVVV.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.1
 ##
@@ -151,10 +151,10 @@ class Ui_WorkspacePanelWindow(object):
 "padding: 2px;\n"
 "color: rgb(242, 255, 245)")
         self.workspaceNameInput.setAlignment(Qt.AlignCenter)
-        self.lyricLabel_2 = QLabel(self.frame)
-        self.lyricLabel_2.setObjectName(u"lyricLabel_2")
-        self.lyricLabel_2.setGeometry(QRect(50, 60, 49, 32))
-        self.lyricLabel_2.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
+        self.workspaceNameLabel = QLabel(self.frame)
+        self.workspaceNameLabel.setObjectName(u"workspaceNameLabel")
+        self.workspaceNameLabel.setGeometry(QRect(50, 60, 49, 32))
+        self.workspaceNameLabel.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "color: rgb(242, 255, 245)")
         self.lyricLabel_5 = QLabel(self.frame)
@@ -200,6 +200,13 @@ class Ui_WorkspacePanelWindow(object):
 "background:rgba(186, 223, 225, 100);\n"
 "border-radius: 10px;\n"
 "color: rgb(242, 255, 245)")
+        self.infoLabel = QLabel(self.frame)
+        self.infoLabel.setObjectName(u"infoLabel")
+        self.infoLabel.setGeometry(QRect(120, 150, 181, 32))
+        self.infoLabel.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
+"font-size: 14px;\n"
+"color: rgb(110, 135, 142);\n"
+"background-color: transparent")
         self.frame_4 = QFrame(WorkspacePanelWindow)
         self.frame_4.setObjectName(u"frame_4")
         self.frame_4.setEnabled(True)
@@ -252,12 +259,13 @@ class Ui_WorkspacePanelWindow(object):
         self.docKeyInput.setText("")
         self.docTimeInput.setText("")
         self.workspaceNameInput.setText("")
-        self.lyricLabel_2.setText(QCoreApplication.translate("WorkspacePanelWindow", u"Name", None))
+        self.workspaceNameLabel.setText(QCoreApplication.translate("WorkspacePanelWindow", u"Name", None))
         self.lyricLabel_5.setText(QCoreApplication.translate("WorkspacePanelWindow", u"Workspace", None))
         self.lyricLabel_6.setText(QCoreApplication.translate("WorkspacePanelWindow", u"XML Document", None))
         self.workspaceOKBtn.setText(QCoreApplication.translate("WorkspacePanelWindow", u"OK", None))
         self.docOKBtn.setText(QCoreApplication.translate("WorkspacePanelWindow", u"OK", None))
         self.openWorkspaceBtn.setText(QCoreApplication.translate("WorkspacePanelWindow", u"Open", None))
+        self.infoLabel.setText("")
         self.openBtn.setText(QCoreApplication.translate("WorkspacePanelWindow", u"Open", None))
     # retranslateUi
 
