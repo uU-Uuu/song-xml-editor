@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'workspacePaneluibfDWcf.ui'
+## Form generated from reading UI file 'workspacePaneluinAaDMx.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.1
 ##
@@ -14,6 +14,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
     QRadialGradient)
 from PySide2.QtWidgets import *
+
 
 class Ui_WorkspacePanelWindow(object):
     def setupUi(self, WorkspacePanelWindow):
@@ -34,24 +35,24 @@ class Ui_WorkspacePanelWindow(object):
         self.frame.setFrameShadow(QFrame.Raised)
         self.createXMLDocBtn = QToolButton(self.frame)
         self.createXMLDocBtn.setObjectName(u"createXMLDocBtn")
-        self.createXMLDocBtn.setGeometry(QRect(160, 360, 121, 41))
+        self.createXMLDocBtn.setGeometry(QRect(170, 360, 121, 41))
         self.createXMLDocBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.createXMLDocBtn.setFocusPolicy(Qt.NoFocus)
         self.createXMLDocBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
-"background:rgba(186, 223, 225, 150);\n"
+"background:rgba(186, 223, 225, 100);\n"
 "border-radius: 10px;\n"
 "color: rgb(242, 255, 245)")
         self.createWorkspaceBtn = QToolButton(self.frame)
         self.createWorkspaceBtn.setObjectName(u"createWorkspaceBtn")
-        self.createWorkspaceBtn.setGeometry(QRect(160, 110, 121, 41))
+        self.createWorkspaceBtn.setGeometry(QRect(210, 110, 71, 41))
         self.createWorkspaceBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.createWorkspaceBtn.setFocusPolicy(Qt.NoFocus)
         self.createWorkspaceBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
-"background:rgba(186, 223, 225, 150);\n"
+"background:rgba(186, 223, 225, 100);\n"
 "border-radius: 10px;\n"
 "color: rgb(242, 255, 245)")
         self.frame_2 = QFrame(self.frame)
@@ -105,7 +106,7 @@ class Ui_WorkspacePanelWindow(object):
         self.docTitleInput.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
-"background:rgba(186, 223, 225, 175);\n"
+"background:rgba(186, 223, 225, 135);\n"
 "border-radius: 10px;\n"
 "padding: 2px;\n"
 "color: rgb(242, 255, 245)")
@@ -118,7 +119,7 @@ class Ui_WorkspacePanelWindow(object):
         self.docKeyInput.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
-"background:rgba(186, 223, 225, 150);\n"
+"background:rgba(186, 223, 225, 100);\n"
 "border-radius: 10px;\n"
 "padding: 2px;\n"
 "color: rgb(242, 255, 245);")
@@ -131,7 +132,7 @@ class Ui_WorkspacePanelWindow(object):
         self.docTimeInput.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
-"background:rgba(186, 223, 225, 150);\n"
+"background:rgba(186, 223, 225, 100);\n"
 "border-radius: 10px;\n"
 "padding: 2px;\n"
 "color: rgb(242, 255, 245)")
@@ -145,7 +146,7 @@ class Ui_WorkspacePanelWindow(object):
         self.workspaceNameInput.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
-"background:rgba(186, 223, 225, 175);\n"
+"background:rgba(186, 223, 225, 135);\n"
 "border-radius: 10px;\n"
 "padding: 2px;\n"
 "color: rgb(242, 255, 245)")
@@ -170,22 +171,33 @@ class Ui_WorkspacePanelWindow(object):
 "color: rgb(242, 255, 245)")
         self.workspaceOKBtn = QToolButton(self.frame)
         self.workspaceOKBtn.setObjectName(u"workspaceOKBtn")
-        self.workspaceOKBtn.setGeometry(QRect(290, 110, 51, 41))
+        self.workspaceOKBtn.setGeometry(QRect(300, 110, 41, 41))
         self.workspaceOKBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.workspaceOKBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
-"background:rgba(186, 223, 225, 150);\n"
+"background:rgba(186, 223, 225, 100);\n"
 "border-radius: 10px;\n"
 "color: rgb(242, 255, 245)")
         self.docOKBtn = QToolButton(self.frame)
         self.docOKBtn.setObjectName(u"docOKBtn")
-        self.docOKBtn.setGeometry(QRect(290, 360, 51, 41))
+        self.docOKBtn.setGeometry(QRect(310, 360, 41, 41))
         self.docOKBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.docOKBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
-"background:rgba(186, 223, 225, 150);\n"
+"background:rgba(186, 223, 225, 100);\n"
+"border-radius: 10px;\n"
+"color: rgb(242, 255, 245)")
+        self.openWorkspaceBtn = QToolButton(self.frame)
+        self.openWorkspaceBtn.setObjectName(u"openWorkspaceBtn")
+        self.openWorkspaceBtn.setGeometry(QRect(120, 110, 71, 41))
+        self.openWorkspaceBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.openWorkspaceBtn.setFocusPolicy(Qt.NoFocus)
+        self.openWorkspaceBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
+"font-size: 16px;\n"
+"border: 0.5px solid rgb(70, 70, 70);\n"
+"background:rgba(186, 223, 225, 100);\n"
 "border-radius: 10px;\n"
 "color: rgb(242, 255, 245)")
         self.frame_4 = QFrame(WorkspacePanelWindow)
@@ -230,7 +242,7 @@ class Ui_WorkspacePanelWindow(object):
     # setupUi
 
     def retranslateUi(self, WorkspacePanelWindow):
-        WorkspacePanelWindow.setWindowTitle(QCoreApplication.translate("WorkspacePanelWindow", u"Form", None))
+        WorkspacePanelWindow.setWindowTitle(QCoreApplication.translate("WorkspacePanelWindow", u"Song XML Editor", None))
         self.createXMLDocBtn.setText(QCoreApplication.translate("WorkspacePanelWindow", u"New XML", None))
         self.createWorkspaceBtn.setText(QCoreApplication.translate("WorkspacePanelWindow", u"Create", None))
         self.lyricLabel.setText(QCoreApplication.translate("WorkspacePanelWindow", u"Title", None))
@@ -245,6 +257,7 @@ class Ui_WorkspacePanelWindow(object):
         self.lyricLabel_6.setText(QCoreApplication.translate("WorkspacePanelWindow", u"XML Document", None))
         self.workspaceOKBtn.setText(QCoreApplication.translate("WorkspacePanelWindow", u"OK", None))
         self.docOKBtn.setText(QCoreApplication.translate("WorkspacePanelWindow", u"OK", None))
+        self.openWorkspaceBtn.setText(QCoreApplication.translate("WorkspacePanelWindow", u"Open", None))
         self.openBtn.setText(QCoreApplication.translate("WorkspacePanelWindow", u"Open", None))
     # retranslateUi
 

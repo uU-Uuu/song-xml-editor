@@ -46,11 +46,14 @@
    <widget class="QToolButton" name="createXMLDocBtn">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>170</x>
       <y>360</y>
       <width>121</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
@@ -59,7 +62,7 @@
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 16px;
 border: 0.5px solid rgb(70, 70, 70);
-background:rgba(186, 223, 225, 150);
+background:rgba(186, 223, 225, 100);
 border-radius: 10px;
 color: rgb(242, 255, 245)</string>
     </property>
@@ -70,11 +73,14 @@ color: rgb(242, 255, 245)</string>
    <widget class="QToolButton" name="createWorkspaceBtn">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>210</x>
       <y>110</y>
-      <width>121</width>
+      <width>71</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
@@ -83,7 +89,7 @@ color: rgb(242, 255, 245)</string>
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 16px;
 border: 0.5px solid rgb(70, 70, 70);
-background:rgba(186, 223, 225, 150);
+background:rgba(186, 223, 225, 100);
 border-radius: 10px;
 color: rgb(242, 255, 245)</string>
     </property>
@@ -183,9 +189,9 @@ color: rgb(242, 255, 245)</string>
         <widget class="QLineEdit" name="docTitleInput">
          <property name="styleSheet">
           <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
-font-size: 15px;
+font-size: 16px;
 border: 0.5px solid rgb(70, 70, 70);
-background:rgba(186, 223, 225, 180);
+background:rgba(186, 223, 225, 135);
 border-radius: 10px;
 padding: 2px;
 color: rgb(242, 255, 245)</string>
@@ -204,7 +210,7 @@ color: rgb(242, 255, 245)</string>
           <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
 border: 0.5px solid rgb(70, 70, 70);
-background:rgba(186, 223, 225, 150);
+background:rgba(186, 223, 225, 100);
 border-radius: 10px;
 padding: 2px;
 color: rgb(242, 255, 245);</string>
@@ -223,7 +229,7 @@ color: rgb(242, 255, 245);</string>
           <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
 border: 0.5px solid rgb(70, 70, 70);
-background:rgba(186, 223, 225, 150);
+background:rgba(186, 223, 225, 100);
 border-radius: 10px;
 padding: 2px;
 color: rgb(242, 255, 245)</string>
@@ -251,15 +257,15 @@ color: rgb(242, 255, 245)</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
-font-size: 15px;
+font-size: 16px;
 border: 0.5px solid rgb(70, 70, 70);
-background:rgba(186, 223, 225, 180);
+background:rgba(186, 223, 225, 135);
 border-radius: 10px;
 padding: 2px;
 color: rgb(242, 255, 245)</string>
     </property>
     <property name="text">
-     <string>ghjghjg</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -322,17 +328,20 @@ color: rgb(242, 255, 245)</string>
    <widget class="QToolButton" name="workspaceOKBtn">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>300</x>
       <y>110</y>
-      <width>51</width>
+      <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 16px;
 border: 0.5px solid rgb(70, 70, 70);
-background:rgba(186, 223, 225, 150);
+background:rgba(186, 223, 225, 100);
 border-radius: 10px;
 color: rgb(242, 255, 245)</string>
     </property>
@@ -343,22 +352,52 @@ color: rgb(242, 255, 245)</string>
    <widget class="QToolButton" name="docOKBtn">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>310</x>
       <y>360</y>
-      <width>51</width>
+      <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 16px;
 border: 0.5px solid rgb(70, 70, 70);
-background:rgba(186, 223, 225, 150);
+background:rgba(186, 223, 225, 100);
 border-radius: 10px;
 color: rgb(242, 255, 245)</string>
     </property>
     <property name="text">
      <string>OK</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="openWorkspaceBtn">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>110</y>
+      <width>71</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 16px;
+border: 0.5px solid rgb(70, 70, 70);
+background:rgba(186, 223, 225, 100);
+border-radius: 10px;
+color: rgb(242, 255, 245)</string>
+    </property>
+    <property name="text">
+     <string>Open</string>
     </property>
    </widget>
   </widget>
@@ -425,6 +464,9 @@ background-color: transparent;</string>
        <width>121</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>

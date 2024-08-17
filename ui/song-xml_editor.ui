@@ -40,22 +40,13 @@ background-size: cover;
      <rect>
       <x>880</x>
       <y>70</y>
-      <width>281</width>
+      <width>261</width>
       <height>161</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <family>Yu Mincho Demibold</family>
-      <pointsize>9</pointsize>
-      <weight>7</weight>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
     <property name="styleSheet">
      <string notr="true">background: rgba(206, 227, 232, 120);
-font: 63 9pt &quot;Yu Mincho Demibold&quot;;
+font: 25 9pt &quot;Yu Mincho Light&quot;;
 border: 0.5px solid rgb(70, 70, 70);
 border-radius: 10px
 </string>
@@ -73,25 +64,12 @@ border-radius: 10px
       <height>781</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <family>Yu Mincho Light</family>
-      <pointsize>10</pointsize>
-      <weight>3</weight>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
     <property name="styleSheet">
      <string notr="true">background: rgba(206, 227, 232, 120);
-font: 25 9.5pt &quot;Yu Mincho Light&quot;;
+font: 25 9pt &quot;Yu Mincho Light&quot;;
 border: 0.5px solid rgb(70, 70, 70);
-border-radius: 10px;
-padding: 5px;
+border-radius: 10px
 </string>
-    </property>
-    <property name="tabKeyNavigation">
-     <bool>true</bool>
     </property>
    </widget>
    <widget class="QFrame" name="sectionFrame">
@@ -142,15 +120,13 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
 border: 0.5px solid rgb(70, 70, 70);
 background: rgba(206, 227, 232, 120);
-border-radius: 10px</string>
+border-radius: 10px
+</string>
      </property>
      <property name="text">
       <string>OK</string>
@@ -164,9 +140,6 @@ border-radius: 10px</string>
        <width>121</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -225,15 +198,13 @@ font-size: 15px;</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
 border: 0.5px solid rgb(70, 70, 70);
 background: rgba(206, 227, 232, 120);
-border-radius: 10px</string>
+border-radius: 10px
+</string>
      </property>
      <property name="text">
       <string>OK</string>
@@ -247,9 +218,6 @@ border-radius: 10px</string>
        <width>121</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -291,15 +259,13 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
 border: 0.5px solid rgb(70, 70, 70);
 background: rgba(206, 227, 232, 120);
-border-radius: 10px</string>
+border-radius: 10px
+</string>
      </property>
      <property name="text">
       <string>OK</string>
@@ -313,9 +279,6 @@ border-radius: 10px</string>
        <width>121</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -357,9 +320,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -380,15 +340,13 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
 border: 0.5px solid rgb(70, 70, 70);
 background: rgba(206, 227, 232, 120);
-border-radius: 10px</string>
+border-radius: 10px
+</string>
      </property>
      <property name="text">
       <string>OK</string>
@@ -423,9 +381,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -445,9 +400,6 @@ border-radius: 10px</string>
        <width>41</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -469,9 +421,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -491,9 +440,6 @@ border-radius: 10px</string>
        <width>41</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -515,9 +461,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -537,9 +480,6 @@ border-radius: 10px</string>
        <width>41</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -561,9 +501,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -583,9 +520,6 @@ border-radius: 10px</string>
        <width>41</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -607,9 +541,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -629,9 +560,6 @@ border-radius: 10px</string>
        <width>41</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -656,9 +584,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -678,9 +603,6 @@ border-radius: 10px</string>
        <width>41</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -702,9 +624,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -724,9 +643,6 @@ border-radius: 10px</string>
        <width>41</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -748,9 +664,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -770,9 +683,6 @@ border-radius: 10px</string>
        <width>41</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -794,9 +704,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -817,9 +724,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -839,9 +743,6 @@ border-radius: 10px</string>
        <width>41</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -900,9 +801,6 @@ font-size: 15px;</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -959,9 +857,6 @@ font-size: 15px;</string>
        <width>21</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -1020,15 +915,13 @@ font-size: 15px;</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
 border: 0.5px solid rgb(70, 70, 70);
 background: rgba(206, 227, 232, 120);
-border-radius: 10px</string>
+border-radius: 10px
+</string>
      </property>
      <property name="text">
       <string>Rest  </string>
@@ -1043,15 +936,13 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
 border: 0.5px solid rgb(70, 70, 70);
 background: rgba(206, 227, 232, 120);
-border-radius: 10px</string>
+border-radius: 10px
+</string>
      </property>
      <property name="text">
       <string>OK</string>
@@ -1065,9 +956,6 @@ border-radius: 10px</string>
        <width>51</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -1088,9 +976,6 @@ border-radius: 10px</string>
        <width>21</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -1131,9 +1016,6 @@ color: black;
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -1153,9 +1035,6 @@ border-radius: 10px</string>
        <width>41</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -1177,9 +1056,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -1199,9 +1075,6 @@ border-radius: 10px</string>
        <width>41</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -1223,9 +1096,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -1245,9 +1115,6 @@ border-radius: 10px</string>
        <width>41</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -1289,9 +1156,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
@@ -1315,9 +1179,6 @@ border-radius: 10px</string>
        <height>41</height>
       </rect>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
@@ -1340,9 +1201,6 @@ border-radius: 10px</string>
        <width>121</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="mouseTracking">
       <bool>false</bool>
@@ -1374,9 +1232,6 @@ border-radius: 10px</string>
       <height>41</height>
      </rect>
     </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
     <property name="styleSheet">
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 15px;
@@ -1393,12 +1248,9 @@ border-radius: 10px</string>
      <rect>
       <x>1020</x>
       <y>250</y>
-      <width>61</width>
+      <width>51</width>
       <height>41</height>
      </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -1414,14 +1266,11 @@ border-radius: 10px</string>
    <widget class="QToolButton" name="cancelXMLBtn">
     <property name="geometry">
      <rect>
-      <x>1100</x>
+      <x>1090</x>
       <y>250</y>
-      <width>61</width>
+      <width>51</width>
       <height>41</height>
      </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -1443,9 +1292,6 @@ border-radius: 10px</string>
       <height>31</height>
      </rect>
     </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
     <property name="styleSheet">
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
 font-size: 16px;
@@ -1465,9 +1311,6 @@ border-radius: 10px</string>
       <width>31</width>
       <height>31</height>
      </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
@@ -1496,7 +1339,7 @@ border-radius: 10px</string>
   </widget>
  </widget>
  <resources>
-  <include location="../../img/img.qrc"/>
+  <include location="../img/img.qrc"/>
  </resources>
  <connections/>
 </ui>

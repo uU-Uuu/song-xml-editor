@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'song-xml_editoricQPWO.ui'
+## Form generated from reading UI file 'song-xml_editorMITQws.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.1
 ##
@@ -16,42 +16,54 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
 from PySide2.QtWidgets import *
 
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        if MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1192, 859)
+    def setupUi(self, mainWindow):
+        if mainWindow.objectName():
+            mainWindow.setObjectName(u"MainWindow")
+        mainWindow.resize(1192, 859)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
-        MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMaximumSize(QSize(1192, 859))
-        MainWindow.setStyleSheet(u"")
-        self.centralwidget = QWidget(MainWindow)
+        sizePolicy.setHeightForWidth(mainWindow.sizePolicy().hasHeightForWidth())
+        mainWindow.setSizePolicy(sizePolicy)
+        mainWindow.setMaximumSize(QSize(1192, 859))
+        mainWindow.setStyleSheet(u"")
+        self.centralwidget = QWidget(mainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"background-color: rgb(33, 38, 42);\n"
 "background-image: url('./img/b-noah-silliman-_k9dCeh5Ca0-unsplash.jpg');\n"
 "")
         self.previewInput = QPlainTextEdit(self.centralwidget)
         self.previewInput.setObjectName(u"previewInput")
-        self.previewInput.setGeometry(QRect(880, 70, 261, 161))
-        self.previewInput.setStyleSheet(u"""
-                                        background: rgba(206, 227, 232, 120);
-                                        font: 25 8pt "Yu Mincho Demibold";
-                                        border: 0.5px solid rgb(70, 70, 70);
-                                        border-radius: 10px;
-                                        padding: 5px;
-""")
+        self.previewInput.setGeometry(QRect(880, 70, 281, 161))
+        font = QFont()
+        font.setFamily(u"Yu Mincho Demibold")
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(7)
+        self.previewInput.setFont(font)
+        self.previewInput.setStyleSheet(u"background: rgba(206, 227, 232, 120);\n"
+"font: 63 9pt \"Yu Mincho Demibold\";\n"
+"border: 0.5px solid rgb(70, 70, 70);\n"
+"border-radius: 10px\n"
+"")
         self.treeView = QTreeView(self.centralwidget)
         self.treeView.setObjectName(u"treeView")
         self.treeView.setGeometry(QRect(30, 50, 381, 781))
-        self.treeView.setStyleSheet(u"""
-                                    background: rgba(206, 227, 232, 120);
-                                    font: 25 9pt "Yu Mincho Demibold";
-                                    border: 0.5px solid rgb(70, 70, 70);
-                                    border-radius: 10px;
-                                    padding: 10px 10px 10px -5px;
-""")
+        font1 = QFont()
+        font1.setFamily(u"Yu Mincho Light")
+        font1.setPointSize(10)
+        font1.setBold(False)
+        font1.setItalic(False)
+        font1.setWeight(3)
+        self.treeView.setFont(font1)
+        self.treeView.setStyleSheet(u"background: rgba(206, 227, 232, 120);\n"
+"font: 25 9.5pt \"Yu Mincho Light\";\n"
+"border: 0.5px solid rgb(70, 70, 70);\n"
+"border-radius: 10px;\n"
+"padding: 5px;\n"
+"")
+        self.treeView.setTabKeyNavigation(True)
         self.sectionFrame = QFrame(self.centralwidget)
         self.sectionFrame.setObjectName(u"sectionFrame")
         self.sectionFrame.setGeometry(QRect(460, 40, 351, 91))
@@ -62,22 +74,20 @@ class Ui_MainWindow(object):
         self.sectionName = QLineEdit(self.sectionFrame)
         self.sectionName.setObjectName(u"sectionName")
         self.sectionName.setGeometry(QRect(220, 30, 81, 41))
-        self.sectionName.setAlignment(Qt.AlignCenter)
         self.sectionName.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
 "background: rgba(206, 227, 232, 100);\n"
 "border-radius: 10px")
         self.newSectionOKBtn = QToolButton(self.sectionFrame)
-        self.newSectionOKBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newSectionOKBtn.setObjectName(u"newSectionOKBtn")
         self.newSectionOKBtn.setGeometry(QRect(150, 30, 51, 41))
+        self.newSectionOKBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newSectionOKBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
 "background: rgba(206, 227, 232, 120);\n"
-"border-radius: 10px\n"
-"")
+"border-radius: 10px")
         self.newSectionBtn = QToolButton(self.sectionFrame)
         self.newSectionBtn.setObjectName(u"newSectionBtn")
         self.newSectionBtn.setGeometry(QRect(10, 30, 121, 41))
@@ -86,8 +96,7 @@ class Ui_MainWindow(object):
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
 "background: rgba(206, 227, 232, 120);\n"
-"border-radius: 10px\n"
-"")
+"border-radius: 10px")
         self.sectionNameLabel = QLabel(self.sectionFrame)
         self.sectionNameLabel.setObjectName(u"sectionNameLabel")
         self.sectionNameLabel.setGeometry(QRect(230, 0, 71, 21))
@@ -101,15 +110,14 @@ class Ui_MainWindow(object):
         self.melPhraseFrame.setFrameShape(QFrame.StyledPanel)
         self.melPhraseFrame.setFrameShadow(QFrame.Raised)
         self.newMelPhraseOKBtn = QToolButton(self.melPhraseFrame)
-        self.newMelPhraseOKBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newMelPhraseOKBtn.setObjectName(u"newMelPhraseOKBtn")
         self.newMelPhraseOKBtn.setGeometry(QRect(150, 30, 51, 41))
+        self.newMelPhraseOKBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newMelPhraseOKBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
 "background: rgba(206, 227, 232, 120);\n"
-"border-radius: 10px\n"
-"")
+"border-radius: 10px")
         self.newMelPhraseBtn = QToolButton(self.melPhraseFrame)
         self.newMelPhraseBtn.setObjectName(u"newMelPhraseBtn")
         self.newMelPhraseBtn.setGeometry(QRect(10, 30, 121, 41))
@@ -118,8 +126,7 @@ class Ui_MainWindow(object):
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
 "background: rgba(206, 227, 232, 120);\n"
-"border-radius: 10px\n"
-"")
+"border-radius: 10px")
         self.lexPhraseFrame = QFrame(self.centralwidget)
         self.lexPhraseFrame.setObjectName(u"lexPhraseFrame")
         self.lexPhraseFrame.setGeometry(QRect(460, 220, 351, 91))
@@ -129,14 +136,13 @@ class Ui_MainWindow(object):
         self.lexPhraseFrame.setFrameShadow(QFrame.Raised)
         self.newLexPhraseOKBtn = QToolButton(self.lexPhraseFrame)
         self.newLexPhraseOKBtn.setObjectName(u"newLexPhraseOKBtn")
-        self.newLexPhraseOKBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newLexPhraseOKBtn.setGeometry(QRect(150, 30, 51, 41))
+        self.newLexPhraseOKBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newLexPhraseOKBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
 "background: rgba(206, 227, 232, 120);\n"
-"border-radius: 10px\n"
-"")
+"border-radius: 10px")
         self.newLexPhraseBtn = QToolButton(self.lexPhraseFrame)
         self.newLexPhraseBtn.setObjectName(u"newLexPhraseBtn")
         self.newLexPhraseBtn.setGeometry(QRect(10, 30, 121, 41))
@@ -145,8 +151,7 @@ class Ui_MainWindow(object):
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
 "background: rgba(206, 227, 232, 120);\n"
-"border-radius: 10px\n"
-"")
+"border-radius: 10px")
         self.syllableFrame = QFrame(self.centralwidget)
         self.syllableFrame.setObjectName(u"syllableFrame")
         self.syllableFrame.setGeometry(QRect(460, 310, 701, 251))
@@ -156,14 +161,13 @@ class Ui_MainWindow(object):
         self.syllableFrame.setFrameShadow(QFrame.Raised)
         self.newSyllableBtn = QToolButton(self.syllableFrame)
         self.newSyllableBtn.setObjectName(u"newSyllableBtn")
-        self.newSyllableBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newSyllableBtn.setGeometry(QRect(10, 30, 121, 41))
+        self.newSyllableBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newSyllableBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
 "background: rgba(206, 227, 232, 120);\n"
-"border-radius: 10px\n"
-"")
+"border-radius: 10px")
         self.newSyllableOKBtn = QToolButton(self.syllableFrame)
         self.newSyllableOKBtn.setObjectName(u"newSyllableOKBtn")
         self.newSyllableOKBtn.setGeometry(QRect(150, 30, 51, 41))
@@ -172,12 +176,10 @@ class Ui_MainWindow(object):
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
 "background: rgba(206, 227, 232, 120);\n"
-"border-radius: 10px\n"
-"")
+"border-radius: 10px")
         self.syllableLyric = QLineEdit(self.syllableFrame)
         self.syllableLyric.setObjectName(u"syllableLyric")
         self.syllableLyric.setGeometry(QRect(220, 30, 51, 41))
-        self.syllableLyric.setAlignment(Qt.AlignCenter)
         self.syllableLyric.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -358,7 +360,6 @@ class Ui_MainWindow(object):
         self.syllableDuration = QLineEdit(self.syllableFrame)
         self.syllableDuration.setObjectName(u"syllableDuration")
         self.syllableDuration.setGeometry(QRect(380, 30, 51, 41))
-        self.syllableDuration.setAlignment(Qt.AlignCenter)
         self.syllableDuration.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -381,7 +382,6 @@ class Ui_MainWindow(object):
         self.syllablePitch = QLineEdit(self.syllableFrame)
         self.syllablePitch.setObjectName(u"syllablePitch")
         self.syllablePitch.setGeometry(QRect(320, 30, 51, 41))
-        self.syllablePitch.setAlignment(Qt.AlignCenter)
         self.syllablePitch.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -415,14 +415,13 @@ class Ui_MainWindow(object):
         self.restFrame.setFrameShadow(QFrame.Raised)
         self.newRestBtn = QToolButton(self.restFrame)
         self.newRestBtn.setObjectName(u"newRestBtn")
-        self.newRestBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newRestBtn.setGeometry(QRect(10, 30, 121, 41))
+        self.newRestBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.newRestBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
 "background: rgba(206, 227, 232, 120);\n"
-"border-radius: 10px\n"
-"")
+"border-radius: 10px")
         self.newRestOKBtn = QToolButton(self.restFrame)
         self.newRestOKBtn.setObjectName(u"newRestOKBtn")
         self.newRestOKBtn.setGeometry(QRect(150, 30, 51, 41))
@@ -431,12 +430,11 @@ class Ui_MainWindow(object):
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
 "background: rgba(206, 227, 232, 120);\n"
-"border-radius: 10px\n"
-"")
+"border-radius: 10px")
         self.restDuration = QLineEdit(self.restFrame)
         self.restDuration.setObjectName(u"restDuration")
         self.restDuration.setGeometry(QRect(220, 30, 51, 41))
-        self.restDuration.setAlignment(Qt.AlignCenter)
+        self.restDuration.setCursor(QCursor(Qt.PointingHandCursor))
         self.restDuration.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -522,8 +520,8 @@ class Ui_MainWindow(object):
         self.musicSheetBtn = QToolButton(self.actionBtnsFrame)
         self.musicSheetBtn.setObjectName(u"musicSheetBtn")
         self.musicSheetBtn.setGeometry(QRect(20, 20, 121, 41))
-        self.musicSheetBtn.setFocusPolicy(Qt.NoFocus)
         self.musicSheetBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.musicSheetBtn.setFocusPolicy(Qt.NoFocus)
         self.musicSheetBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -532,8 +530,8 @@ class Ui_MainWindow(object):
         self.XMLBtn = QToolButton(self.actionBtnsFrame)
         self.XMLBtn.setObjectName(u"XMLBtn")
         self.XMLBtn.setGeometry(QRect(170, 20, 121, 41))
-        self.XMLBtn.setFocusPolicy(Qt.NoFocus)
         self.XMLBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.XMLBtn.setFocusPolicy(Qt.NoFocus)
         self.XMLBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -542,10 +540,10 @@ class Ui_MainWindow(object):
         self.saveFileBtn = QToolButton(self.actionBtnsFrame)
         self.saveFileBtn.setObjectName(u"saveFileBtn")
         self.saveFileBtn.setGeometry(QRect(320, 20, 121, 41))
+        self.saveFileBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.saveFileBtn.setMouseTracking(False)
         self.saveFileBtn.setTabletTracking(False)
         self.saveFileBtn.setFocusPolicy(Qt.NoFocus)
-        self.saveFileBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.saveFileBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 16px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -562,8 +560,8 @@ class Ui_MainWindow(object):
 "border-radius: 10px")
         self.saveXMLBtn = QToolButton(self.centralwidget)
         self.saveXMLBtn.setObjectName(u"saveXMLBtn")
+        self.saveXMLBtn.setGeometry(QRect(1020, 250, 61, 41))
         self.saveXMLBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        self.saveXMLBtn.setGeometry(QRect(1020, 250, 51, 41))
         self.saveXMLBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -571,7 +569,7 @@ class Ui_MainWindow(object):
 "border-radius: 10px")
         self.cancelXMLBtn = QToolButton(self.centralwidget)
         self.cancelXMLBtn.setObjectName(u"cancelXMLBtn")
-        self.cancelXMLBtn.setGeometry(QRect(1090, 250, 51, 41))
+        self.cancelXMLBtn.setGeometry(QRect(1100, 250, 61, 41))
         self.cancelXMLBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.cancelXMLBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
@@ -596,7 +594,7 @@ class Ui_MainWindow(object):
 "border: 0.5px solid rgb(70, 70, 70);\n"
 "background: rgba(206, 227, 232, 120);\n"
 "border-radius: 10px")
-        MainWindow.setCentralWidget(self.centralwidget)
+        mainWindow.setCentralWidget(self.centralwidget)
         self.actionBtnsFrame.raise_()
         self.restFrame.raise_()
         self.syllableFrame.raise_()
@@ -611,68 +609,69 @@ class Ui_MainWindow(object):
         self.deleteNodeBtn.raise_()
         self.editNodeBtn.raise_()
 
-        self.retranslateUi(MainWindow)
+        self.retranslateUi(mainWindow)
 
-        QMetaObject.connectSlotsByName(MainWindow)
+        QMetaObject.connectSlotsByName(mainWindow)
     # setupUi
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Song XML Editor", None))
+    def retranslateUi(self, mainWindow):
+        mainWindow.setWindowTitle(QCoreApplication.translate("mainWindow", u"Song XML Editor", None))
         self.previewInput.setPlainText("")
         self.sectionName.setText("")
-        self.newSectionOKBtn.setText(QCoreApplication.translate("MainWindow", u"OK", None))
-        self.newSectionBtn.setText(QCoreApplication.translate("MainWindow", u"Section", None))
-        self.sectionNameLabel.setText(QCoreApplication.translate("MainWindow", u" Name", None))
-        self.newMelPhraseOKBtn.setText(QCoreApplication.translate("MainWindow", u"OK", None))
-        self.newMelPhraseBtn.setText(QCoreApplication.translate("MainWindow", u"Melodic phrase", None))
-        self.newLexPhraseOKBtn.setText(QCoreApplication.translate("MainWindow", u"OK", None))
-        self.newLexPhraseBtn.setText(QCoreApplication.translate("MainWindow", u"Lexical phrase", None))
-        self.newSyllableBtn.setText(QCoreApplication.translate("MainWindow", u"Syllable", None))
-        self.newSyllableOKBtn.setText(QCoreApplication.translate("MainWindow", u"OK", None))
+        self.newSectionOKBtn.setText(QCoreApplication.translate("mainWindow", u"OK", None))
+        self.newSectionBtn.setText(QCoreApplication.translate("mainWindow", u"Section", None))
+        self.sectionNameLabel.setText(QCoreApplication.translate("mainWindow", u" Name", None))
+        self.newMelPhraseOKBtn.setText(QCoreApplication.translate("mainWindow", u"OK", None))
+        self.newMelPhraseBtn.setText(QCoreApplication.translate("mainWindow", u"Melodic phrase", None))
+        self.newLexPhraseOKBtn.setText(QCoreApplication.translate("mainWindow", u"OK", None))
+        self.newLexPhraseBtn.setText(QCoreApplication.translate("mainWindow", u"Lexical phrase", None))
+        self.newSyllableBtn.setText(QCoreApplication.translate("mainWindow", u"Syllable", None))
+        self.newSyllableOKBtn.setText(QCoreApplication.translate("mainWindow", u"OK", None))
         self.syllableLyric.setText("")
-        self.syllableDottedBtn.setText(QCoreApplication.translate("MainWindow", u".", None))
-        self.sharpBtn.setText(QCoreApplication.translate("MainWindow", u"#", None))
-        self.flatBtn.setText(QCoreApplication.translate("MainWindow", u"b", None))
-        self.syllableDur16Btn.setText(QCoreApplication.translate("MainWindow", u"1/16", None))
-        self.syllableDur8Btn.setText(QCoreApplication.translate("MainWindow", u"1/8", None))
-        self.syllableDur4Btn.setText(QCoreApplication.translate("MainWindow", u"1/4", None))
-        self.syllableDur2Btn.setText(QCoreApplication.translate("MainWindow", u"1/2", None))
-        self.syllableDur1Btn.setText(QCoreApplication.translate("MainWindow", u"1/1", None))
-        self.octave3Btn.setText(QCoreApplication.translate("MainWindow", u"3", None))
-        self.octave4Btn.setText(QCoreApplication.translate("MainWindow", u"4", None))
-        self.octave5Btn.setText(QCoreApplication.translate("MainWindow", u"5", None))
-        self.octave6Btn.setText(QCoreApplication.translate("MainWindow", u"6", None))
-        self.CBtn.setText(QCoreApplication.translate("MainWindow", u"C", None))
-        self.DBtn.setText(QCoreApplication.translate("MainWindow", u"D", None))
-        self.EBtn.setText(QCoreApplication.translate("MainWindow", u"E", None))
-        self.FBtn.setText(QCoreApplication.translate("MainWindow", u"F", None))
-        self.GBtn.setText(QCoreApplication.translate("MainWindow", u"G", None))
-        self.ABtn.setText(QCoreApplication.translate("MainWindow", u"A", None))
-        self.BBtn.setText(QCoreApplication.translate("MainWindow", u"B", None))
+        self.syllableDottedBtn.setText(QCoreApplication.translate("mainWindow", u".", None))
+        self.sharpBtn.setText(QCoreApplication.translate("mainWindow", u"#", None))
+        self.flatBtn.setText(QCoreApplication.translate("mainWindow", u"b", None))
+        self.syllableDur16Btn.setText(QCoreApplication.translate("mainWindow", u"1/16", None))
+        self.syllableDur8Btn.setText(QCoreApplication.translate("mainWindow", u"1/8", None))
+        self.syllableDur4Btn.setText(QCoreApplication.translate("mainWindow", u"1/4", None))
+        self.syllableDur2Btn.setText(QCoreApplication.translate("mainWindow", u"1/2", None))
+        self.syllableDur1Btn.setText(QCoreApplication.translate("mainWindow", u"1/1", None))
+        self.octave3Btn.setText(QCoreApplication.translate("mainWindow", u"3", None))
+        self.octave4Btn.setText(QCoreApplication.translate("mainWindow", u"4", None))
+        self.octave5Btn.setText(QCoreApplication.translate("mainWindow", u"5", None))
+        self.octave6Btn.setText(QCoreApplication.translate("mainWindow", u"6", None))
+        self.CBtn.setText(QCoreApplication.translate("mainWindow", u"C", None))
+        self.DBtn.setText(QCoreApplication.translate("mainWindow", u"D", None))
+        self.EBtn.setText(QCoreApplication.translate("mainWindow", u"E", None))
+        self.FBtn.setText(QCoreApplication.translate("mainWindow", u"F", None))
+        self.GBtn.setText(QCoreApplication.translate("mainWindow", u"G", None))
+        self.ABtn.setText(QCoreApplication.translate("mainWindow", u"A", None))
+        self.BBtn.setText(QCoreApplication.translate("mainWindow", u"B", None))
         self.syllableDuration.setText("")
-        self.syllDurationLabel.setText(QCoreApplication.translate("MainWindow", u" Duration", None))
-        self.addSyllableNoteBtn.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.syllDurationLabel.setText(QCoreApplication.translate("mainWindow", u" Duration", None))
+        self.addSyllableNoteBtn.setText(QCoreApplication.translate("mainWindow", u"+", None))
         self.syllablePitch.setText("")
-        self.pitchLabel.setText(QCoreApplication.translate("MainWindow", u" Pitch", None))
-        self.addSyllableLyricBtn.setText(QCoreApplication.translate("MainWindow", u"+", None))
-        self.lyricLabel.setText(QCoreApplication.translate("MainWindow", u"Lyric", None))
-        self.newRestBtn.setText(QCoreApplication.translate("MainWindow", u"Rest", None))
-        self.newRestOKBtn.setText(QCoreApplication.translate("MainWindow", u"OK", None))
+        self.pitchLabel.setText(QCoreApplication.translate("mainWindow", u" Pitch", None))
+        self.addSyllableLyricBtn.setText(QCoreApplication.translate("mainWindow", u"+", None))
+        self.lyricLabel.setText(QCoreApplication.translate("mainWindow", u"Lyric", None))
+        self.newRestBtn.setText(QCoreApplication.translate("mainWindow", u"Rest  ", None))
+        self.newRestOKBtn.setText(QCoreApplication.translate("mainWindow", u"OK", None))
         self.restDuration.setText("")
-        self.addRestDurationBtn.setText(QCoreApplication.translate("MainWindow", u"+", None))
-        self.restDurationLabel.setText(QCoreApplication.translate("MainWindow", u" Duration", None))
-        self.restDur1Btn.setText(QCoreApplication.translate("MainWindow", u"1/1", None))
-        self.restDur2Btn.setText(QCoreApplication.translate("MainWindow", u"1/2", None))
-        self.restDur4Btn.setText(QCoreApplication.translate("MainWindow", u"1/4", None))
-        self.restDur8Btn.setText(QCoreApplication.translate("MainWindow", u"1/8", None))
-        self.restDur16Btn.setText(QCoreApplication.translate("MainWindow", u"1/16", None))
-        self.restDottedBtn.setText(QCoreApplication.translate("MainWindow", u".", None))
-        self.musicSheetBtn.setText(QCoreApplication.translate("MainWindow", u"MusicSheet", None))
-        self.XMLBtn.setText(QCoreApplication.translate("MainWindow", u"XML", None))
-        self.saveFileBtn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
-        self.overwriteBtn.setText(QCoreApplication.translate("MainWindow", u"Overwrite", None))
-        self.saveXMLBtn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
-        self.cancelXMLBtn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
-        self.deleteNodeBtn.setText(QCoreApplication.translate("MainWindow", u"\u2014", None))
-        self.editNodeBtn.setText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.addRestDurationBtn.setText(QCoreApplication.translate("mainWindow", u"+", None))
+        self.restDurationLabel.setText(QCoreApplication.translate("mainWindow", u" Duration", None))
+        self.restDur1Btn.setText(QCoreApplication.translate("mainWindow", u"1/1", None))
+        self.restDur2Btn.setText(QCoreApplication.translate("mainWindow", u"1/2", None))
+        self.restDur4Btn.setText(QCoreApplication.translate("mainWindow", u"1/4", None))
+        self.restDur8Btn.setText(QCoreApplication.translate("mainWindow", u"1/8", None))
+        self.restDur16Btn.setText(QCoreApplication.translate("mainWindow", u"1/16", None))
+        self.restDottedBtn.setText(QCoreApplication.translate("mainWindow", u".", None))
+        self.musicSheetBtn.setText(QCoreApplication.translate("mainWindow", u"MusicSheet", None))
+        self.XMLBtn.setText(QCoreApplication.translate("mainWindow", u"XML", None))
+        self.saveFileBtn.setText(QCoreApplication.translate("mainWindow", u"Save", None))
+        self.overwriteBtn.setText(QCoreApplication.translate("mainWindow", u"Overwrite", None))
+        self.saveXMLBtn.setText(QCoreApplication.translate("mainWindow", u"Save", None))
+        self.cancelXMLBtn.setText(QCoreApplication.translate("mainWindow", u"Cancel", None))
+        self.deleteNodeBtn.setText(QCoreApplication.translate("mainWindow", u"\u2014", None))
+        self.editNodeBtn.setText(QCoreApplication.translate("mainWindow", u"...", None))
     # retranslateUi
+

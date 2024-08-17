@@ -28,6 +28,8 @@ class Workspace:
     def __init__(self, name, base_directory):
         self._name = name
         self._base_directory = base_directory
+        if not os.path.exists(self._base_directory):
+            os.makedirs(self._base_directory)
         self._documents = []
 
     @property
@@ -109,7 +111,7 @@ class XMLDoc:
     """
 
     def __init__(self, filename, path, title='', key='', time_signature=''):
-        self.filename = filename
+        self._filename = filename
         self.path = path
         self.title = title
         self.key = key
@@ -119,7 +121,7 @@ class XMLDoc:
 
     @staticmethod
     def filename_validation(filename_to_check, 
-                            pattern=r'(?=^[a-zA-Z]\w+)(\w+){1,255}(\.xml)?$', 
+                            pattern=r'^([a-zA-Z]\w{0,254})(\.xml)?$', 
                             extension='.xml', check=False):
         """a static method to validate filename with regex pattern and file extension
         

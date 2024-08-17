@@ -429,6 +429,7 @@ class StandardItem(QStandardItem):
         self.setFont(fnt)
         self.setForeground(color)
         self.setEditable(True)
+        self.setFont(QFont("Yu Mincho Demibold", 8.5))
         self.obj = obj
         self.setText(txt)
         self.setEditable(set_editable)
@@ -484,11 +485,14 @@ class WorkspacePanelWindow(QtWidgets.QWidget, Ui_WorkspacePanelWindow):
         self._enable_doc_creation(enabled=False)
 
         self.openBtn.clicked.connect(self._open_file_dialog)
+
+        self.openWorkspaceBtn.clicked.connect(self._open_workspace_dialog)
         self.createWorkspaceBtn.clicked.connect(self._open_directory_dialog)
         self.workspaceOKBtn.clicked.connect(self._confirm_worspace_creation)
 
         self.createXMLDocBtn.clicked.connect(self._create_xml_doc)
         self.docOKBtn.clicked.connect(self._confirm_doc_creation)
+
 
 
     def _enable_doc_creation(self, enabled=True):
@@ -498,12 +502,23 @@ class WorkspacePanelWindow(QtWidgets.QWidget, Ui_WorkspacePanelWindow):
         self.createXMLDocBtn.setEnabled(enabled)
         self.docOKBtn.setEnabled(enabled)
 
-
     def _open_file_dialog(self):
-        self._path, _ = QtWidgets.QFileDialog.getOpenFileName(
-            self, 'Open File', '', 'All Files (*);;All Files(*)')
-        if self._path:
-            print(self._path)
+        f_path, _ = QtWidgets.QFileDialog.getOpenFileName(
+                                            self, 'Open File', '', 
+                                            'All Files (*);; XML Files (*.xml)')
+        if f_path:
+            name = os.path.basename(f_path)
+            self.doc = XMLDoc(filename=name, path=f_path)
+            self._open_xml_editor_window()
+
+    def _open_workspace_dialog(self):
+        self._directory = QtWidgets.QFileDialog.getExistingDirectory(
+                                        self, 'Select Workspace Directory')
+        if self._directory:
+            self._name, _ = os.path.splitext(os.path.basename(self._directory))
+            if self._name:
+                self.workspaceNameInput.setText(self._name)
+            self._valid_dir = True
 
     def _open_directory_dialog(self):
         self._name = self.workspaceNameInput.text()
@@ -517,31 +532,37 @@ class WorkspacePanelWindow(QtWidgets.QWidget, Ui_WorkspacePanelWindow):
         if self._valid_dir:
             self.workspace = Workspace(self._name, self._directory)
             self.workspaceNameInput.setReadOnly(True)
+            self.workspaceNameInput.insert('*')           
             self._enable_doc_creation()
 
     def _create_xml_doc(self):
         title, key, time_s = [inp.text() for inp in 
                             (self.docTitleInput, self.docKeyInput, self.docTimeInput)]
         f_path, _ = QtWidgets.QFileDialog.getSaveFileName(self, 'Save File', 
-                                                     self.workspace.base_directory,
+                                                        f'{self.workspace.base_directory}/{title}',
                                                      'All Files (*);; XML Files (*.xml)') 
         name = os.path.basename(f_path)
-        self.doc = XMLDoc(filename=name, path=f_path, title=title, key=key, time_signature=time_s)
+        self.doc = XMLDoc(filename=name, path=self.workspace.base_directory, title=title, key=key, time_signature=time_s)
 
 
     def _confirm_doc_creation(self):
         self.workspace.add_documents(self.doc)
-        print(self.workspace.documents)
+        try:
+            self.doc.create()
+            self._open_xml_editor_window()
+        except Exception:
+            pass
 
+    def _open_xml_editor_window(self):
+            self.main_window = MainWindow()
+            self.main_window.doc = self.doc
+            self.main_window.show()
+            self.close()
 
 
 
 
     
-
-
-
-
 
 if __name__ == '__main__':
     import ctypes
