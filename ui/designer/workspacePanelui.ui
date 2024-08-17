@@ -194,7 +194,8 @@ border: 0.5px solid rgb(70, 70, 70);
 background:rgba(186, 223, 225, 135);
 border-radius: 10px;
 padding: 2px;
-color: rgb(242, 255, 245)</string>
+color: rgb(242, 255, 245);
+selection-background-color: rgb(60, 77, 95);</string>
          </property>
          <property name="text">
           <string/>
@@ -213,7 +214,8 @@ border: 0.5px solid rgb(70, 70, 70);
 background:rgba(186, 223, 225, 100);
 border-radius: 10px;
 padding: 2px;
-color: rgb(242, 255, 245);</string>
+color: rgb(242, 255, 245);
+selection-background-color: rgb(60, 77, 95);</string>
          </property>
          <property name="text">
           <string/>
@@ -232,7 +234,8 @@ border: 0.5px solid rgb(70, 70, 70);
 background:rgba(186, 223, 225, 100);
 border-radius: 10px;
 padding: 2px;
-color: rgb(242, 255, 245)</string>
+color: rgb(242, 255, 245);
+selection-background-color: rgb(60, 77, 95);</string>
          </property>
          <property name="text">
           <string/>
@@ -262,7 +265,8 @@ border: 0.5px solid rgb(70, 70, 70);
 background:rgba(186, 223, 225, 135);
 border-radius: 10px;
 padding: 2px;
-color: rgb(242, 255, 245)</string>
+color: rgb(242, 255, 245);
+selection-background-color: rgb(60, 77, 95);</string>
     </property>
     <property name="text">
      <string/>

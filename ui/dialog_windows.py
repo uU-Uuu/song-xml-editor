@@ -5,26 +5,55 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QRadialGradient)
 from PySide2.QtWidgets import *
 
+# -*- coding: utf-8 -*-
+
+################################################################################
+## Form generated from reading UI file 'XMLWindowHwfibn.ui'
+##
+## Created by: Qt User Interface Compiler version 5.14.1
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
+
+from PySide2.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
+    QRect, QSize, QUrl, Qt)
+from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
+    QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
+    QRadialGradient)
+from PySide2.QtWidgets import *
 
 
 class Ui_XMLWindow(object):
     def setupUi(self, XMLWindow):
         if XMLWindow.objectName():
             XMLWindow.setObjectName(u"XMLWindow")
-        XMLWindow.resize(450, 824)
+        XMLWindow.resize(495, 824)
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(XMLWindow.sizePolicy().hasHeightForWidth())
         XMLWindow.setSizePolicy(sizePolicy)
         XMLWindow.setMaximumSize(QSize(700, 900))
+        XMLWindow.setStyleSheet(u"background-color: rgb(25, 37, 48)")
         self.verticalLayout = QVBoxLayout(XMLWindow)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.xmlEdit = QPlainTextEdit(XMLWindow)
         self.xmlEdit.setObjectName(u"xmlEdit")
+        self.xmlEdit.setEnabled(True)
         sizePolicy.setHeightForWidth(self.xmlEdit.sizePolicy().hasHeightForWidth())
         self.xmlEdit.setSizePolicy(sizePolicy)
         self.xmlEdit.setMaximumSize(QSize(700, 800))
+        self.xmlEdit.setStyleSheet(u"font: 63 9pt \"Yu Mincho Demibold\";\n"
+"border-radius: 10px;\n"
+"color: rgba(162, 198, 208, 200);\n"
+"margin: 10px;\n"
+"border: 1px solid  rgba(88, 109, 117, 200);\n"
+"padding: 15px 10px;\n"
+"background-color: rgb(36, 46, 57);\n"
+"selection-background-color: rgb(110, 135, 142);\n"
+"")
+        self.xmlEdit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.xmlEdit.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
         self.verticalLayout.addWidget(self.xmlEdit)
 
@@ -37,27 +66,60 @@ class Ui_XMLWindow(object):
         sizePolicy1.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
         self.frame.setSizePolicy(sizePolicy1)
         self.frame.setMinimumSize(QSize(0, 50))
+        self.frame.setStyleSheet(u"background-color: transparent")
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout = QHBoxLayout(self.frame)
+        self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.XMLInfoLabel = QLabel(self.frame)
+        self.XMLInfoLabel.setObjectName(u"XMLInfoLabel")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.XMLInfoLabel.sizePolicy().hasHeightForWidth())
+        self.XMLInfoLabel.setSizePolicy(sizePolicy2)
+        self.XMLInfoLabel.setMaximumSize(QSize(100, 16777215))
+        self.XMLInfoLabel.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
+"font-size: 14px;\n"
+"color: rgb(110, 135, 142);\n"
+"background-color: transparent")
+        self.XMLInfoLabel.setAlignment(Qt.AlignCenter)
+
+        self.horizontalLayout.addWidget(self.XMLInfoLabel)
+
         self.editXMLFileBtn = QToolButton(self.frame)
-        self.editXMLFileBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.editXMLFileBtn.setObjectName(u"editXMLFileBtn")
         self.editXMLFileBtn.setMinimumSize(QSize(125, 35))
         font = QFont()
-        font.setFamily(u"Yu Mincho")
-        font.setPointSize(9)
+        font.setFamily(u"Yu Mincho Demibold")
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(7)
         self.editXMLFileBtn.setFont(font)
+        self.editXMLFileBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.editXMLFileBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
+"font-size: 16px;\n"
+"border: 0.5px solid rgb(70, 70, 70);\n"
+"background: rgb(110, 135, 142);\n"
+"border-radius: 10px;\n"
+"color: rgb(242, 255, 245)")
 
         self.horizontalLayout.addWidget(self.editXMLFileBtn)
 
         self.saveXMLFIleBtn = QToolButton(self.frame)
         self.saveXMLFIleBtn.setObjectName(u"saveXMLFIleBtn")
         self.saveXMLFIleBtn.setMinimumSize(QSize(125, 35))
-        self.saveXMLFIleBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.saveXMLFIleBtn.setFont(font)
+        self.saveXMLFIleBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.saveXMLFIleBtn.setAutoFillBackground(False)
+        self.saveXMLFIleBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
+"font-size: 16px;\n"
+"border: 0.5px solid rgb(70, 70, 70);\n"
+"background: rgb(110, 135, 142);\n"
+"border-radius: 10px;\n"
+"color: rgb(242, 255, 245)")
 
         self.horizontalLayout.addWidget(self.saveXMLFIleBtn)
 
@@ -71,10 +133,13 @@ class Ui_XMLWindow(object):
     # setupUi
 
     def retranslateUi(self, XMLWindow):
-        XMLWindow.setWindowTitle(QCoreApplication.translate("XMLWindow", u"XML Editor", None))
+        XMLWindow.setWindowTitle(QCoreApplication.translate("XMLWindow", u"XML Preview", None))
+        self.xmlEdit.setPlainText("")
+        self.XMLInfoLabel.setText(QCoreApplication.translate("XMLWindow", u"Read Mode", None))
         self.editXMLFileBtn.setText(QCoreApplication.translate("XMLWindow", u"Edit", None))
         self.saveXMLFIleBtn.setText(QCoreApplication.translate("XMLWindow", u"Save", None))
     # retranslateUi
+
 
 
 

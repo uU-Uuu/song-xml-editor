@@ -66,7 +66,6 @@ def validate_xml(tag_name, xml_file='', xml_str=''):
                 TagNames.by_tag(tag_name)
             elif isinstance(tag_name, TagNames):
                 schema = SCHEMAS.get(tag_name)
-                print(schema)
                 if not schema:
                     raise InvalidXMLInputProvided(f'Invalid tag_name: {tag_name}')
 

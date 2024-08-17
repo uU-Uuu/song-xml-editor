@@ -109,7 +109,8 @@ class Ui_WorkspacePanelWindow(object):
 "background:rgba(186, 223, 225, 135);\n"
 "border-radius: 10px;\n"
 "padding: 2px;\n"
-"color: rgb(242, 255, 245)")
+"color: rgb(242, 255, 245);\n"
+"selection-background-color: rgb(60, 77, 95);\n")
         self.docTitleInput.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_2.addWidget(self.docTitleInput)
@@ -122,7 +123,8 @@ class Ui_WorkspacePanelWindow(object):
 "background:rgba(186, 223, 225, 100);\n"
 "border-radius: 10px;\n"
 "padding: 2px;\n"
-"color: rgb(242, 255, 245);")
+"color: rgb(242, 255, 245);\n"
+"selection-background-color: rgb(60, 77, 95);\n")
         self.docKeyInput.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_2.addWidget(self.docKeyInput)
@@ -135,7 +137,8 @@ class Ui_WorkspacePanelWindow(object):
 "background:rgba(186, 223, 225, 100);\n"
 "border-radius: 10px;\n"
 "padding: 2px;\n"
-"color: rgb(242, 255, 245)")
+"color: rgb(242, 255, 245);\n"
+"selection-background-color: rgb(60, 77, 95);\n")
         self.docTimeInput.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_2.addWidget(self.docTimeInput)
@@ -149,7 +152,8 @@ class Ui_WorkspacePanelWindow(object):
 "background:rgba(186, 223, 225, 135);\n"
 "border-radius: 10px;\n"
 "padding: 2px;\n"
-"color: rgb(242, 255, 245)")
+"color: rgb(242, 255, 245);\n"
+"selection-background-color: rgb(60, 77, 95);\n")
         self.workspaceNameInput.setAlignment(Qt.AlignCenter)
         self.workspaceNameLabel = QLabel(self.frame)
         self.workspaceNameLabel.setObjectName(u"workspaceNameLabel")

@@ -266,7 +266,18 @@ class XMLDoc:
         except IOError as _:
                 print(f'Error when trying to update the file\n\t {_}')
 
-    
+    def save_edited_file(self, edited_data):
+        edited_path = f'{self._path.split(".xml")[0]}_edited.xml'
+        with open(f'{edited_path}', 'w') as file:
+            file.write(edited_data)
+        return edited_data
+
+    def save_file(self, data):
+        with open(self._path, 'w') as file:
+            file.write(data)
+        return self._path
+
+
     def delete_file(self):
         """delete the file from path if exists"""
         if os.path.exists(self.path):

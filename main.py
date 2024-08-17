@@ -2,7 +2,7 @@ from traceback import print_tb
 from PySide2 import QtWidgets
 from PySide2.QtCore import Qt
 from PySide2.QtGui import (QStandardItemModel, QStandardItem, 
-                           QFont, QColor, QCursor, QIcon)
+                           QFont, QColor, QCursor, QIcon, QPalette)
 from functools import partial
 from copy import deepcopy
 import os
@@ -403,6 +403,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
                     + closing
         self.xml_window = XMLWindow()
         self.xml_window.show()
+        self.xml_window.doc = self.doc
         self.xml_window.xmlEdit.setPlainText(XMLDoc.delete_empty_lines(xml_str))
 
     def _handle_loaded_file_xml(self, file_xml):
@@ -469,7 +470,7 @@ class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
     def __init__(self):
         super(XMLWindow, self).__init__()
         self.setupUi(self)
-
+        
         self.xmlEdit.setReadOnly(True)
 
         self.editXMLFileBtn.clicked.connect(self.edit_xml_file)
@@ -477,11 +478,29 @@ class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
     
     def edit_xml_file(self):
         self.xmlEdit.setReadOnly(False)
+        self.XMLInfoLabel.setText('Edit mode')
 
     def save_xml_file(self):
-        self.xmlEdit.setReadOnly(True)
-        return self.xmlEdit.toPlainText()
-    
+        data = self.xmlEdit.toPlainText()
+        try:
+            validate_xml(tag_name=TagNames.doc, xml_str=data)
+        except Exception:
+            self.XMLInfoLabel.setText('* Invalid XML')
+        else:
+            reply = QtWidgets.QMessageBox.question(self, 'Save',
+                                                'Store edited version separately?',
+                                                QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+                                                QtWidgets.QMessageBox.No)
+            save_separately = reply == QtWidgets.QMessageBox.Yes
+            save_method = [self.doc.save_file, self.doc.save_edited_file][save_separately]
+                
+            try:
+                saved_path = save_method(data)
+            except:
+                self.XMLInfoLabel.setText('* Could not save the file')
+            else:
+                self.XMLInfoLabel.setText(f'Saved')
+   
 
 class LilyPondWindow(QtWidgets.QDialog, Ui_LilyPondWindow):
     def __init__(self):
