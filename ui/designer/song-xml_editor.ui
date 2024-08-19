@@ -1480,6 +1480,29 @@ border-radius: 10px</string>
      <string>...</string>
     </property>
    </widget>
+   <widget class="QToolButton" name="backToPanelBtn">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 63 8pt &quot;Yu Mincho Demibold&quot;;
+font-size: 16px;
+border: 0.5px solid rgb(70, 70, 70);
+background: rgba(206, 227, 232, 120);
+border-radius: 10px</string>
+    </property>
+    <property name="text">
+     <string>&lt;</string>
+    </property>
+   </widget>
    <zorder>actionBtnsFrame</zorder>
    <zorder>restFrame</zorder>
    <zorder>syllableFrame</zorder>
@@ -1493,6 +1516,7 @@ border-radius: 10px</string>
    <zorder>cancelXMLBtn</zorder>
    <zorder>deleteNodeBtn</zorder>
    <zorder>editNodeBtn</zorder>
+   <zorder>backToPanelBtn</zorder>
   </widget>
  </widget>
  <resources>

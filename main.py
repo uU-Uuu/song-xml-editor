@@ -161,12 +161,28 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
     def edit_node_btn_action(self):
         self.editNodeBtn.clicked.connect(self._edit_selected_node)
 
+    def back_to_panel_btn_action(self):
+        self.backToPanelBtn.clicked.connect(self._back_to_panel)
+
+    def _back_to_panel(self):
+        self.msg_box = MessageBox()
+        self.msg_box.setWindowTitle('Exit')
+        self.msg_box.setStandardButtons( QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        self.msg_box.setDefaultButton(QtWidgets.QMessageBox.Yes)
+        self.msg_box.setText('Save before exit?')
+        reply = self.msg_box.exec_()
+        save_before_exit = reply == QtWidgets.QMessageBox.Yes
+        
+        self.panel = WorkspacePanelWindow()
+        self.panel.show()
+        self.close()
+
     def _cancel_xml(self):
         self._preview_tag['obj'] = None
         self.previewInput.clear()
         self.set_frames_enabled(self._inputFrames)
-
-
+        self.overwriteBtn.setEnabled(True)
+    
     def _overwrite_xml(self, tag_name=''):
         data = self.previewInput.toPlainText()
         try:
@@ -197,6 +213,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
         except Exception as e:
             pass
+        self.overwriteBtn.setEnabled(False)
         self.set_frames_enabled(self._inputFrames)
 
 
@@ -233,6 +250,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         for inp in frame.findChildren(QtWidgets.QLineEdit):
             inp.clear()
         self.set_frames_enabled(self._inputFrames)
+        self.overwriteBtn.setEnabled(True)
 
     def _preview_input(self, frame, btn_name):
         self._preview_tag['obj'] = self._create_tag_instance(frame, btn_name)
@@ -299,6 +317,8 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
             input_el.setText(curr_value[:-condition] + reference[btn_name] + mods)
         else:
             input_el.insert(reference[btn_name])
+        self.overwriteBtn.setEnabled(True)
+
 
 
     def set_up_tree(self):
@@ -350,6 +370,8 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.treeView.expandAll()
         self._cancel_xml()
+        self.overwriteBtn.setEnabled(True)
+
 
     
 
@@ -388,6 +410,8 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
             tag_item.obj = value_item.obj = edited_node[0].obj
             value_item.edit_value()
         self._edit_mode = False
+        self.overwriteBtn.setEnabled(True)
+
 
     def _get_xml_doc(self):
         indent='    '
@@ -441,10 +465,12 @@ class MainWindow(MainWindowGen):
         self.music_sheet_btn_action()
         self.delete_node_btn_action()
         self.edit_node_btn_action()
+        self.back_to_panel_btn_action()
         
     def closeEvent(self, event):
-        QtWidgets.QApplication.closeAllWindows()
-        event.accept()
+        for window in QtWidgets.QApplication.topLevelWidgets():
+            if not isinstance(window, WorkspacePanelWindow):
+                window.close()  
 
 
 class StandardItem(QStandardItem):
@@ -495,6 +521,10 @@ class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
         else:
             if self.edited:       
                 self.msg_box = MessageBox()
+                self.msg_box.setWindowTitle('Saving File')
+                self.msg_box.setStandardButtons( QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+                self.msg_box.setDefaultButton(QtWidgets.QMessageBox.No)
+                self.msg_box.setText('Store edited version separately?')
                 reply = self.msg_box.exec_()
                 save_separately = reply == QtWidgets.QMessageBox.Yes
             else:
@@ -512,11 +542,11 @@ class MessageBox(QtWidgets.QMessageBox, Ui_MessageBoxStyled):
     def __init__(self):
         super(MessageBox, self).__init__()
         self.setupUi(self)
-        self.setIcon(QtWidgets.QMessageBox.Question)
-        self.setWindowTitle('Saving File')
-        self.setStandardButtons( QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-        self.setDefaultButton(QtWidgets.QMessageBox.No)
-        self.setText('Store edited version separately?')
+        # self.setIcon(QtWidgets.QMessageBox.Question)
+        # self.setWindowTitle('Saving File')
+        # self.setStandardButtons( QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        # self.setDefaultButton(QtWidgets.QMessageBox.No)
+        # self.setText('Store edited version separately?')
        
                            
 

@@ -594,6 +594,15 @@ class Ui_MainWindow(object):
 "border: 0.5px solid rgb(70, 70, 70);\n"
 "background: rgba(206, 227, 232, 120);\n"
 "border-radius: 10px")
+        self.backToPanelBtn = QToolButton(self.centralwidget)
+        self.backToPanelBtn.setObjectName(u"backToPanelBtn")
+        self.backToPanelBtn.setGeometry(QRect(30, 10, 31, 31))
+        self.backToPanelBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.backToPanelBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
+"font-size: 16px;\n"
+"border: 0.5px solid rgb(70, 70, 70);\n"
+"background: rgba(206, 227, 232, 120);\n"
+"border-radius: 10px")
         mainWindow.setCentralWidget(self.centralwidget)
         self.actionBtnsFrame.raise_()
         self.restFrame.raise_()
@@ -608,6 +617,7 @@ class Ui_MainWindow(object):
         self.cancelXMLBtn.raise_()
         self.deleteNodeBtn.raise_()
         self.editNodeBtn.raise_()
+        self.backToPanelBtn.raise_()
 
         self.retranslateUi(mainWindow)
 
@@ -673,5 +683,6 @@ class Ui_MainWindow(object):
         self.cancelXMLBtn.setText(QCoreApplication.translate("mainWindow", u"Cancel", None))
         self.deleteNodeBtn.setText(QCoreApplication.translate("mainWindow", u"\u2014", None))
         self.editNodeBtn.setText(QCoreApplication.translate("mainWindow", u"...", None))
+        self.backToPanelBtn.setText(QCoreApplication.translate("MainWindow", u"<", None))
     # retranslateUi
 
