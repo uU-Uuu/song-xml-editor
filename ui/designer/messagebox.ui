@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MessageBoxStyled</class>
+ <widget class="QDialog" name="MessageBoxStyled">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>499</width>
+    <height>224</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">font: 63 9pt &quot;Yu Mincho Demibold&quot;;
+border-radius: 10px;
+margin: 10px;
+border: 1px solid  rgba(88, 109, 117, 200);
+padding: 15px 10px;
+background-color: rgb(36, 46, 57);
+selection-background-color: rgb(110, 135, 142);
+color: rgb(130, 160, 168);
+</string>
+  </property>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

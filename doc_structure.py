@@ -1,5 +1,6 @@
 import os
 import re
+from wsgiref import validate
 
 
 from utils import InvalidFilename
@@ -371,4 +372,3 @@ class XMLDoc:
 # doc1.create()
 # doc1.melody = mel
 # doc1.update_file()
-

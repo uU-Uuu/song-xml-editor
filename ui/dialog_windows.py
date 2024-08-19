@@ -166,3 +166,40 @@ class Ui_LilyPondWindow(object):
         LilyPondWindow.setWindowTitle(QCoreApplication.translate("LilyPondWindow", u"Music Sheet Preview", None))
     # retranslateUi
 
+
+class Ui_MessageBoxStyled(object):
+    def setupUi(self, MessageBoxStyled):
+        if MessageBoxStyled.objectName():
+            MessageBoxStyled.setObjectName(u"MessageBoxStyled")
+        MessageBoxStyled.resize(499, 224)
+        MessageBoxStyled.setStyleSheet("""
+                                       
+             QMessageBox {
+                font: 63 9pt Yu Mincho Demibold;
+                background-color: rgb(36, 46, 57);
+            }
+            QLabel {
+                font: 63 9pt Yu Mincho Demibold;
+                color: rgb(130, 160, 168);      
+            }
+            QPushButton {
+                font: 63 9pt Yu Mincho Demibold;
+                border: 0.5px solid rgb(70, 70, 70);
+                background: rgb(110, 135, 142);
+                color: rgb(242, 255, 245);
+                width: 50px;
+                height: 15px;
+                padding: 10px;
+                border-radius: 10px;
+            }
+        """)
+
+        self.retranslateUi(MessageBoxStyled)
+
+        QMetaObject.connectSlotsByName(MessageBoxStyled)
+    # setupUi
+
+    def retranslateUi(self, MessageBoxStyled):
+        MessageBoxStyled.setWindowTitle(QCoreApplication.translate("MessageBoxStyled", u"Dialog", None))
+    # retranslateUi
+

@@ -12,7 +12,7 @@
             <xs:element name="melody">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="section" maxOccurs="unbounded" minOccurs="1">
+                        <xs:element name="section" maxOccurs="unbounded" minOccurs="0">
                             <xs:complexType>
                                 <xs:sequence>
                                     <xs:element name="melodic_phrase" maxOccurs="unbounded" minOccurs="0">

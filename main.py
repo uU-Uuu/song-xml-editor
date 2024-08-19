@@ -8,7 +8,7 @@ from copy import deepcopy
 import os
 
 from ui.main_window import Ui_MainWindow
-from ui.dialog_windows import Ui_XMLWindow, Ui_LilyPondWindow
+from ui.dialog_windows import Ui_XMLWindow, Ui_LilyPondWindow, Ui_MessageBoxStyled
 from ui.splash_window import Ui_SplashWindow
 from ui.home_panel_window import Ui_WorkspacePanelWindow
 
@@ -423,7 +423,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
         
 class MainWindow(MainWindowGen):
-     def __init__(self):
+    def __init__(self):
         super(MainWindow, self).__init__()
 
         self.previewInput.setReadOnly(True)
@@ -441,6 +441,10 @@ class MainWindow(MainWindowGen):
         self.music_sheet_btn_action()
         self.delete_node_btn_action()
         self.edit_node_btn_action()
+        
+    def closeEvent(self, event):
+        QtWidgets.QApplication.closeAllWindows()
+        event.accept()
 
 
 class StandardItem(QStandardItem):
@@ -472,6 +476,7 @@ class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
         self.setupUi(self)
         
         self.xmlEdit.setReadOnly(True)
+        self.edited = False
 
         self.editXMLFileBtn.clicked.connect(self.edit_xml_file)
         self.saveXMLFIleBtn.clicked.connect(self.save_xml_file)
@@ -479,6 +484,7 @@ class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
     def edit_xml_file(self):
         self.xmlEdit.setReadOnly(False)
         self.XMLInfoLabel.setText('Edit mode')
+        self.edited = True
 
     def save_xml_file(self):
         data = self.xmlEdit.toPlainText()
@@ -487,20 +493,32 @@ class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
         except Exception:
             self.XMLInfoLabel.setText('* Invalid XML')
         else:
-            reply = QtWidgets.QMessageBox.question(self, 'Save',
-                                                'Store edited version separately?',
-                                                QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
-                                                QtWidgets.QMessageBox.No)
-            save_separately = reply == QtWidgets.QMessageBox.Yes
+            if self.edited:       
+                self.msg_box = MessageBox()
+                reply = self.msg_box.exec_()
+                save_separately = reply == QtWidgets.QMessageBox.Yes
+            else:
+                save_separately = False
             save_method = [self.doc.save_file, self.doc.save_edited_file][save_separately]
                 
             try:
-                saved_path = save_method(data)
+                save_method(data)
             except:
                 self.XMLInfoLabel.setText('* Could not save the file')
             else:
                 self.XMLInfoLabel.setText(f'Saved')
    
+class MessageBox(QtWidgets.QMessageBox, Ui_MessageBoxStyled):
+    def __init__(self):
+        super(MessageBox, self).__init__()
+        self.setupUi(self)
+        self.setIcon(QtWidgets.QMessageBox.Question)
+        self.setWindowTitle('Saving File')
+        self.setStandardButtons( QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        self.setDefaultButton(QtWidgets.QMessageBox.No)
+        self.setText('Store edited version separately?')
+       
+                           
 
 class LilyPondWindow(QtWidgets.QDialog, Ui_LilyPondWindow):
     def __init__(self):
