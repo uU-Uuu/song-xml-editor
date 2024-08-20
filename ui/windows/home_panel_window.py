@@ -37,7 +37,7 @@ class WorkspacePanelWindow(QtWidgets.QWidget, Ui_WorkspacePanelWindow):
 
     def _open_file_dialog(self):
         f_path, _ = QtWidgets.QFileDialog.getOpenFileName(
-                                            self, 'Open File', '../../', 
+                                            self, 'Open File', '', 
                                             'XML Files (*.xml);; XML Files (*.xml)')
         if f_path:
             name = os.path.basename(f_path)

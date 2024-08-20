@@ -1,8 +1,5 @@
-from PySide2.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
-    QRect, QSize, QUrl, Qt)
-from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
-    QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
-    QRadialGradient)
+from PySide2.QtCore import (QCoreApplication, QMetaObject, QRect, Qt)
+from PySide2.QtGui import (QCursor, QFont)
 from PySide2.QtWidgets import *
 
 
@@ -22,7 +19,7 @@ class Ui_SplashWindow(object):
         self.frame.setObjectName(u"frame")
         self.frame.setGeometry(QRect(-10, -10, 660, 380))
         self.frame.setCursor(QCursor(Qt.WaitCursor))
-        self.frame.setStyleSheet(u"background-image: url('../img/noah-silliman-_k9dCeh5Ca0-unsplash.jpg');\n"
+        self.frame.setStyleSheet(u"background-image: url('ui/img/noah-silliman-_k9dCeh5Ca0-unsplash.jpg');\n"
 "background-repeat: no-repeat;\n"
 "background-position: center;")
         self.frame.setFrameShape(QFrame.StyledPanel)

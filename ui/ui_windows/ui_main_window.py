@@ -8,11 +8,8 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide2.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
-    QRect, QSize, QUrl, Qt)
-from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
-    QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
-    QRadialGradient)
+from PySide2.QtCore import QCoreApplication, QMetaObject, QRect, QSize, Qt
+from PySide2.QtGui import QCursor, QFont
 from PySide2.QtWidgets import *
 
 class Ui_MainWindow(object):
@@ -30,7 +27,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QWidget(mainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"background-color: rgb(33, 38, 42);\n"
-"background-image: url('../img/b-noah-silliman-_k9dCeh5Ca0-unsplash.jpg');\n"
+"background-image: url('ui/img/b-noah-silliman-_k9dCeh5Ca0-unsplash.jpg');\n"
 "")
         self.previewInput = QPlainTextEdit(self.centralwidget)
         self.previewInput.setObjectName(u"previewInput")

@@ -33,13 +33,13 @@ class TagNames(Enum):
 
 
 SCHEMAS = {
-    TagNames.doc: XMLSchema('../../xml_utils/xml_schemas/doc_schema.xsd'),
-    TagNames.melody: XMLSchema('../../xml_utils/xml_schemas/melody_schema.xsd'),
-    TagNames.section: XMLSchema('../../xml_utils/xml_schemas/section_schema.xsd'),
-    TagNames.melodic_phrase: XMLSchema('../../xml_utils/xml_schemas/melphr_schema.xsd'),
-    TagNames.lexical_phrase: XMLSchema('../../xml_utils/xml_schemas/lexphr_schema.xsd'),
-    TagNames.syllable: XMLSchema('../../xml_utils/xml_schemas/syllable_schema.xsd'),
-    TagNames.rest: XMLSchema('../../xml_utils/xml_schemas/rest_schema.xsd')
+    TagNames.doc: XMLSchema('xml_utils/xml_schemas/doc_schema.xsd'),
+    TagNames.melody: XMLSchema('xml_utils/xml_schemas/melody_schema.xsd'),
+    TagNames.section: XMLSchema('xml_utils/xml_schemas/section_schema.xsd'),
+    TagNames.melodic_phrase: XMLSchema('xml_utils/xml_schemas/melphr_schema.xsd'),
+    TagNames.lexical_phrase: XMLSchema('xml_utils/xml_schemas/lexphr_schema.xsd'),
+    TagNames.syllable: XMLSchema('xml_utils/xml_schemas/syllable_schema.xsd'),
+    TagNames.rest: XMLSchema('xml_utils/xml_schemas/rest_schema.xsd')
 }
 
 
@@ -78,3 +78,22 @@ def validate_xml(tag_name, xml_file='', xml_str=''):
         raise InvalidXMLInputProvided(f'Unexpected error: {e}')
 
 
+def parse_xml_to_obj(xml_file):
+    try:
+        tree = ET.parse(xml_file)            
+        if tree:
+            schema = SCHEMAS[TagNames.doc]
+            schema.validate(tree)
+        
+            root = tree.getroot()
+            melody = root.find('.//melody')
+
+    except ET.ParseError:
+        raise InvalidXMLInputProvided(f'Invalid XML input provided')
+    except XMLSchemaValidationError as e:
+        raise XMLValidationError(f'Invalid XML\n{e}')
+    except Exception as e:
+        raise InvalidXMLInputProvided(f'Unexpected error: {e}')
+    
+
+parse_xml_to_obj('try/tryxml.xml')

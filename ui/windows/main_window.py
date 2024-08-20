@@ -29,7 +29,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         super(MainWindowGen, self).__init__()
         self.setupUi(self)
 
-        self.setWindowIcon(QIcon('..img/logo.png'))
+        self.setWindowIcon(QIcon('ui/img/logo.png'))
 
 
         self._pitchBtns = (
