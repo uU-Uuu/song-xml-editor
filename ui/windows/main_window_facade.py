@@ -20,6 +20,7 @@ class MainWindow(MainWindowGen):
         self.cancel_xml_btn_action()
         self.set_up_tree()
         self.xml_btn_action()
+        self.save_doc_btn_action()
         self.music_sheet_btn_action()
         self.delete_node_btn_action()
         self.edit_node_btn_action()

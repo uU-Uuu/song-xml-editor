@@ -1,7 +1,8 @@
+from symbol import pass_stmt
 from PySide2 import QtWidgets
 from PySide2.QtCore import Qt
 from PySide2.QtGui import (QStandardItemModel, QStandardItem, 
-                           QFont, QColor, QIcon)
+                           QFont, QColor, QIcon, QCursor)
 from functools import partial
 from copy import deepcopy
 
@@ -152,6 +153,9 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
     def music_sheet_btn_action(self):
         self.musicSheetBtn.clicked.connect(self._get_lilypond_img)
 
+    def save_doc_btn_action(self):
+        self.saveFileBtn.clicked.connect(self._save_doc)
+
     def delete_node_btn_action(self):
         self.deleteNodeBtn.clicked.connect(self._delete_selected_node)
 
@@ -164,15 +168,28 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
     def _back_to_panel(self):
         self.msg_box = MessageBox()
         self.msg_box.setWindowTitle('Exit')
-        self.msg_box.setStandardButtons( QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        self.msg_box.setStandardButtons( QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Cancel)
         self.msg_box.setDefaultButton(QtWidgets.QMessageBox.Yes)
         self.msg_box.setText('Save before exit?')
+        for btn in self.msg_box.buttons():
+            btn.setCursor(QCursor(Qt.PointingHandCursor))
         reply = self.msg_box.exec_()
-        save_before_exit = reply == QtWidgets.QMessageBox.Yes
-        
-        self.panel = WorkspacePanelWindow()
-        self.panel.show()
-        self.close()
+        if reply == QtWidgets.QMessageBox.Cancel:
+            return
+        else:
+            if reply == QtWidgets.QMessageBox.Yes:
+                self._save_doc()
+            elif reply == QtWidgets.QMessageBox.No:
+                pass
+            self.panel = WorkspacePanelWindow()
+            self.panel.show()
+            self.close()
+
+    def _save_doc(self):
+        try:
+            self.doc.save_file()
+        except: 
+            pass
 
     def _cancel_xml(self):
         self._preview_tag['obj'] = None

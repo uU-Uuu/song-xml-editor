@@ -1,4 +1,6 @@
 from PySide2 import QtWidgets
+from PySide2.QtCore import Qt
+from PySide2.QtGui import QCursor
 
 from ui.ui_windows.ui_dialog_windows import Ui_XMLWindow, Ui_LilyPondWindow, Ui_MessageBoxStyled
 
@@ -34,6 +36,9 @@ class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
                 self.msg_box.setStandardButtons( QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Cancel)
                 self.msg_box.setDefaultButton(QtWidgets.QMessageBox.Cancel)
                 self.msg_box.setText('Store edited version separately?')
+                for btn in self.msg_box.buttons():
+                    btn.setCursor(QCursor(Qt.PointingHandCursor))
+                
                 reply = self.msg_box.exec_()
                 if reply == QtWidgets.QMessageBox.Cancel:
                     return
