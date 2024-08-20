@@ -1,4 +1,4 @@
-from tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
+from xml_utils.tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
 
 
 PITCHES = {

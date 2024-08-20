@@ -215,7 +215,7 @@ class Ui_WorkspacePanelWindow(object):
         self.frame_4.setObjectName(u"frame_4")
         self.frame_4.setEnabled(True)
         self.frame_4.setGeometry(QRect(0, 0, 261, 471))
-        self.frame_4.setStyleSheet(u"background-image: url(\"./img/s-noah-silliman-_k9dCeh5Ca0-unsplash.jpg\")")
+        self.frame_4.setStyleSheet(u"background-image: url(\"../img/s-noah-silliman-_k9dCeh5Ca0-unsplash.jpg\")")
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.frame_5 = QFrame(self.frame_4)
@@ -227,7 +227,7 @@ class Ui_WorkspacePanelWindow(object):
         self.graphicsView = QGraphicsView(self.frame_5)
         self.graphicsView.setObjectName(u"graphicsView")
         self.graphicsView.setGeometry(QRect(30, 60, 201, 191))
-        self.graphicsView.setStyleSheet(u"background-image: url('./img/s-logo.png');\n"
+        self.graphicsView.setStyleSheet(u"background-image: url('../img/s-logo.png');\n"
 "background-repeat: norepeat;\n"
 "border: 0px solid black;\n"
 "background-color: transparent;")

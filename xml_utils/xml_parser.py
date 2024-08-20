@@ -1,7 +1,6 @@
 from xml.etree import ElementTree as ET
 from xmlschema import XMLSchema, XMLSchemaValidationError
 from enum import Enum
-import json
 
 
 class TagNames(Enum):
@@ -34,13 +33,13 @@ class TagNames(Enum):
 
 
 SCHEMAS = {
-    TagNames.doc: XMLSchema('xml_schemas/doc_schema.xsd'),
-    TagNames.melody: XMLSchema('xml_schemas/melody_schema.xsd'),
-    TagNames.section: XMLSchema('xml_schemas/section_schema.xsd'),
-    TagNames.melodic_phrase: XMLSchema('xml_schemas/melphr_schema.xsd'),
-    TagNames.lexical_phrase: XMLSchema('xml_schemas/lexphr_schema.xsd'),
-    TagNames.syllable: XMLSchema('xml_schemas/syllable_schema.xsd'),
-    TagNames.rest: XMLSchema('xml_schemas/rest_schema.xsd')
+    TagNames.doc: XMLSchema('../../xml_utils/xml_schemas/doc_schema.xsd'),
+    TagNames.melody: XMLSchema('../../xml_utils/xml_schemas/melody_schema.xsd'),
+    TagNames.section: XMLSchema('../../xml_utils/xml_schemas/section_schema.xsd'),
+    TagNames.melodic_phrase: XMLSchema('../../xml_utils/xml_schemas/melphr_schema.xsd'),
+    TagNames.lexical_phrase: XMLSchema('../../xml_utils/xml_schemas/lexphr_schema.xsd'),
+    TagNames.syllable: XMLSchema('../../xml_utils/xml_schemas/syllable_schema.xsd'),
+    TagNames.rest: XMLSchema('../../xml_utils/xml_schemas/rest_schema.xsd')
 }
 
 

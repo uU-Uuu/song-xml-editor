@@ -1,12 +1,3 @@
-from PySide2.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
-    QRect, QSize, QUrl, Qt)
-from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
-    QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
-    QRadialGradient)
-from PySide2.QtWidgets import *
-
-# -*- coding: utf-8 -*-
-
 ################################################################################
 ## Form generated from reading UI file 'XMLWindowHwfibn.ui'
 ##
@@ -15,11 +6,8 @@ from PySide2.QtWidgets import *
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide2.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
-    QRect, QSize, QUrl, Qt)
-from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
-    QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
-    QRadialGradient)
+from PySide2.QtCore import (QCoreApplication, QMetaObject, QSize, Qt)
+from PySide2.QtGui import QCursor, QFont
 from PySide2.QtWidgets import *
 
 
@@ -191,9 +179,9 @@ class Ui_MessageBoxStyled(object):
                 height: 15px;
                 padding: 10px;
                 border-radius: 10px;
+                cursor:                        
             }
         """)
-
         self.retranslateUi(MessageBoxStyled)
 
         QMetaObject.connectSlotsByName(MessageBoxStyled)

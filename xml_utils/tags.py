@@ -70,7 +70,7 @@ class Tag:
         
 
     def give_parent(self):
-        from constants import PARENTS_FACTORY
+        from xml_utils.constants import PARENTS_FACTORY
     
         return PARENTS_FACTORY.get(self.depth - 1)
 

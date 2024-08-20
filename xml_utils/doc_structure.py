@@ -3,9 +3,9 @@ import re
 from wsgiref import validate
 
 
-from utils import InvalidFilename
-from constants import FILENAME_REQUIREMENTS
-from tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
+from xml_utils.utils import InvalidFilename
+from xml_utils.constants import FILENAME_REQUIREMENTS
+from xml_utils.tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
 
 
 class Workspace:

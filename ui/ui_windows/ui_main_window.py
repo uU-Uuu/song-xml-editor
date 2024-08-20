@@ -30,7 +30,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QWidget(mainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"background-color: rgb(33, 38, 42);\n"
-"background-image: url('./img/b-noah-silliman-_k9dCeh5Ca0-unsplash.jpg');\n"
+"background-image: url('../img/b-noah-silliman-_k9dCeh5Ca0-unsplash.jpg');\n"
 "")
         self.previewInput = QPlainTextEdit(self.centralwidget)
         self.previewInput.setObjectName(u"previewInput")

@@ -22,7 +22,7 @@ class Ui_SplashWindow(object):
         self.frame.setObjectName(u"frame")
         self.frame.setGeometry(QRect(-10, -10, 660, 380))
         self.frame.setCursor(QCursor(Qt.WaitCursor))
-        self.frame.setStyleSheet(u"background-image: url('./img/noah-silliman-_k9dCeh5Ca0-unsplash.jpg');\n"
+        self.frame.setStyleSheet(u"background-image: url('../img/noah-silliman-_k9dCeh5Ca0-unsplash.jpg');\n"
 "background-repeat: no-repeat;\n"
 "background-position: center;")
         self.frame.setFrameShape(QFrame.StyledPanel)

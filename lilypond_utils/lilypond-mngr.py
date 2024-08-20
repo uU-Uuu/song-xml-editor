@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-from xml_to_lilypond import XMLToLily
+from xml_utils.xml_to_lilypond import XMLToLily
 
 
 lily_file = 'lily.ly'
