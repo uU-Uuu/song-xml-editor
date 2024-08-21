@@ -1,14 +1,14 @@
-from symbol import pass_stmt
 from PySide2 import QtWidgets
 from PySide2.QtCore import Qt
 from PySide2.QtGui import (QStandardItemModel, QStandardItem, 
                            QFont, QColor, QIcon, QCursor)
 from functools import partial
 from copy import deepcopy
+import time
 
 from ui.ui_windows.ui_main_window import Ui_MainWindow
 from ui.windows.home_panel_window import WorkspacePanelWindow
-from ui.windows.dialog_windows import LilyPondWindow, XMLWindow, MessageBox
+from ui.windows.dialog_windows import LilyPondWindow, XMLWindow, SaveDocMessageBox
 
 from xml_utils.tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
 from xml_utils.xml_parser import TagNames, SCHEMAS, validate_xml
@@ -71,6 +71,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.doc = None
         self.melody = Melody()
+        self.exit_ = False            
 
 
 
@@ -154,7 +155,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self.musicSheetBtn.clicked.connect(self._get_lilypond_img)
 
     def save_doc_btn_action(self):
-        self.saveFileBtn.clicked.connect(self._save_doc)
+        self.saveFileBtn.clicked.connect(self._save_doc_main)
 
     def delete_node_btn_action(self):
         self.deleteNodeBtn.clicked.connect(self._delete_selected_node)
@@ -166,30 +167,44 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self.backToPanelBtn.clicked.connect(self._back_to_panel)
 
     def _back_to_panel(self):
-        self.msg_box = MessageBox()
+        self.exit_ = self._save_before_exit_enquery()
+        if self.exit_:
+            self.panel = WorkspacePanelWindow()
+            self.panel.show()
+            self.close()
+
+    def _save_before_exit_enquery(self):
+        self.msg_box = SaveDocMessageBox()
         self.msg_box.setWindowTitle('Exit')
-        self.msg_box.setStandardButtons( QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Cancel)
-        self.msg_box.setDefaultButton(QtWidgets.QMessageBox.Yes)
         self.msg_box.setText('Save before exit?')
         for btn in self.msg_box.buttons():
-            btn.setCursor(QCursor(Qt.PointingHandCursor))
+                    btn.setCursor(QCursor(Qt.PointingHandCursor))
+       
         reply = self.msg_box.exec_()
         if reply == QtWidgets.QMessageBox.Cancel:
-            return
+            exit_ = False
         else:
             if reply == QtWidgets.QMessageBox.Yes:
                 self._save_doc()
             elif reply == QtWidgets.QMessageBox.No:
                 pass
-            self.panel = WorkspacePanelWindow()
-            self.panel.show()
-            self.close()
+            exit_ = True
+        return exit_
 
     def _save_doc(self):
         try:
-            self.doc.save_file()
-        except: 
+            self.doc.save_file(self._get_xml_doc())
+        except:
             pass
+        else:
+            return True
+    
+    def _save_doc_main(self):
+        saved = self._save_doc()
+        if saved:
+            self.saveFileBtn.setDisabled(True)
+            time.sleep(0.5)
+            self.saveFileBtn.setEnabled(True)   
 
     def _cancel_xml(self):
         self._preview_tag['obj'] = None
@@ -333,8 +348,6 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
             input_el.insert(reference[btn_name])
         self.overwriteBtn.setEnabled(True)
 
-
-
     def set_up_tree(self):
         self.treeModel = QStandardItemModel()
         self.treeModel.setHorizontalHeaderLabels(['', ''])
@@ -351,8 +364,6 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self._last_nodes = {1: melodyNode[0], 2: None, 3: None, 4: None, 5: None}
         self._last_node = melodyNode[0]
         self.treeView.expandAll()
-
-
     
     def _add_xml_item(self, obj=None, parent=None):
         if obj is None:
@@ -386,8 +397,6 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self._cancel_xml()
         self.overwriteBtn.setEnabled(True)
 
-
-    
 
     def _delete_selected_node(self):
         if self._edit_mode:
@@ -427,7 +436,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self.overwriteBtn.setEnabled(True)
 
 
-    def _get_xml_doc(self):
+    def _get_xml_doc(self, save_only=True):
         indent='    '
         from_file_str = self.doc.read_file(to_indent=indent) 
         meta, closing, from_scratch = self._handle_loaded_file_xml(from_file_str)
@@ -439,10 +448,13 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
             xml_str = meta \
                     + new_xml_str.replace('<melody>', '').replace('</melody>', '').rstrip('\t').rstrip(' ') \
                     + closing
-        self.xml_window = XMLWindow()
-        self.xml_window.show()
-        self.xml_window.doc = self.doc
-        self.xml_window.xmlEdit.setPlainText(XMLDoc.delete_empty_lines(xml_str))
+        if not save_only:
+            self.xml_window = XMLWindow()
+            self.xml_window.show()
+            self.xml_window.doc = self.doc
+            self.xml_window.xmlEdit.setPlainText(XMLDoc.delete_empty_lines(xml_str))
+        else:
+            return xml_str 
 
     def _handle_loaded_file_xml(self, file_xml):
         from_scratch = 'melody' not in file_xml
@@ -457,6 +469,17 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
     def _get_lilypond_img(self):
         self.lilypond_window = LilyPondWindow()
         self.lilypond_window.show()
+
+    
+    def closeEvent(self, event):
+        if not self.exit_:
+            exit_ = self._save_before_exit_enquery()
+            if exit_:
+                for window in QtWidgets.QApplication.topLevelWidgets():
+                    if not isinstance(window, WorkspacePanelWindow):
+                        window.close()  
+            else:
+                event.ignore()
 
 
 

@@ -1,4 +1,5 @@
 from PySide2 import QtWidgets
+from regex import F
 
 from ui.windows.main_window import MainWindowGen
 from ui.windows.home_panel_window import WorkspacePanelWindow
@@ -25,8 +26,3 @@ class MainWindow(MainWindowGen):
         self.delete_node_btn_action()
         self.edit_node_btn_action()
         self.back_to_panel_btn_action()
-        
-    def closeEvent(self, event):
-        for window in QtWidgets.QApplication.topLevelWidgets():
-            if not isinstance(window, WorkspacePanelWindow):
-                window.close()  

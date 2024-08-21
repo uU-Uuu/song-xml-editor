@@ -71,6 +71,7 @@ class Ui_MainWindow(object):
         self.sectionName = QLineEdit(self.sectionFrame)
         self.sectionName.setObjectName(u"sectionName")
         self.sectionName.setGeometry(QRect(220, 30, 81, 41))
+        self.sectionName.setAlignment(Qt.AlignCenter)
         self.sectionName.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -177,6 +178,7 @@ class Ui_MainWindow(object):
         self.syllableLyric = QLineEdit(self.syllableFrame)
         self.syllableLyric.setObjectName(u"syllableLyric")
         self.syllableLyric.setGeometry(QRect(220, 30, 51, 41))
+        self.syllableLyric.setAlignment(Qt.AlignCenter)
         self.syllableLyric.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -357,6 +359,7 @@ class Ui_MainWindow(object):
         self.syllableDuration = QLineEdit(self.syllableFrame)
         self.syllableDuration.setObjectName(u"syllableDuration")
         self.syllableDuration.setGeometry(QRect(380, 30, 51, 41))
+        self.syllableDuration.setAlignment(Qt.AlignCenter)
         self.syllableDuration.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -379,6 +382,7 @@ class Ui_MainWindow(object):
         self.syllablePitch = QLineEdit(self.syllableFrame)
         self.syllablePitch.setObjectName(u"syllablePitch")
         self.syllablePitch.setGeometry(QRect(320, 30, 51, 41))
+        self.syllablePitch.setAlignment(Qt.AlignCenter)
         self.syllablePitch.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -431,7 +435,7 @@ class Ui_MainWindow(object):
         self.restDuration = QLineEdit(self.restFrame)
         self.restDuration.setObjectName(u"restDuration")
         self.restDuration.setGeometry(QRect(220, 30, 51, 41))
-        self.restDuration.setCursor(QCursor(Qt.PointingHandCursor))
+        self.restDuration.setAlignment(Qt.AlignCenter)
         self.restDuration.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 15px;\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
@@ -674,7 +678,7 @@ class Ui_MainWindow(object):
         self.restDottedBtn.setText(QCoreApplication.translate("mainWindow", u".", None))
         self.musicSheetBtn.setText(QCoreApplication.translate("mainWindow", u"MusicSheet", None))
         self.XMLBtn.setText(QCoreApplication.translate("mainWindow", u"XML", None))
-        self.saveFileBtn.setText(QCoreApplication.translate("mainWindow", u"Save", None))
+        self.saveFileBtn.setText(QCoreApplication.translate("mainWindow", u"Save XML", None))
         self.overwriteBtn.setText(QCoreApplication.translate("mainWindow", u"Overwrite", None))
         self.saveXMLBtn.setText(QCoreApplication.translate("mainWindow", u"Save", None))
         self.cancelXMLBtn.setText(QCoreApplication.translate("mainWindow", u"Cancel", None))

@@ -21,7 +21,7 @@ class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
     def edit_xml_file(self):
         self.xmlEdit.setReadOnly(False)
         self.XMLInfoLabel.setText('Edit mode')
-        self.edited = True
+        self.edited = True      
 
     def save_xml_file(self):
         data = self.xmlEdit.toPlainText()
@@ -31,16 +31,14 @@ class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
             self.XMLInfoLabel.setText('* Invalid XML')
         else:
             if self.edited:       
-                self.msg_box = MessageBox()
-                self.msg_box.setWindowTitle('Saving File')
-                self.msg_box.setStandardButtons( QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Cancel)
-                self.msg_box.setDefaultButton(QtWidgets.QMessageBox.Cancel)
+                self.msg_box = SaveDocMessageBox()
                 self.msg_box.setText('Store edited version separately?')
+                self.msg_box.setWindowTitle('Saving document')
                 for btn in self.msg_box.buttons():
                     btn.setCursor(QCursor(Qt.PointingHandCursor))
-                
                 reply = self.msg_box.exec_()
                 if reply == QtWidgets.QMessageBox.Cancel:
+                    self.XMLInfoLabel.setText('Edit mode')
                     return
                 else:
                     if reply == QtWidgets.QMessageBox.Yes:
@@ -48,6 +46,7 @@ class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
                     elif reply == QtWidgets.QMessageBox.No:
                         save_separately = False
                     else:
+                        self.XMLInfoLabel.setText('Edit mode')
                         return
                     save_method = [self.doc.save_file, self.doc.save_edited_file][save_separately]
             else:
@@ -60,12 +59,13 @@ class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
                 self.XMLInfoLabel.setText(f'Saved')
             
    
-class MessageBox(QtWidgets.QMessageBox, Ui_MessageBoxStyled):
+class SaveDocMessageBox(QtWidgets.QMessageBox, Ui_MessageBoxStyled):
     def __init__(self):
-        super(MessageBox, self).__init__()
-        self.setupUi(self)
-            
-
+        super(SaveDocMessageBox, self).__init__()
+        self.setupUi(self)   
+        self.setStandardButtons( QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Cancel)
+        self.setDefaultButton(QtWidgets.QMessageBox.Cancel)        
+        
 class LilyPondWindow(QtWidgets.QDialog, Ui_LilyPondWindow):
     def __init__(self):
         super(LilyPondWindow, self).__init__()
