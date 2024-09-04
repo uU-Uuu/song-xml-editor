@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets
 from PySide2.QtCore import Qt
-from PySide2.QtGui import QCursor
+from PySide2.QtGui import QCursor, QIcon
 
 from ui.ui_windows.ui_dialog_windows import Ui_XMLWindow, Ui_LilyPondWindow, Ui_MessageBoxStyled
 
@@ -12,6 +12,8 @@ class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
         super(XMLWindow, self).__init__()
         self.setupUi(self)
         
+        self.setWindowIcon(QIcon('ui/img/logo.png'))
+
         self.xmlEdit.setReadOnly(True)
         self.edited = False
 

@@ -1,4 +1,9 @@
+from xml.etree.ElementTree import XML
+from xmlschema import XMLSchema
+
 from xml_utils.tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
+from xml_utils.doc_structure import XMLDoc
+from xml_utils.xml_parser import TagNames
 
 
 PITCHES = {
@@ -36,7 +41,7 @@ OCTAVES = {
     'octave5Btn': '5',
     'octave6Btn': '6'
 }
-TAGS_FACTORY = {
+TAGS_BTN_FACTORY = {
     'newSectionOKBtn': Section, 
     'newMelPhraseOKBtn': MelPhrase,
     'newLexPhraseOKBtn': LexPhrase,
@@ -44,11 +49,31 @@ TAGS_FACTORY = {
     'newRestOKBtn': Rest
 }
 
+TAGS_FACTORY = {
+    TagNames.doc: XMLDoc,
+    TagNames.melody: Melody,
+    TagNames.section: Section, 
+    TagNames.melodic_phrase: MelPhrase,
+    TagNames.lexical_phrase: LexPhrase,
+    TagNames.syllable: Syllable, 
+    TagNames.rest: Rest
+}
+
 PARENTS_FACTORY = {
     2: Melody(),
     3: Section(),
     4: MelPhrase().reset_counter(),
     5: LexPhrase().reset_counter()
+}
+
+SCHEMAS = {
+    TagNames.doc: XMLSchema('xml_utils/xml_schemas/doc_schema.xsd'),
+    TagNames.melody: XMLSchema('xml_utils/xml_schemas/melody_schema.xsd'),
+    TagNames.section: XMLSchema('xml_utils/xml_schemas/section_schema.xsd'),
+    TagNames.melodic_phrase: XMLSchema('xml_utils/xml_schemas/melphr_schema.xsd'),
+    TagNames.lexical_phrase: XMLSchema('xml_utils/xml_schemas/lexphr_schema.xsd'),
+    TagNames.syllable: XMLSchema('xml_utils/xml_schemas/syllable_schema.xsd'),
+    TagNames.rest: XMLSchema('xml_utils/xml_schemas/rest_schema.xsd')
 }
 
 FILENAME_REQUIREMENTS = """\t - starting from lowercase or uppercase alphabetic characters

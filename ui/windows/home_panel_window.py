@@ -12,7 +12,7 @@ class WorkspacePanelWindow(QtWidgets.QWidget, Ui_WorkspacePanelWindow):
         super(WorkspacePanelWindow, self).__init__()
         self.setupUi(self)
         self.move(600, 260)
-        self.setWindowIcon(QIcon('../img/logo.png'))
+        self.setWindowIcon(QIcon('ui/img/logo.png'))
 
         self._valid_dir = False
         self._enable_doc_creation(enabled=False)
@@ -103,6 +103,7 @@ class WorkspacePanelWindow(QtWidgets.QWidget, Ui_WorkspacePanelWindow):
             self.main_window = MainWindow()
             self.main_window.doc = self.doc
             self.main_window.show()
+            self.main_window.populate_tree_from_doc()
             self.close()
 
 

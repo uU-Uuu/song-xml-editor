@@ -1,3 +1,4 @@
+from xml.dom.minidom import Attr
 from PySide2 import QtWidgets
 from PySide2.QtCore import Qt
 from PySide2.QtGui import (QStandardItemModel, QStandardItem, 
@@ -5,14 +6,16 @@ from PySide2.QtGui import (QStandardItemModel, QStandardItem,
 from functools import partial
 from copy import deepcopy
 import time
+from xml.etree import ElementTree as ET
+from xmlschema import XMLSchemaValidationError
 
 from ui.ui_windows.ui_main_window import Ui_MainWindow
 from ui.windows.home_panel_window import WorkspacePanelWindow
 from ui.windows.dialog_windows import LilyPondWindow, XMLWindow, SaveDocMessageBox
 
 from xml_utils.tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
-from xml_utils.xml_parser import TagNames, SCHEMAS, validate_xml
-from xml_utils.constants import PITCHES, PITCH_MOD, DURATIONS, DOTTED, OCTAVES, TAGS_FACTORY
+from xml_utils.xml_parser import TagNames, SCHEMAS, validate_xml, parse_xml_to_obj
+from xml_utils.constants import PITCHES, PITCH_MOD, DURATIONS, DOTTED, OCTAVES, TAGS_BTN_FACTORY
 from xml_utils.doc_structure import XMLDoc
 
 
@@ -22,7 +25,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
     _durations = deepcopy(DURATIONS)
     _dotted = deepcopy(DOTTED)
     _octaves = deepcopy(OCTAVES)
-    _tags_factory = deepcopy(TAGS_FACTORY)
+    _tags_factory = deepcopy(TAGS_BTN_FACTORY)
     _tags = deepcopy(TagNames)
 
     def __init__(self):
@@ -69,7 +72,11 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self.treeView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.treeView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
-        self.doc = None
+        # try:
+        #     if not self.doc:
+        #         self.doc = None
+        # except AttributeError:
+        #     self.doc = None
         self.melody = Melody()
         self.exit_ = False            
 
@@ -396,6 +403,10 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self.treeView.expandAll()
         self._cancel_xml()
         self.overwriteBtn.setEnabled(True)
+
+
+    def populate_tree_from_doc(self):
+        parse_xml_to_obj(xml_str=self._get_xml_doc())
 
 
     def _delete_selected_node(self):

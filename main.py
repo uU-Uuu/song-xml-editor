@@ -6,7 +6,7 @@ from ui.windows.home_panel_window import WorkspacePanelWindow
 
 if __name__ == '__main__':
     import ctypes
-    myappid = 'mycompany.myproduct.subproduct.version' # arbitrary string
+    myappid = 'mycompany.myproduct.subproduct.version'
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
     app = QtWidgets.QApplication([])
