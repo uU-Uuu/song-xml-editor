@@ -64,7 +64,8 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self._preview_tag = {'obj': None, 'frame': None}
         self._edit_mode = False
-
+        self._populated = True
+        self._populated_and_changed = False
 
         self.previewInput.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.previewInput.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -287,6 +288,8 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
             inp.clear()
         self.set_frames_enabled(self._inputFrames)
         self.overwriteBtn.setEnabled(True)
+        if self._populated:
+            self._populated_and_changed = True
 
     def _preview_input(self, frame, btn_name):
         self._preview_tag['obj'] = self._create_tag_instance(frame, btn_name)
@@ -405,13 +408,11 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self._cancel_xml()
         self.overwriteBtn.setEnabled(True)
 
-
     def populate_tree_from_doc(self):
         all_els = parse_xml_to_obj(xml_str=self._get_xml_doc())
         for el in all_els:
             self._add_xml_item(el)
-
-
+        self._populated = True
 
     def _delete_selected_node(self):
         if self._edit_mode:
@@ -457,12 +458,16 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         meta, closing, from_scratch = self._handle_loaded_file_xml(from_file_str)
         new_xml_str = self._last_nodes[1].obj.write_xml(indent=indent)
 
-        if from_scratch:
+        if from_scratch or self._populated_and_changed:
+            print(meta + ",", new_xml_str, closing)
             xml_str = meta + new_xml_str + closing
+        elif self._populated:
+            xml_str = from_file_str
         else:
             xml_str = meta \
                     + new_xml_str.replace('<melody>', '').replace('</melody>', '').rstrip('\t').rstrip(' ') \
                     + closing
+        
         if not save_only:
             self.xml_window = XMLWindow()
             self.xml_window.show()
@@ -475,9 +480,12 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         from_scratch = 'melody' not in file_xml
         if from_scratch:
             meta, closing = file_xml.split('</doc>')[0], '\n</doc>'
+        elif self._populated_and_changed:
+            meta = file_xml.split('<melody>')[0].rstrip('\t').rstrip(' ') 
+            closing = '\n</doc>'
         else:
             meta, doc_closing = file_xml.split('</melody>')
-            closing = f'  </melody>\n{doc_closing}'
+            closing = f'</melody>\n{doc_closing}'
         return meta, closing, from_scratch
 
     
