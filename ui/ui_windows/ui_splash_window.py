@@ -38,6 +38,18 @@ class Ui_SplashWindow(object):
         self.label_2.setStyleSheet(u"color: rgb(206, 225, 231);\n"
 "font: 63 16pt \"Yu Mincho Demibold\";\n"
 "background: transparent;")
+        self.label_2.setFont(font)
+        self.label_2.setCursor(QCursor(Qt.WaitCursor))
+        self.label_2.setStyleSheet(u"color: rgb(206, 225, 231);\n"
+"font: 63 16pt \"Yu Mincho Demibold\";\n"
+"background: transparent;")
+        self.label = QLabel(self.frame)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(460, 345, 141, 31))
+        self.label.setStyleSheet(u"color: rgb(206, 225, 231);\n"
+"font: 63 7pt \"Yu Mincho Demibold\";\n"
+"background: transparent;")
+        self.label.setText(QCoreApplication.translate("SplashWindow", u"Photo by Noah Silliman", None))
 
         self.retranslateUi(SplashWindow)
 

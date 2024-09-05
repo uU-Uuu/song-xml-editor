@@ -79,6 +79,24 @@ background: transparent;</string>
      <string>Song XML Editor</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>345</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(206, 225, 231);
+font: 63 7pt &quot;Yu Mincho Demibold&quot;;
+background: transparent;</string>
+    </property>
+    <property name="text">
+     <string>Photo by Noah Silliman</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources>

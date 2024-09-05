@@ -66,9 +66,11 @@ class SaveDocMessageBox(QtWidgets.QMessageBox, Ui_MessageBoxStyled):
         super(SaveDocMessageBox, self).__init__()
         self.setupUi(self)   
         self.setStandardButtons( QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Cancel)
-        self.setDefaultButton(QtWidgets.QMessageBox.Cancel)        
+        self.setDefaultButton(QtWidgets.QMessageBox.Cancel)     
+        self.setWindowIcon(QIcon('ui/img/logo.png'))
         
 class LilyPondWindow(QtWidgets.QDialog, Ui_LilyPondWindow):
     def __init__(self):
         super(LilyPondWindow, self).__init__()
         self.setupUi(self)
+        self.setWindowIcon(QIcon('ui/img/logo.png'))

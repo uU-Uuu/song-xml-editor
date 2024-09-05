@@ -459,7 +459,6 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         new_xml_str = self._last_nodes[1].obj.write_xml(indent=indent)
 
         if from_scratch or self._populated_and_changed:
-            print(meta + ",", new_xml_str, closing)
             xml_str = meta + new_xml_str + closing
         elif self._populated:
             xml_str = from_file_str
