@@ -58,7 +58,7 @@ class Ui_MainWindow(object):
 "font: 25 9.5pt \"Yu Mincho Light\";\n"
 "border: 0.5px solid rgb(70, 70, 70);\n"
 "border-radius: 10px;\n"
-"padding: 5px;\n"
+"padding: 5px 7px;\n"
 "")
         self.treeView.setTabKeyNavigation(True)
         self.sectionFrame = QFrame(self.centralwidget)

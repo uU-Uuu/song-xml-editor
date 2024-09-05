@@ -366,8 +366,6 @@ class Syllable(MultiElTag):
         self.notes.append({'pitch': pitch, 'duration': duration})
         self.check_dotted_duration()
 
-    # def add_notes_chaotic(self, )
-
     def add_lyric(self, lyric):
         self.lyric.append(lyric)
 

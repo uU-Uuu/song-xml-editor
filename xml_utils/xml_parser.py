@@ -120,6 +120,7 @@ def parse_xml_to_obj(xml_str):
                     obj.__dict__[key] = val
 
                 if extra_children:
+                    note_dict = {'pitch': None, 'duration': None}
                     for child in extra_children:
                         for key, val in child.items():
                             if isinstance(temp_save_obj, Rest) and key == 'duration':
@@ -128,6 +129,12 @@ def parse_xml_to_obj(xml_str):
                             elif isinstance(temp_save_obj, Syllable):
                                 if key == 'lyric':
                                     temp_save_obj.add_lyric(val)
+                                else:
+                                    note_dict[key] = val
+                                    if note_dict['pitch'] and note_dict['duration']:
+                                        temp_save_obj.add_note(pitch=note_dict['pitch'],
+                                                               duration=note_dict['duration'])
+                                        note_dict['pitch'] = note_dict['duration'] = None
 
                     extra_children.clear()
                     all_els.append(temp_save_obj)

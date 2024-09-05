@@ -360,6 +360,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self.treeModel.setHorizontalHeaderLabels(['', ''])
         self.treeView.setModel(self.treeModel)
         self.treeView.setColumnWidth(0, 200)
+        self.treeView.setColumnWidth(1, 300)
         self.treeView.header().hide()
 
         rootNode = self.treeModel.invisibleRootItem()
