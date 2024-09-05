@@ -68,7 +68,7 @@ def validate_xml(tag_name, xml_file='', xml_str=''):
 
 
 
-from tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
+from xml_utils.tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
 
 TAGS_FACTORY = {
     TagNames.melody: Melody,
@@ -93,6 +93,7 @@ SCHEMAS = {
 
 
 def parse_xml_to_obj(xml_str):
+
     try:
         tree = ET.fromstring(xml_str)    
         if tree:
@@ -101,30 +102,46 @@ def parse_xml_to_obj(xml_str):
         
             root = tree
             melody = root.find('.//melody')
+            all_els, extra_children = [], []
+            temp_save_obj = None
 
         def iterate_recursively(el):
-            print(el.tag, el, el.attrib, el.text)
-            try:
+
+            nonlocal all_els
+            nonlocal extra_children
+            nonlocal temp_save_obj
+
+            obj_key = TAGS_FACTORY.get(TagNames.by_tag(el.tag))
+
+            if obj_key:
+                obj = obj_key()
+
+                for key, val in el.attrib.items():
+                    obj.__dict__[key] = val
+
+                if extra_children:
+                    for child in extra_children:
+                        for key, val in child.items():
+                            if isinstance(temp_save_obj, Rest) and key == 'duration':
+                                    temp_save_obj.add_duration(val)
+
+                            elif isinstance(temp_save_obj, Syllable):
+                                if key == 'lyric':
+                                    temp_save_obj.add_lyric(val)
+
+                    extra_children.clear()
+                    all_els.append(temp_save_obj)
+                    temp_save_obj = None
+                
                 if isinstance(obj, Syllable) or isinstance(obj, Rest):
-                    pass
+                    temp_save_obj = obj
+                else:
+                    all_els.append(obj)
 
-                obj = TAGS_FACTORY[TagNames.by_tag(el.tag)]
-                print(obj)
-                if isinstance(obj, Syllable) or isinstance(obj, Rest):
+            else:
+                extra_children.append({el.tag: el.text})
 
-#                     <class 'tags.Syllable'>
-# lyric <Element 'lyric' at 0x000001FEF34177C0> {} go
-# lyric
-# pitch <Element 'pitch' at 0x000001FEF3417A40> {} E4
-# pitch
-# duration <Element 'duration' at 0x000001FEF34179A0> {} 1/16
-# duration
-# rest <Element 'rest' at 0x000001FEF3400220> {}
-
-            except:
-                print(el.tag)
             if list(el):
-
                 for child in el:
                     iterate_recursively(child)
             return el
@@ -132,13 +149,14 @@ def parse_xml_to_obj(xml_str):
         for child in melody:
             iterate_recursively(child)
 
+        return all_els
+
     except ET.ParseError:
         raise InvalidXMLInputProvided(f'Invalid XML input provided')
     except XMLSchemaValidationError as e:
         raise XMLValidationError(f'Invalid XML\n{e}')
-    except Exception as e:
-        raise InvalidXMLInputProvided(f'Unexpected error: {e}')
-
+    # except Exception as e:
+    #     raise InvalidXMLInputProvided(f'Unexpected error: {e}')
 
 
 st = """<?xml version="1.0" encoding="UTF-8"?>

@@ -366,6 +366,8 @@ class Syllable(MultiElTag):
         self.notes.append({'pitch': pitch, 'duration': duration})
         self.check_dotted_duration()
 
+    # def add_notes_chaotic(self, )
+
     def add_lyric(self, lyric):
         self.lyric.append(lyric)
 
@@ -436,7 +438,7 @@ class Rest(MultiElTag):
 
     def values_(self):
         if self.duration:
-            return " - ".join(dur for dur in self.duration if dur)
+            return " - ".join(dur if dur else '' for dur in self.duration)
 
 
 

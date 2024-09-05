@@ -2,7 +2,7 @@ from xml.etree.ElementTree import XML
 from xmlschema import XMLSchema
 
 from xml_utils.tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
-from xml_utils.doc_structure import XMLDoc
+# from xml_utils.doc_structure import XMLDoc
 from xml_utils.xml_parser import TagNames
 
 
@@ -50,7 +50,7 @@ TAGS_BTN_FACTORY = {
 }
 
 TAGS_FACTORY = {
-    TagNames.doc: XMLDoc,
+    # TagNames.doc: XMLDoc,
     TagNames.melody: Melody,
     TagNames.section: Section, 
     TagNames.melodic_phrase: MelPhrase,
