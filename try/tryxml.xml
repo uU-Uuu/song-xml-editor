@@ -39,12 +39,18 @@
             <melodic_phrase id="1">
                 <lexical_phrase id="3">
                     <syllable>
-                        <lyric>hj</lyric>
-                        <pitch>C4</pitch>
+                        <lyric>j</lyric>
+                        <pitch>C3</pitch>
                         <duration>1/1</duration>
                        </syllable>
+                    <rest>
+                        <duration>1/2</duration>
+                       </rest>
                 </lexical_phrase>                    
             </melodic_phrase>                
         </section>            
     </melody>    
 </doc>
+
+
+

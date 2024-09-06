@@ -94,6 +94,8 @@ SCHEMAS = {
 
 def parse_xml_to_obj(xml_str):
 
+    print(xml_str)
+
     try:
         tree = ET.fromstring(xml_str)    
         if tree:
@@ -106,7 +108,6 @@ def parse_xml_to_obj(xml_str):
             temp_save_obj = None
 
         def iterate_recursively(el):
-
             nonlocal all_els
             nonlocal extra_children
             nonlocal temp_save_obj
@@ -156,58 +157,30 @@ def parse_xml_to_obj(xml_str):
         for child in melody:
             iterate_recursively(child)
 
+        if extra_children:
+            note_dict = {'pitch': None, 'duration': None}
+            for child in extra_children:
+                for key, val in child.items():
+                    if isinstance(temp_save_obj, Rest) and key == 'duration':
+                            temp_save_obj.add_duration(val)
+
+                    elif isinstance(temp_save_obj, Syllable):
+                        if key == 'lyric':
+                            temp_save_obj.add_lyric(val)
+                        else:
+                            note_dict[key] = val
+                            if note_dict['pitch'] and note_dict['duration']:
+                                temp_save_obj.add_note(pitch=note_dict['pitch'],
+                                                        duration=note_dict['duration'])
+                                note_dict['pitch'] = note_dict['duration'] = None
+            extra_children.clear()
+            all_els.append(temp_save_obj)
+
         return all_els
 
     except ET.ParseError:
         raise InvalidXMLInputProvided(f'Invalid XML input provided')
     except XMLSchemaValidationError as e:
         raise XMLValidationError(f'Invalid XML\n{e}')
-    # except Exception as e:
-    #     raise InvalidXMLInputProvided(f'Unexpected error: {e}')
-
-
-st = """<?xml version="1.0" encoding="UTF-8"?>
-<doc>
-    <title>Good morning</title>
-    <key>e major</key>
-    <time_signature>4/4</time_signature>
-    <melody>
-        <section name="A">
-            <melodic_phrase id="2">
-                <lexical_phrase id="2" lyrics="gomema">
-                    <syllable>
-                        <lyric>go</lyric>
-                        <pitch>E4</pitch>
-                        <duration>1/16</duration>
-                    </syllable>
-                    <rest>
-                        <duration>1/8</duration>
-                    </rest>
-                    <syllable>
-                        <lyric>me</lyric>
-                        <lyric>ma</lyric>
-                        <pitch>A4</pitch>
-                        <duration>1/16</duration>
-                        <pitch>E4</pitch>
-                        <duration>1/8</duration>
-                    </syllable>
-                </lexical_phrase>                    
-                <lexical_phrase id="3" lyrics="me">
-                    <syllable>
-                        <lyric>me</lyric>
-                        <pitch>A4</pitch>
-                        <duration>1/16</duration>
-                        <pitch>E4</pitch>
-                        <duration>1/8</duration>
-                    </syllable>
-                </lexical_phrase>                    
-            </melodic_phrase>                
-        </section>            
-        <section name="ko">
-            <melodic_phrase id="1">
-            </melodic_phrase>                
-        </section>            
-  </melody>
-</doc>"""
-
-parse_xml_to_obj(st)
+    except Exception as e:
+        raise InvalidXMLInputProvided(f'Unexpected error: {e}')

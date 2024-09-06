@@ -3,9 +3,13 @@ import re
 
 
 class XMLToLily:
-    _OCTAVES = {3: "",
-           4: "'",
-           5: "''"}
+    _OCTAVES = {
+        1: ",,",
+        2: ",",
+        3: "",
+        4: "'",
+        5: "''"
+    }
     
     def __init__(self, xml_file):
         self.xml_file = xml_file
@@ -70,7 +74,7 @@ class XMLToLily:
                     for duration in child.findall('.//duration'):
                         lex_notes.append(self._duration_formatter(duration.text))
 
-        return (' '.join(lex_notes) + ' |\n', 
+        return (' '.join(lex_notes) + '\n', 
                    ' '.join(lyrics))
         
         
@@ -141,6 +145,10 @@ class XMLToLily:
         title = self._parse_xml_meta()[0]
         lily_script = f"""
 \\version "2.24.4"
+\\paper {{
+    #(set-default-paper-size '(cons (* 100 mm) (* 50 mm)))
+    
+}}
 \\header {{
     title = "{title}"
 }}

@@ -249,7 +249,6 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
                             elif isinstance(self._preview_tag['obj'], LexPhrase):
                                 LexPhrase.reset_counter(data_dict[f'{key}'])    
 
-                    print(self._preview_tag['obj'])                    
                 
         except Exception as e:
             pass
@@ -382,8 +381,6 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
     def _add_xml_item(self, obj=None, parent=None):
         if obj is None:
             obj = self._preview_tag['obj']
-
-        print(obj)
                 
         if obj and not parent:
             curr_node = (StandardItem(obj=obj, txt=obj.tag_name), 
@@ -415,6 +412,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def populate_tree_from_doc(self):
         all_els = parse_xml_to_obj(xml_str=self._get_xml_doc())
+        print(all_els)
         for el in all_els:
             self._add_xml_item(el)
         self._populated = True
@@ -495,8 +493,8 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
     
     def _get_lilypond_img(self):
+        self._save_doc()
         self.lilypond_window = LilyPondWindow(self.doc)
-        # self.lilypond_window.set_scene()
         self.lilypond_window.show()
 
     

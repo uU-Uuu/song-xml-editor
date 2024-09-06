@@ -1,5 +1,9 @@
 
 \version "2.24.4"
+\paper {
+    #(set-default-paper-size '(cons (* 100 mm) (* 50 mm)))
+    
+}
 \header {
     title = "Good morning"
 }
@@ -20,7 +24,7 @@
                 \relative c' {
                     \key e \major
                     \time 4/4
-                    e16 r8 a16 e8 a16 e8 
+                    e16 r8 a16 e8 a16 e8
 
                     }
                 }
@@ -48,14 +52,14 @@
                 \relative c' {
                     \key e \major
                     \time 4/4
-                    c1 
+                    c,1 r2
 
                     }
                 }
         }  
         \new Lyrics \with { alignAboveContext = "staff"} {
             \lyricsto mel {
-                hj
+                j
             }
         }
     >>
