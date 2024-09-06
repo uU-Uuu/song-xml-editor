@@ -135,8 +135,8 @@ class Ui_LilyPondWindow(object):
     def setupUi(self, LilyPondWindow):
         if LilyPondWindow.objectName():
             LilyPondWindow.setObjectName(u"LilyPondWindow")
-        LilyPondWindow.resize(660, 556)
-        LilyPondWindow.setMaximumSize(QSize(850, 800))
+        LilyPondWindow.resize(1000, 800)
+        LilyPondWindow.setMaximumSize(QSize(1200, 800))
         self.verticalLayout = QVBoxLayout(LilyPondWindow)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.lilyPondSheetView = QGraphicsView(LilyPondWindow)

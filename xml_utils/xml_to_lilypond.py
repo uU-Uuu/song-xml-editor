@@ -14,9 +14,12 @@ class XMLToLily:
     @staticmethod
     def _note_formatter(raw_pitch, raw_duration):
         if raw_pitch and raw_duration:
-            pitch, octave = re.match(r'(\w+)([0-9]$)', raw_pitch).groups()
-            pitch_o = pitch.lower() + XMLToLily._OCTAVES[int(octave) - 1]
-            return pitch_o + XMLToLily._duration_formatter(raw_duration, rest=False)
+            matched = re.match(r'(\w+)([0-9]$)', raw_pitch)
+            if matched:
+                pitch, octave = matched.groups()
+                pitch_o = pitch.lower() + XMLToLily._OCTAVES[int(octave) - 1]
+                return pitch_o + XMLToLily._duration_formatter(raw_duration, rest=False)
+            return
 
     @staticmethod
     def _duration_formatter(raw_duration, rest=True):
@@ -34,7 +37,10 @@ class XMLToLily:
     def _parse_xml_meta(self):
         meta = './/title', './/time_signature'
         title, time_s = (self.root.find(tag).text for tag in meta)
-        key, mode = self.root.find('.//key').text.lower().split()
+        if self.root.find('.//key').text:
+            key, mode = self.root.find('.//key').text.lower().split()
+        else:
+            key, mode = '', ''
         return title, time_s, key, mode
 
     def _parse_xml_lex_phr(self, mel_phr):
@@ -114,7 +120,10 @@ class XMLToLily:
     def _parse_xml_section(self):
         section_str = ''
         for section in self.root.findall('.//section'):
-            subtitle = f'Section: {section.attrib["name"]}'
+            try:
+                subtitle = f'Section: {section.attrib["name"]}'
+            except KeyError:
+                subtitle = ''
             inner = self._parse_xml_mel_phr(section)
 
             section_str += f"""

@@ -247,7 +247,9 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
                             if isinstance(self._preview_tag['obj'], MelPhrase):
                                 MelPhrase.reset_counter(init_value=data_dict[f'{key}'])
                             elif isinstance(self._preview_tag['obj'], LexPhrase):
-                                LexPhrase.reset_counter(data_dict[f'{key}'])                        
+                                LexPhrase.reset_counter(data_dict[f'{key}'])    
+
+                    print(self._preview_tag['obj'])                    
                 
         except Exception as e:
             pass
@@ -364,7 +366,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self.treeModel.setHorizontalHeaderLabels(['', ''])
         self.treeView.setModel(self.treeModel)
         self.treeView.setColumnWidth(0, 200)
-        self.treeView.setColumnWidth(1, 250)
+        self.treeView.setColumnWidth(1, 200)
         self.treeView.header().hide()
 
         rootNode = self.treeModel.invisibleRootItem()
@@ -380,6 +382,8 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
     def _add_xml_item(self, obj=None, parent=None):
         if obj is None:
             obj = self._preview_tag['obj']
+
+        print(obj)
                 
         if obj and not parent:
             curr_node = (StandardItem(obj=obj, txt=obj.tag_name), 
@@ -491,7 +495,8 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
     
     def _get_lilypond_img(self):
-        self.lilypond_window = LilyPondWindow()
+        self.lilypond_window = LilyPondWindow(self.doc)
+        # self.lilypond_window.set_scene()
         self.lilypond_window.show()
 
     
