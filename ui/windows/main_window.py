@@ -242,12 +242,13 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
                             for pitch, duration in zipped
                         ]
                     else:
-
                         for key in data_dict.keys():
                             self._preview_tag['obj'].__dict__[key.strip('@')] = data_dict[key]
-                    if type(self._preview_tag['obj']) in (MelPhrase, LexPhrase):
-                        self._preview_tag['obj'].reset_counter(data_dict[f'@{key}'])
-
+                            if isinstance(self._preview_tag['obj'], MelPhrase):
+                                MelPhrase.reset_counter(init_value=data_dict[f'{key}'])
+                            elif isinstance(self._preview_tag['obj'], LexPhrase):
+                                LexPhrase.reset_counter(data_dict[f'{key}'])                        
+                
         except Exception as e:
             pass
         self.overwriteBtn.setEnabled(False)
@@ -363,7 +364,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         self.treeModel.setHorizontalHeaderLabels(['', ''])
         self.treeView.setModel(self.treeModel)
         self.treeView.setColumnWidth(0, 200)
-        self.treeView.setColumnWidth(1, 300)
+        self.treeView.setColumnWidth(1, 250)
         self.treeView.header().hide()
 
         rootNode = self.treeModel.invisibleRootItem()
@@ -438,6 +439,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
                     self._selected_indx = self.treeView.selectedIndexes()[0]
                     self._preview_tag['obj'] = selected_item.obj
                     self.previewInput.setPlainText(selected_item.obj.write_xml_plain())
+                    self.previewInput.setReadOnly(False)
                     self._edit_mode = True
         except Exception as e:
             pass

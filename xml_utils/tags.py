@@ -257,10 +257,9 @@ class MelPhrase(TagWithAttr):
     """
     _mel_ph_count = 0
 
-    
     def __init__(self):
         super().__init__('melodic_phrase')
-        MelPhrase._mel_ph_count += 1        
+        self.__class__._mel_ph_count += 1     
         self.id = str(MelPhrase._mel_ph_count)
  
 
@@ -277,11 +276,10 @@ class MelPhrase(TagWithAttr):
     @classmethod
     def reset_counter(cls, init_value=0):
         try:
-            if init_value >= 0:
+            if int(init_value) >= 0:
                 cls._mel_ph_count = int(init_value)
-        except:
+        except Exception as e:
             pass
-
 
 
 class LexPhrase(TagWithAttr):
@@ -327,7 +325,7 @@ class LexPhrase(TagWithAttr):
     @classmethod
     def reset_counter(cls, init_value=0):
         try:
-            if init_value >= 0:
+            if int(init_value) >= 0:
                 cls._lex_ph_count = int(init_value)
         except:
             pass
