@@ -65,8 +65,9 @@ class XMLWindow(QtWidgets.QDialog, Ui_XMLWindow):
                 save_method = self.doc.save_file
             try:
                 save_method(data)
-            except:
-                self.XMLInfoLabel.setText('* Could not save the file')
+            except Exception as e:
+                print(e)
+                self.XMLInfoLabel.setText('* Oops')
             else:
                 self.XMLInfoLabel.setText(f'Saved')
             

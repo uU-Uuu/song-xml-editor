@@ -94,8 +94,6 @@ SCHEMAS = {
 
 def parse_xml_to_obj(xml_str):
 
-    print(xml_str)
-
     try:
         tree = ET.fromstring(xml_str)    
         if tree:

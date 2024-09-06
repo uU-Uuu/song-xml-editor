@@ -91,7 +91,8 @@ class WorkspacePanelWindow(QtWidgets.QWidget, Ui_WorkspacePanelWindow):
     def _confirm_doc_creation(self):
         try:
             self.doc.create()
-        except Exception:
+        except Exception as e:
+            print(e)
             self.infoLabel.setText('* invalid filename or path')
         else:
             self._open_xml_editor_window()

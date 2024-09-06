@@ -412,7 +412,6 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def populate_tree_from_doc(self):
         all_els = parse_xml_to_obj(xml_str=self._get_xml_doc())
-        print(all_els)
         for el in all_els:
             self._add_xml_item(el)
         self._populated = True

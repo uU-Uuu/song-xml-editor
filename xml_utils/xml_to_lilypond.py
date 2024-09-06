@@ -18,12 +18,18 @@ class XMLToLily:
     @staticmethod
     def _note_formatter(raw_pitch, raw_duration):
         if raw_pitch and raw_duration:
-            matched = re.match(r'(\w+)([0-9]$)', raw_pitch)
+            matched = re.match(r'^([A-Ga-g]+)([0-9])([#b]?)$', raw_pitch)
             if matched:
-                pitch, octave = matched.groups()
-                pitch_o = pitch.lower() + XMLToLily._OCTAVES[int(octave) - 1]
+                pitch, octave, accidentals = matched.groups()
+                if accidentals == '#':
+                    acc = 'is'
+                elif accidentals == 'b':
+                    acc = 'es'
+                else:
+                    acc = ''
+                pitch_o = pitch.lower() + acc + XMLToLily._OCTAVES[int(octave) - 1]
                 return pitch_o + XMLToLily._duration_formatter(raw_duration, rest=False)
-            return
+            return ''
 
     @staticmethod
     def _duration_formatter(raw_duration, rest=True):
@@ -146,8 +152,7 @@ class XMLToLily:
         lily_script = f"""
 \\version "2.24.4"
 \\paper {{
-    #(set-default-paper-size '(cons (* 100 mm) (* 50 mm)))
-    
+    #(set-default-paper-size "a9")
 }}
 \\header {{
     title = "{title}"
