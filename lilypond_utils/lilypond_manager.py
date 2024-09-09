@@ -17,14 +17,14 @@ class LilyImgGenerator:
         self.lily_file = os.path.join(self.ly_out_dir, lily_file + '.ly')
 
     def from_file(self, xml_file):
-        with open(self.lily_file, 'w') as file:
+        with open(self.lily_file, 'w', encoding='utf-8') as file:
             lily_converter = XMLToLily(xml_file)
             lily_script = lily_converter.xml_to_lily()
             file.write(lily_script)
         self.convert()
 
     def from_string(self, lily_script):
-        with open(self.lily_file, 'w') as file:
+        with open(self.lily_file, 'w', encoding='utf-8') as file:
             file.write(lily_script)
         self.convert()
 

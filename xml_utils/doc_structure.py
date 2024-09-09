@@ -163,7 +163,7 @@ class XMLDoc:
             if XMLDoc.filename_validation(self.filename, check=True):
                 self.path = os.path.join(self.path, self.filename)
                 try:
-                    with open(self._path, 'w') as file:
+                    with open(self._path, 'w', encoding='utf-8') as file:
                         file.write(self.write_metadata_xml(non_empty=non_empty))
                 except IOError as _:
                     print(f'Error when trying to save file\n\t {_}')
@@ -230,7 +230,7 @@ class XMLDoc:
     
 
     def read_file(self, prettify_indent=True, from_indent='\t', to_indent='   '):
-        with open(self._path, 'r') as file:
+        with open(self._path, 'r', encoding='utf-8') as file:
             data = file.read()
             if prettify_indent:
                 try:
@@ -260,7 +260,7 @@ class XMLDoc:
         try:
             if title or key or time_signature:
                 self.set_metadata(title, key, time_signature)
-            with open(self._path, 'w') as file:
+            with open(self._path, 'w', encoding='utf-8') as file:
                 meta, closing = self.write_metadata_xml(closed=False)
                 mel = self.melody.write_xml()
                 file.write(f'{meta}{mel}{closing}')
@@ -269,12 +269,12 @@ class XMLDoc:
 
     def save_edited_file(self, edited_data):
         edited_path = f'{self._path.split(".xml")[0]}_edited.xml'
-        with open(f'{edited_path}', 'w') as file:
+        with open(f'{edited_path}', 'w', encoding='utf-8') as file:
             file.write(edited_data)
         return edited_data
 
     def save_file(self, data):
-        with open(self._path, 'w') as file:
+        with open(self._path, 'w', encoding='utf-8') as file:
             file.write(data)
         return self._path
 

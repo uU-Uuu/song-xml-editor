@@ -2,7 +2,7 @@ from xml.etree import ElementTree as ET
 from xmlschema import XMLSchema, XMLSchemaValidationError
 from enum import Enum
 
-# from xml_utils.constants import TAGS_FACTORY, SCHEMAS
+from xml_utils.tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
 
 class TagNames(Enum):
     doc = 'doc'
@@ -66,9 +66,6 @@ def validate_xml(tag_name, xml_file='', xml_str=''):
     except Exception as e:
         raise InvalidXMLInputProvided(f'Unexpected error: {e}')
 
-
-
-from xml_utils.tags import Melody, Section, MelPhrase, LexPhrase, Syllable, Rest
 
 TAGS_FACTORY = {
     TagNames.melody: Melody,
@@ -182,3 +179,7 @@ def parse_xml_to_obj(xml_str):
         raise XMLValidationError(f'Invalid XML\n{e}')
     except Exception as e:
         raise InvalidXMLInputProvided(f'Unexpected error: {e}')
+
+
+if __name__ == '__main__':
+    validate_xml('doc', 'try/song1.xml')
