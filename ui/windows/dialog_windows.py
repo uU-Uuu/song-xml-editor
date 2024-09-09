@@ -1,15 +1,9 @@
-from genericpath import isfile
-import threading
 from PySide2 import QtWidgets
 import PySide2
-from PySide2.QtCore import Qt, QFileInfo, QTimer, QEventLoop, QMetaObject
+from PySide2.QtCore import Qt
 import PySide2.QtCore
 from PySide2.QtGui import QCursor, QIcon
 
-import os
-import time
-
-from matplotlib import scale
 
 from ui.ui_windows.ui_dialog_windows import Ui_XMLWindow, Ui_LilyPondWindow, Ui_MessageBoxStyled
 from xml_utils.xml_parser import TagNames, validate_xml

@@ -27,8 +27,9 @@ class XMLToLily:
                     acc = 'es'
                 else:
                     acc = ''
-                pitch_o = pitch.lower() + acc + XMLToLily._OCTAVES[int(octave) - 1]
-                return pitch_o + XMLToLily._duration_formatter(raw_duration, rest=False)
+                pitch_o = pitch.lower() + acc
+                return pitch_o + XMLToLily._duration_formatter(raw_duration, rest=False) 
+            # + XMLToLily._OCTAVES[int(octave) - 1]
             return ''
 
     @staticmethod

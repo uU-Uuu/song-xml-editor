@@ -376,7 +376,7 @@ class Syllable(MultiElTag):
             if note['duration'] and note['duration'].endswith('.'):
                 numer, denom  = (int(note['duration'].split('/')[0]), 
                                  note['duration'].split('/')[1].strip('. '))
-                note['duration'] = '/'.join((str(numer * 3), str(denom)))
+                note['duration'] = '/'.join((str(numer * 3), str(int(denom)*2)))
 
     def __repr__(self):
         return f'Syllable: {self.values_()}'
@@ -424,7 +424,7 @@ class Rest(MultiElTag):
             if self.duration[indx].endswith('.'):
                 duration = self.duration[indx]
                 numer, denom  = int(duration.split('/')[0]), duration.split('/')[1].strip('. ')
-                self.duration[indx] = '/'.join((str(numer * 3), str(denom)))
+                self.duration[indx] = '/'.join((str(numer * 3), str(int(denom)*2)))
                 
     def add_child(self):
         pass
