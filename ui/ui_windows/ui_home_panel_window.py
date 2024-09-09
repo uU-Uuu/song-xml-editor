@@ -230,12 +230,11 @@ class Ui_WorkspacePanelWindow(object):
 "background-color: transparent;")
         self.openBtn = QToolButton(self.frame_5)
         self.openBtn.setObjectName(u"openBtn")
-        self.openBtn.setGeometry(QRect(80, 270, 121, 41))
+        self.openBtn.setGeometry(QRect(75, 270, 121, 41))
         self.openBtn.setCursor(QCursor(Qt.PointingHandCursor))
         self.openBtn.setFocusPolicy(Qt.NoFocus)
         self.openBtn.setStyleSheet(u"font: 63 8pt \"Yu Mincho Demibold\";\n"
 "font-size: 20px;\n"
-"border: 0.5px solid rgb(53, 75, 98);\n"
 "background: rgba(206, 227, 232, 50);\n"
 "border-radius: 10px;\n"
 "color: black;\n"

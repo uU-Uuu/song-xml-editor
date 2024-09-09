@@ -129,8 +129,6 @@ class Ui_XMLWindow(object):
     # retranslateUi
 
 
-
-
 class Ui_LilyPondWindow(object):
     def setupUi(self, LilyPondWindow):
         if LilyPondWindow.objectName():
