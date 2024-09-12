@@ -20,17 +20,17 @@
     <<
         \new Staff= "staff" {
             \new Voice = "mel" {
-                \relative c' {
+                \relative c4 {
                     \key e \major
                     \time 4/4
-                    e16 r8 a16 e8 a16 e8
+                    e16 r8 a16e8 a16e8 e2 b8
 
                     }
                 }
         }  
         \new Lyrics \with { alignAboveContext = "staff"} {
             \lyricsto mel {
-                ご もろ 真 メ -
+                ご もろ 真 メ - kj jk
             }
         }
     >>

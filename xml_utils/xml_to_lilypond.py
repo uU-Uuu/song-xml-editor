@@ -4,11 +4,11 @@ import re
 
 class XMLToLily:
     _OCTAVES = {
-        1: ",,",
-        2: ",",
-        3: "",
-        4: "'",
-        5: "''"
+        -2: ",,",
+        -1: ",",
+        0: "",
+        1: "'",
+        2: "''"
     }
     
     def __init__(self, xml_file):
@@ -16,9 +16,10 @@ class XMLToLily:
         self.root = self._get_root()
 
     @staticmethod
-    def _note_formatter(raw_pitch, raw_duration):
+    def _note_formatter(raw_pitch, raw_duration, prev_pitch):
         if raw_pitch and raw_duration:
             matched = re.match(r'^([A-Ga-g]+)([0-9])([#b]?)$', raw_pitch)
+            prev_matched = re.match(r'^([A-Ga-g]+)([0-9])([#b]?)$', prev_pitch)
             if matched:
                 pitch, octave, accidentals = matched.groups()
                 if accidentals == '#':
@@ -28,8 +29,14 @@ class XMLToLily:
                 else:
                     acc = ''
                 pitch_o = pitch.lower() + acc
-                return pitch_o + XMLToLily._duration_formatter(raw_duration, rest=False) 
-            # + XMLToLily._OCTAVES[int(octave) - 1]
+
+                if prev_matched:
+                    prev_pitch, prev_octave, prev_accidentals = matched.groups()
+                    oct_ = XMLToLily._OCTAVES.get(int(octave) - int(prev_octave))
+                else:
+                    oct_ = ''
+
+                return pitch_o + XMLToLily._duration_formatter(raw_duration, rest=False) + oct_
             return ''
 
     @staticmethod
@@ -74,8 +81,15 @@ class XMLToLily:
                     (pitch.text for pitch in child.findall('.//pitch')),
                     (dur.text for dur in child.findall('.//duration'))
                     ))
-                    lex_notes.append(' '.join(self._note_formatter(p, d) 
-                                        for (p, d) in notes_raw))  
+                    notes = []
+                    prev = 'c4'
+                    for (p, d) in notes_raw:
+                        notes.append(self._note_formatter(raw_pitch=p, raw_duration=d, prev_pitch=prev))
+                        prev = p
+                    lex_notes.append(''.join(notes))
+
+                    # lex_notes.append(' '.join(self._note_formatter(p, d) 
+                    #                     for (p, d) in notes_raw))  
                     
                 elif child.tag == 'rest':
                     for duration in child.findall('.//duration'):
@@ -85,7 +99,7 @@ class XMLToLily:
                    ' '.join(lyrics))
         
         
-    def _parse_xml_mel_phr(self, section, relative="c"+_OCTAVES[4]):
+    def _parse_xml_mel_phr(self, section, relative="c'"):
         time_s, key, mode, = self._parse_xml_meta()[1:]
         mel_phr_inner_str = ''
         for mel_phr in section.findall('.//melodic_phrase'):

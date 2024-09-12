@@ -11,10 +11,10 @@
                         <lyric>go</lyric>
                         <pitch>E4</pitch>
                         <duration>1/16</duration>
-                    </syllable>
+                       </syllable>
                     <rest>
                         <duration>1/8</duration>
-                    </rest>
+                       </rest>
                     <syllable>
                         <lyric>me</lyric>
                         <lyric>ma</lyric>
@@ -22,7 +22,7 @@
                         <duration>1/16</duration>
                         <pitch>E4</pitch>
                         <duration>1/8</duration>
-                    </syllable>
+                       </syllable>
                 </lexical_phrase>                    
                 <lexical_phrase id="3" lyrics="me">
                     <syllable>
@@ -31,9 +31,14 @@
                         <duration>1/16</duration>
                         <pitch>E4</pitch>
                         <duration>1/8</duration>
-                    </syllable>
+                       </syllable>
+                    <syllable>
+                        <lyric>jk</lyric>
+                        <pitch>B4</pitch>
+                        <duration>1/4</duration>
+                       </syllable>
                 </lexical_phrase>                    
             </melodic_phrase>                
         </section>            
-  </melody>
+    </melody>    
 </doc>
