@@ -1,5 +1,6 @@
 import os
 import subprocess
+import re
 
 from xml_utils.xml_to_lilypond import XMLToLily
 
@@ -34,9 +35,16 @@ class LilyImgGenerator:
     '--png',
     '--output=' + self.img_out_dir,
     self.lily_file
-])
-        out_img = os.path.join(self.img_out_dir, self.img_file)
-        return out_img
+])      
+        out_imgs = []
+        pattern = re.compile(rf'^{self.img_file[:-4]}(\.png|-page\d+.png)?$')
+        for root, dirs, files in os.walk(self.img_out_dir):
+            for file in files:
+                if re.match(pattern, file):
+                    out_imgs.append(
+                        os.path.join(self.img_out_dir, file)
+                    )
+        return out_imgs
 
 
 

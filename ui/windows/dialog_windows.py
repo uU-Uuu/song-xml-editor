@@ -84,7 +84,7 @@ class LilyPondWindow(QtWidgets.QDialog, Ui_LilyPondWindow):
         self.init_img()
 
     def init_img(self):
-        self.img_path = self.convert()
+        self.img_pathes = self.convert()
         self.set_scene()
 
     def convert(self, file=None):
@@ -100,13 +100,15 @@ class LilyPondWindow(QtWidgets.QDialog, Ui_LilyPondWindow):
 
         lily_img = LilyImgGenerator(lily_file=filename, img_file=filename)
         lily_img.from_string(lily_script)
-        img_path = lily_img.convert()
-        return img_path
+        img_pathes = lily_img.convert()
+        return img_pathes
 
     def set_scene(self):
         scene = QtWidgets.QGraphicsScene()
-        pixmap = PySide2.QtGui.QPixmap(self.img_path)
-        scene.addPixmap(pixmap)
+        for img in self.img_pathes:
+            pixmap = PySide2.QtGui.QPixmap(img)
+            item = scene.addPixmap(pixmap)
+            item.setPos(0, len(scene.items()) * pixmap.height())        
 
         self.lilyPondSheetView.setScene(scene)
         self.lilyPondSheetView.setSceneRect(scene.itemsBoundingRect())
