@@ -467,7 +467,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
             xml_str = from_file_str
         else:
             xml_str = meta \
-                    + new_xml_str.replace('<melody>', '').replace('</melody>', '').rstrip('\t').rstrip(' ') \
+                    + new_xml_str.replace('<melody>', '').replace('</melody>', '').rstrip('\t').rstrip('') \
                     + closing
         
         if not save_only:

@@ -1,7 +1,6 @@
 import os
 import re
-from wsgiref import validate
-
+import xml.dom.minidom
 
 from xml_utils.utils import InvalidFilename
 from xml_utils.constants import FILENAME_REQUIREMENTS
@@ -232,14 +231,9 @@ class XMLDoc:
     def read_file(self, prettify_indent=True, from_indent='\t', to_indent='   '):
         with open(self._path, 'r', encoding='utf-8') as file:
             data = file.read()
-            if prettify_indent:
-                try:
-                    pretty_data = data.replace(str(from_indent), str(to_indent))
-                except TypeError:
-                    pass
-                else:
-                    return f'{pretty_data}\n'
-            return data
+            dom = xml.dom.minidom.parseString(data)
+            pretty_xml = dom.toprettyxml(indent=to_indent)
+            return pretty_xml
     
     @staticmethod
     def delete_empty_lines(txt):
