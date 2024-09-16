@@ -474,7 +474,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
             self.xml_window = XMLWindow()
             self.xml_window.show()
             self.xml_window.doc = self.doc
-            self.xml_window.xmlEdit.setPlainText(XMLDoc.delete_empty_lines(xml_str))
+            self.xml_window.xmlEdit.setPlainText(XMLDoc.del_empty(XMLDoc.pretty_xml(xml_str, indent='    ')))
         else:
             return xml_str 
 

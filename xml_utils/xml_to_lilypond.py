@@ -40,7 +40,7 @@ class XMLToLily:
                     oct_ = XMLToLily._OCTAVES.get(oct_diff)
                     if not oct_:
                         oct_ = ''
-                return pitch_o  + XMLToLily._duration_formatter(raw_duration, rest=False) + oct_
+                return pitch_o  + oct_ + XMLToLily._duration_formatter(raw_duration, rest=False)
             return ''
 
     @staticmethod
