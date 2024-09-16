@@ -4,11 +4,15 @@ import re
 
 class XMLToLily:
     _OCTAVES = {
+        -4: ",,,,",
+        -3: ",,,",
         -2: ",,",
         -1: ",",
         0: "",
         1: "'",
-        2: "''"
+        2: "''",
+        3: "'''",
+        4: "''''"
     }
     
     def __init__(self, xml_file):
@@ -31,12 +35,12 @@ class XMLToLily:
                 pitch_o = pitch.lower() + acc
 
                 if prev_matched:
-                    prev_pitch, prev_octave, prev_accidentals = matched.groups()
-                    oct_ = XMLToLily._OCTAVES.get(int(octave) - int(prev_octave))
-                else:
-                    oct_ = ''
-
-                return pitch_o + XMLToLily._duration_formatter(raw_duration, rest=False) + oct_
+                    prev_pitch, prev_octave, prev_accidentals = prev_matched.groups()
+                    oct_diff = int(octave) - int(prev_octave)
+                    oct_ = XMLToLily._OCTAVES.get(oct_diff)
+                    if not oct_:
+                        oct_ = ''
+                return pitch_o  + XMLToLily._duration_formatter(raw_duration, rest=False) + oct_
             return ''
 
     @staticmethod
@@ -64,6 +68,7 @@ class XMLToLily:
     def _parse_xml_lex_phr(self, mel_phr):
         lex_notes, lyrics = [], []
         for lex_phr in mel_phr.findall('.//lexical_phrase'):
+            prev = 'c4'
             for child in lex_phr:
                 if child.tag == 'syllable':
     
@@ -82,15 +87,11 @@ class XMLToLily:
                     (dur.text for dur in child.findall('.//duration'))
                     ))
                     notes = []
-                    prev = 'c4'
                     for (p, d) in notes_raw:
                         notes.append(self._note_formatter(raw_pitch=p, raw_duration=d, prev_pitch=prev))
                         prev = p
                     lex_notes.append(''.join(notes))
 
-                    # lex_notes.append(' '.join(self._note_formatter(p, d) 
-                    #                     for (p, d) in notes_raw))  
-                    
                 elif child.tag == 'rest':
                     for duration in child.findall('.//duration'):
                         lex_notes.append(self._duration_formatter(duration.text))

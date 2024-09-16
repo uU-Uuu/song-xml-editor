@@ -452,6 +452,7 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
             tag_item.obj = value_item.obj = edited_node[0].obj
             value_item.edit_value()
         self._edit_mode = False
+        self._populated_and_changed = True
         self.overwriteBtn.setEnabled(True)
 
 
@@ -460,7 +461,6 @@ class MainWindowGen(QtWidgets.QMainWindow, Ui_MainWindow):
         from_file_str = self.doc.read_file(to_indent=indent) 
         meta, closing, from_scratch = self._handle_loaded_file_xml(from_file_str)
         new_xml_str = self._last_nodes[1].obj.write_xml(indent=indent)
-
         if from_scratch or self._populated_and_changed:
             xml_str = meta + new_xml_str + closing
         elif self._populated:

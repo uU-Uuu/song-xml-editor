@@ -4,33 +4,33 @@
     #(set-default-paper-size "a9")
 }
 \header {
-    title = "Good morning"
+    title = "mew"
 }
 
 \markup {
 \column {
-    \line { \bold "Section: A" }
+    \line { \bold "" }
     }
 }
 
 \score {
     \header {
-        piece = "Mel. phrase: 2"
+        piece = "Mel. phrase: 3"
     }
     <<
         \new Staff= "staff" {
             \new Voice = "mel" {
                 \relative c' {
-                    \key e \major
+                    \key a \minor
                     \time 4/4
-                    e16' r8 a16,e8 a16e8 e2, b8'''
+                    e4
 
                     }
                 }
         }  
         \new Lyrics \with { alignAboveContext = "staff"} {
             \lyricsto mel {
-                ご もろ 真 メ - kj jk
+                hj
             }
         }
     >>
