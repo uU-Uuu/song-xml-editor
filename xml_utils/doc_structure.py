@@ -163,7 +163,7 @@ class XMLDoc:
                 self.path = os.path.join(self.path, self.filename)
                 try:
                     with open(self._path, 'w', encoding='utf-8') as file:
-                        file.write(self.write_metadata_xml(non_empty=non_empty))
+                        file.write(XMLDoc.pretty_xml(self.write_metadata_xml(non_empty=non_empty)))
                 except IOError as _:
                     print(f'Error when trying to save file\n\t {_}')
         except InvalidFilename:
@@ -226,22 +226,26 @@ class XMLDoc:
     
         return self.write_xml(starting_with=st_xml_string, ending_with=fin_xml_string,
                               non_empty=non_empty)
-    
 
+
+    @classmethod
+    def pretty_xml(cls, txt, indent='\t'):
+        dom = xml.dom.minidom.parseString(txt)
+        pretty_mel = dom.toprettyxml(indent=indent)
+        return pretty_mel
+    
     def read_file(self, prettify_indent=True, from_indent='\t', to_indent='   '):
         with open(self._path, 'r', encoding='utf-8') as file:
             data = file.read()
-            dom = xml.dom.minidom.parseString(data)
-            pretty_xml = dom.toprettyxml(indent=to_indent)
+            pretty_xml = XMLDoc.pretty_xml(data)
             return pretty_xml
-    
-    @staticmethod
-    def delete_empty_lines(txt):
-        split_txt = txt.splitlines()
-        clear_txt = '\n'.join(line for line in split_txt
-                              if line.strip() and line.strip('\t'))
-        return clear_txt
-                
+
+    @classmethod
+    def del_empty(cls, txt):
+        lines = txt.splitlines()
+        non_empty = [line for line in lines if line.strip() != '']
+        return '\n'.join(non_empty)
+
 
     def update_file(self, title:str='', key:str='', time_signature:str=''):
         """overwrite the file with the current state of the instance
@@ -257,19 +261,22 @@ class XMLDoc:
             with open(self._path, 'w', encoding='utf-8') as file:
                 meta, closing = self.write_metadata_xml(closed=False)
                 mel = self.melody.write_xml()
-                file.write(f'{meta}{mel}{closing}')
+                pretty_mel = XMLDoc.pretty_xml(mel)
+                file.write(f'{meta}{XMLDoc.del_empty(pretty_mel)}{closing}')
         except IOError as _:
                 print(f'Error when trying to update the file\n\t {_}')
 
     def save_edited_file(self, edited_data):
         edited_path = f'{self._path.split(".xml")[0]}_edited.xml'
         with open(f'{edited_path}', 'w', encoding='utf-8') as file:
-            file.write(edited_data)
-        return edited_data
+            pretty_data = XMLDoc.pretty_xml(edited_data)
+            file.write(XMLDoc.del_empty(pretty_data))
+        return pretty_data
 
     def save_file(self, data):
         with open(self._path, 'w', encoding='utf-8') as file:
-            file.write(data)
+            pretty_data = XMLDoc.pretty_xml(data)
+            file.write(XMLDoc.del_empty(pretty_data))
         return self._path
 
 
