@@ -18,7 +18,7 @@
 - example.png (LilyPond generated sheet music)
 
 ### Video
-
+[:eyes:](https://drive.google.com/file/d/1JcKDX8SOcxi2ij0p8zeGglqygI4lIf4O/view?usp=sharing)
 
 ### Libraries
 PyQt5, PyQt5Designer, PySide2, LilyPond-2.24.4
