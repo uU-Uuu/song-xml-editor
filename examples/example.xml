@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<doc>
+	<title>example</title>
+	<key>A major</key>
+	<time_signature>2/4</time_signature>
+	<melody>
+		<section name="Verse1">
+			<melodic_phrase id="1">
+				<lexical_phrase id="1">
+					<syllable>
+						<lyric>a</lyric>
+						<pitch>D4#</pitch>
+						<duration>3/16</duration>
+						<pitch>E4</pitch>
+						<duration>1/4</duration>
+					</syllable>
+					<rest>
+						<duration>1/2</duration>
+					</rest>
+				</lexical_phrase>
+			</melodic_phrase>
+			<melodic_phrase id="3">
+				<lexical_phrase id="2">
+					<syllable>
+						<lyric>la</lyric>
+						<pitch>C3</pitch>
+						<duration>1/2</duration>
+					</syllable>
+				</lexical_phrase>
+			</melodic_phrase>
+		</section>
+	</melody>
+</doc>
